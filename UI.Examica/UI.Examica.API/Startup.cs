@@ -86,6 +86,8 @@ namespace UI.Examica.API
             AutoMapper.Mapper.Initialize(config =>
             {
                 config.CreateMap<RegisterDto, AppUser>();
+                config.CreateMap<PricingPlanDto, PricingPlan>();
+                config.CreateMap<PricingPlan, PricingPlanDto>();
             });
 
 
