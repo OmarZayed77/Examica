@@ -68,7 +68,7 @@ namespace UI.Examica.API
                         ClockSkew = TimeSpan.Zero // remove delay of token when expire
                     };
                 });
-            
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // ===== Use UnitOfWork as a Dependecy Injection ========
@@ -105,8 +105,13 @@ namespace UI.Examica.API
                .ForMember(dest => dest.Options,
                        // Map Each Question Option in List to option DTO
                        opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<QuestionOption>, List<OptionDto>>(src.QuestionOptions)));
+<<<<<<< HEAD
                });
 >>>>>>> 329cac6ceadcff8bdcd18c92624ae5c86175c546
+=======
+                config.CreateMap<OrganizationDto, Organization>();
+            });
+>>>>>>> f9ade1e234cfcca9f7be7e1e8bd529aa241cdda0
 
 
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
