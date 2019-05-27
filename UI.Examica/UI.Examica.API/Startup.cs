@@ -68,7 +68,7 @@ namespace UI.Examica.API
                         ClockSkew = TimeSpan.Zero // remove delay of token when expire
                     };
                 });
-            
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // ===== Use UnitOfWork as a Dependecy Injection ========
@@ -86,6 +86,7 @@ namespace UI.Examica.API
             AutoMapper.Mapper.Initialize(config =>
             {
                 config.CreateMap<RegisterDto, AppUser>();
+                config.CreateMap<OrganizationDto, Organization>();
             });
 
 

@@ -122,7 +122,7 @@ namespace UI.Examica.API.Controllers
             return Ok(Admins);
 
         }
-        
+
         // POST: api/Organizations
         [HttpPost]
 
@@ -136,18 +136,28 @@ namespace UI.Examica.API.Controllers
 
         // DELETE: api/Organizations/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<Organization>> DeleteOrganization(int id)
         {
-            var organization = await unitOfWork.Organizations.GetById(id);
-            if (organization == null)
+            AppUser user = await userManager.GetUserAsync(User);
+            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
+            if (user.IsOwnerOfOrg(id))
             {
-                return NotFound();
+                var organization = await unitOfWork.Organizations.GetById(id);
+                if (organization == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    unitOfWork.Organizations.Remove(organization);
+                    await unitOfWork.SaveAsync();
+
+                }
+
+                return organization;
             }
-
-            unitOfWork.Organizations.Remove(organization);
-            await unitOfWork.SaveAsync();
-
-            return organization;
+            else return Unauthorized("You are not an owner of this organinzation");
         }
     }
 }
