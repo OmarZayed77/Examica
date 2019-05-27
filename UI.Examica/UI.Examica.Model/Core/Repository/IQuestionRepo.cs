@@ -11,5 +11,8 @@ namespace UI.Examica.Model.Core.Repository
 {
     public interface IQuestionRepo : IRepository<Question>
     {
+        Task<IEnumerable<Question>> GetQuestionsWithOptions();
+        Task<Question> GetQuestionWithOptionsById(int quesId);
+        Task<IEnumerable<Question>> GetQuestionsOfOrg(int orgId);
     }
 }

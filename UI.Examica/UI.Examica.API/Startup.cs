@@ -88,7 +88,20 @@ namespace UI.Examica.API
                 config.CreateMap<RegisterDto, AppUser>();
                 config.CreateMap<PricingPlanDto, PricingPlan>();
                 config.CreateMap<PricingPlan, PricingPlanDto>();
-            });
+                config.CreateMap<AddQuestionDto, Question>();
+
+                // Map Question Option to Option DTO
+                config.CreateMap<QuestionOption, OptionDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.OptionId))
+                .ForMember(dest => dest.Name,
+                        opt => opt.MapFrom(src => src.Option.Name));
+                // Map Question to Question DTO
+                config.CreateMap<Question, QuestionDto>()
+               .ForMember(dest => dest.Options,
+                       // Map Each Question Option in List to option DTO
+                       opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<QuestionOption>, List<OptionDto>>(src.QuestionOptions)));
+               });
 
 
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
