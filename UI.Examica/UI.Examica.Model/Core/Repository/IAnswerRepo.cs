@@ -11,5 +11,9 @@ namespace UI.Examica.Model.Core.Repository
 {
     public interface IAnswerRepo : IRepository<Answer>
     {
+        Task<IEnumerable<Answer>> GetByExamId();
+        Task<IEnumerable<Answer>> GetByExamIdWithMembers();
+        Task<IEnumerable<Answer>> GetByExamIdAndUser();
+        Task<IEnumerable<Answer>> GetByQuestionAndUser();
     }
 }
