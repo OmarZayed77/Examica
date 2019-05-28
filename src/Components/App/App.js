@@ -2,7 +2,7 @@ import React from 'react';
 import 'element-theme-default';
 import './App.css';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
-import Home from '../Button'
+import Home from '../../Containers/Questions-list';
 
 function App() {
   return (
