@@ -3,7 +3,7 @@ export const REGISTER = "REGISTER";
 export const LOGOUT = "LOGOUT";
 
 
-export const loginUser = (value) => {
+export const loginUserSuccess = (value) => {
     return {type: LOGIN, payload: value}
 }
 
@@ -11,6 +11,6 @@ export const logoutUser = (value) => {
     return {type: LOGOUT, payload: value}
 }
 
-export const registerUser = (value) => {
+export const registerUserSuccess = (value) => {
     return {type: REGISTER, payload: value}
 }

@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "element-react": "^1.4.34",
     "element-theme-default": "^1.4.13",
+    "init": "^0.1.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
@@ -37,5 +39,17 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.8.2",
     "create-react-component-folder": "^0.1.30"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OmarZayed77/Examica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OmarZayed77/Examica/issues"
+  },
+  "homepage": "https://github.com/OmarZayed77/Examica#readme"
 }
