@@ -1,4 +1,4 @@
-import URL from '../../API/Config/url'
+import URL from '../../Api/Config/url'
 import axios from 'axios'
 
 export const LOGIN = 'LOGIN';
