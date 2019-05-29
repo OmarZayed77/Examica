@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Layout } from 'element-react/next';
+import {register} from '../../../Store/Actions/authActions'
+import { connect } from 'react-redux'
 class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       form: {
-        pass: '',
+        name: '',
+        Email: '',
+        Password: '',
         checkPass: '',
-        age: ''
+
       },
       rules: {
-        pass: [
+        name: [
+          { required: true, message: 'Please input your name', trigger: 'blur' }
+        ],
+        Email: [
+          { required: true, message: 'Please input email address', trigger: 'blur' },
+          { type: 'email', message: 'Please input correct email address', trigger: 'blur,change' }
+        ],
+        Password: [
           { required: true, message: 'Please input the password', trigger: 'blur' },
           {
             validator: (rule, value, callback) => {
@@ -32,32 +43,12 @@ class Register extends Component {
             validator: (rule, value, callback) => {
               if (value === '') {
                 callback(new Error('Please input the password again'));
-              } else if (value !== this.state.form.pass) {
+              } else if (value !== this.state.form.Password) {
                 callback(new Error('Two inputs don\'t match!'));
               } else {
                 callback();
               }
             }
-          }
-        ],
-        age: [
-          { required: true, message: 'Please input the age', trigger: 'blur' },
-          {
-            validator: (rule, value, callback) => {
-              var age = parseInt(value, 10);
-
-              setTimeout(() => {
-                if (!Number.isInteger(age)) {
-                  callback(new Error('Please input digits'));
-                } else {
-                  if (age < 18) {
-                    callback(new Error('Age must be greater than 18'));
-                  } else {
-                    callback();
-                  }
-                }
-              }, 1000);
-            }, trigger: 'change'
           }
         ]
       }
@@ -70,6 +61,8 @@ class Register extends Component {
     this.refs.form.validate((valid) => {
       if (valid) {
         alert('submit!');
+        console.log(this.state.form);
+        this.props.registerUser(this.state.form);
       } else {
         console.log('error submit!!');
         return false;
@@ -88,27 +81,30 @@ class Register extends Component {
       form: Object.assign({}, this.state.form, { [key]: value })
     });
   }
+  onEmailChange(value) {
+    this.setState({
+      form: Object.assign({}, this.state.form, { Email: value })
+    });
+  }
 
   render() {
     return (
-      <fragment>
-        <Layout.Row gutter="20" justify="center" align="middle">
-          <Layout.Col>
-            <div></div>
-          </Layout.Col>
-        </Layout.Row>
-        <Layout.Row gutter="10" type="flex"  justify="center" align="middle">
+      <>
+        <Layout.Row gutter="10" type="flex" justify="center" align="middle">
           {/* register Form */}
           <Layout.Col span="8">
             <Form ref="form" model={this.state.form} rules={this.state.rules} labelWidth="100" className="demo-ruleForm">
-              <Form.Item label="Password" prop="pass">
-                <Input type="password" value={this.state.form.pass} onChange={this.onChange.bind(this, 'pass')} autoComplete="off" />
+              <Form.Item label="User Name" prop="name">
+                <Input value={this.state.form.name} onChange={this.onChange.bind(this, 'name')}></Input>
               </Form.Item>
-              <Form.Item label="Confirm" prop="checkPass">
+              <Form.Item prop="Email" label="Email">
+                <Input value={this.state.form.Email} onChange={this.onEmailChange.bind(this)}></Input>
+              </Form.Item>
+              <Form.Item label="Password" prop="Password">
+                <Input type="password" value={this.state.form.Password} onChange={this.onChange.bind(this, 'Password')} autoComplete="off" />
+              </Form.Item>
+              <Form.Item label="Confirm Password" prop="checkPass">
                 <Input type="password" value={this.state.form.checkPass} onChange={this.onChange.bind(this, 'checkPass')} autoComplete="off" />
-              </Form.Item>
-              <Form.Item label="Age" prop="age">
-                <Input value={this.state.form.age} onChange={this.onChange.bind(this, 'age')}></Input>
               </Form.Item>
               <Form.Item>
                 <Button type="primary" onClick={this.handleSubmit.bind(this)}>Submit</Button>
@@ -117,10 +113,15 @@ class Register extends Component {
             </Form>
           </Layout.Col>
         </Layout.Row>
-      </fragment>
+      </>
     )
   }
 
 }
 
-export default Register;
+const mapDispatchToProps = dispatch => {
+  return {
+    registerUser: (user) => dispatch(register(user))
+  };
+};
+export default connect(null, mapDispatchToProps)(Register);
