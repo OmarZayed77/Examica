@@ -7,7 +7,7 @@ import './Questions-list.css';
 class QuestionsList extends Component {
 
   state = {
-    qbtn: [
+    questionButtons: [
       {
         id: 1,
         name: "Multiple Choise",
@@ -73,9 +73,9 @@ class QuestionsList extends Component {
     ]
   }
   render() {
-    const qbtns = this.state.qbtn.map(btn => {
+    const questionButton = this.state.questionButtons.map(btn => {
       return (
-        <Layout.Col span="9">
+      <Layout.Col span="10" offset="1">
       <QuestionButton
         id={btn.id}
         name={btn.name}
@@ -86,8 +86,8 @@ class QuestionsList extends Component {
       );
     });
     return (
-      <Layout.Row gutter="20">
-        {qbtns}
+      <Layout.Row >
+        {questionButton}
       </Layout.Row>
     );
   }
@@ -95,7 +95,7 @@ class QuestionsList extends Component {
 
 const mapStateToProps = state => {
   return {
-    qbtn: state.qbtn
+    questionbuttons: state.questionbuttons
   };
 };
 export default connect(mapStateToProps, null)(QuestionsList);
