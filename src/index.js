@@ -11,6 +11,7 @@ import { i18n } from 'element-react/next'
 import locale from 'element-react/src/locale/lang/en'
 
 i18n.use(locale);
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
