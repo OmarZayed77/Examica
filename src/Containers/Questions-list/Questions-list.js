@@ -86,7 +86,7 @@ class QuestionsList extends Component {
       );
     });
     return (
-      <Layout.Row >
+      <Layout.Row className="QuestionList">
         {questionButton}
       </Layout.Row>
     );

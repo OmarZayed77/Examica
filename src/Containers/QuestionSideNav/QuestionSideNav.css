@@ -1,23 +1,23 @@
-.el-submenu .el-menu-item:hover, .el-submenu__title:hover{
+.QuestionMenu .el-submenu .el-menu-item:hover, .el-submenu__title:hover{
     background-color: unset;
 }
 
-.el-submenu
+.QuestionMenu .el-submenu
 {
     background-color: #ff8a73;  
 }
-.el-submenu-title:hover{
+.QuestionMenu .el-submenu-title:hover{
     background-color: #ff8a73;
 }
-.el-menu {
+.QuestionMenu .el-menu {
     width: 21rem;
 }
 
-.el-submenu__title{
+.QuestionMenu .el-submenu__title{
    color : #1e120f ;
 }
 
-.el-submenu__title span i {
+.QuestionMenu .el-submenu__title span i {
     padding:  12px;
 }
 .el-menu-item-group

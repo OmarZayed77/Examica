@@ -16,7 +16,7 @@ class QuestionSideNav extends Component {
   }
   render() {
     return (
-      <Layout.Row className="tac">
+      <Layout.Row className="tac QuestionMenu" >
         <Layout.Col span={8}>
           <Menu defaultActive="2" className="el-menu-vertical-demo" onOpen={this.Toggle.bind(this)}>
           <Menu.SubMenu index="1" title={<span><i class="far fa-question-circle"></i>Questions</span>}>
