@@ -11,6 +11,7 @@ const authReducer = (state = initialState, action) => {
         case authActions.LOGIN:
             newState.isLoggedIn = true;
             newState.token = action.payload;
+            break;
         case authActions.REGISTER:
             newState.isLoggedIn = true;
             newState.token = action.payload;
