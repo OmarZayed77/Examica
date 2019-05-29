@@ -37,7 +37,9 @@
     ]
   },
   "devDependencies": {
-    "create-react-component-folder": "^0.1.30"
+    "@fortawesome/fontawesome-free": "^5.8.2",
+    "create-react-component-folder": "^0.1.30",
+    "font-awesome": "^4.7.0"
   },
   "description": "",
   "main": "index.js",

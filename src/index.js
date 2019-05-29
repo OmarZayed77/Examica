@@ -7,6 +7,7 @@ import {compose, applyMiddleware, createStore} from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './Store/rootReducer';
 import thunk from 'redux-thunk';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

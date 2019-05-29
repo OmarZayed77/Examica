@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from './Button';
+import QuestionButton from './Question-Button';
 
-describe('<Button />', () => {
+describe('<QuestionButton />', () => {
   test('renders', () => {
-    const wrapper = shallow(<Button />);
+    const wrapper = shallow(<QuestionButton />);
     expect(wrapper).toMatchSnapshot();
   });
 });
