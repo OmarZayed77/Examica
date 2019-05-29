@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "element-react": "^1.4.34",
     "element-theme-default": "^1.4.13",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
