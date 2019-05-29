@@ -1,4 +1,4 @@
-import * as examsAPI from '../../Api/examsAPI';
+import * as examsAPI from '../../API/examsAPI';
 
 export const ADD = "ADD";
 export const EDIT = "EDIT";
@@ -9,6 +9,7 @@ export const add = (exam, orgId, token) => {
     return dispatch => {
         examsAPI.add(exam,orgId,token)
         .then(res => {
+            console.log(res);
             if(res.status === 200)
             {
                 dispatch(addSuccess(res.data));

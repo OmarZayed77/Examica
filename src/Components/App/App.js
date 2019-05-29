@@ -17,7 +17,7 @@ function App() {
         <Route path="/exams/add" component={AddExam}/>
         <Redirect from="/home" to="/"/>
         <Route path="/register" exact component={Register}/>
-        <Route path="/QuestionSideNave" exact component={QuestionSideNave}/>
+        <Route path="/QuestionSideNav" exact component={QuestionSideNave}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/CreateQuestions" exact component={CreateQuestions}/>
         <Route path="/" exact render={()=>{return "Home Sweet Home"}}/>
