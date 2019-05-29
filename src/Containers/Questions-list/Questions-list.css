@@ -20,7 +20,7 @@ a{
     background-color: #efefef;
     border-color: #97a8be; 
     width: 135px;
-    justify-content: start;
+    justify-content: flex-start;
     display: flex;
     min-width: 120px;
 }
