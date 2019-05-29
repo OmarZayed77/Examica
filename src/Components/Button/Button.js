@@ -1,9 +1,10 @@
 import React from 'react';
 import {Button} from 'element-react/next';
+import './Button.css'
 
-const ButtonTest = (props) => {
+const ButtonPrimary = (props) => {
   
-    return <Button type="danger">Danger</Button>;
+    return <Button className="Buttonprimary">hasnaa</Button>;
 }
 
-export default ButtonTest;
+export default ButtonPrimary;
