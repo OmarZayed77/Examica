@@ -1,0 +1,11 @@
+.FeatureCard .FeatureCard-Image{
+    width:100%;
+}
+.FeatureCard .FeatureCard-Title{
+    color:#FF8A73;
+    font-size: 30px;
+    font-weight: 600;
+}
+.FeatureCard .FeatureCard-Content{
+    font-size: 15px;
+}
