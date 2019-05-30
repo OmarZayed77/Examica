@@ -20,7 +20,7 @@ function App() {
   return (
     <BrowserRouter>
      <div className="App">
-       <div className="container">
+   
          <QuestionSideNav/>
       <Switch>
         <Route path="/exams/add" component={AddExam}/>
@@ -40,7 +40,7 @@ function App() {
         <Route render={()=>{return "not found!!!"}}/>
       </Switch>
       </div>
-      </div>
+    
     </BrowserRouter>
   );
 }

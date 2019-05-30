@@ -32,8 +32,8 @@ class QuestionSettings extends Component {
   render() {
     return (
       <>
-        <label className=" QuestionSettings  SettingLabel">Scoring:</label>
-        <Select value={this.state.value} className="QuestionSettings SettingOptions" >
+        <label className=" QuestionSettings label1">Scoring:</label>
+        <Select value={this.state.value} className="QuestionSettings select1" >
           {
             this.state.options.map(el => {
               return <Select.Option key={el.value} label={el.label} value={el.value} />
@@ -41,8 +41,8 @@ class QuestionSettings extends Component {
           }
         </Select>
 
-        <label className=" QuestionSettings SettingLabel2">Order Of Questions</label>
-        <Select value={this.state.value} className="QuestionSettings SettingOptions2">
+        <label className=" QuestionSettings label2">Order Of Questions</label>
+        <Select value={this.state.value} className="QuestionSettings select2">
           {
             this.state.options.map(el => {
               return <Select.Option key={el.value} label={el.label} value={el.value} />
@@ -50,14 +50,14 @@ class QuestionSettings extends Component {
           }
         </Select>
 
-        <label className="QuestionSettings SettingLabel3">Question Per Page</label>
+        <label className="QuestionSettings label3">Question Per Page</label>
         <Tooltip
           placement="top"
           content={
             <div>Switch value: {this.state.value}</div>
           }
         >
-          <Switch className="QuestionSettings QuestionSwitch"
+          <Switch className="QuestionSettings select3"
             value={this.state.value}
             onColor="#13ce66"
             offColor="#ff4949"

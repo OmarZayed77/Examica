@@ -4,7 +4,7 @@ import QuestionsList from '../Questions-list';
 import './QuestionTypes.css';
 import QuestionSettings from '../QuestionSettings/QuestionSettings';
 
-class QuestionSideNav extends Component {
+class QuestionTypes extends Component {
   state = {
     open: false
   }
@@ -16,9 +16,9 @@ class QuestionSideNav extends Component {
   }
   render() {
     return (
-      <Layout.Row className="tac QuestionMenu " >
+      <Layout.Row className="tac QuestionTypes " >
         <Layout.Col span={8} className="QuestionMenuCol" lg="10">
-          <Menu defaultActive="2" className="el-menu-vertical-demo" onOpen={this.Toggle.bind(this)}>
+          <Menu defaultActive="1" className="el-menu-vertical-demo"  onOpen={this.Toggle.bind(this)}>
           <Menu.SubMenu index="1" title={<span><i class="far fa-question-circle"></i>Questions</span>}>
             <Menu.ItemGroup >
                <QuestionsList/>
@@ -43,4 +43,4 @@ class QuestionSideNav extends Component {
   }
 }
 
-export default QuestionSideNav;
+export default QuestionTypes;
