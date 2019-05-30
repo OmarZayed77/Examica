@@ -6,7 +6,7 @@
 // };
 
 // const authReducer = (state = initialState, action) => {
-//     let newState = {...state}; 
+//     let newState = {...state};
 //     switch(action.type)
 //     {
 //         case authActions.LOGIN:
@@ -20,7 +20,7 @@
 //             break;
 //         default:
 //             break;
-//     }   
+//     }
 //     return newState;
 // }
 
