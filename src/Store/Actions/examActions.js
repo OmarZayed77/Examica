@@ -9,6 +9,7 @@ export const add = (exam, orgId, token) => {
 		examsAPI
 			.add(exam, orgId, token)
 			.then((res) => {
+				console.log(res);
 				if (res.status === 200) {
 					dispatch(addSuccess(res.data));
 				}

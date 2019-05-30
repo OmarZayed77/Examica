@@ -5,6 +5,6 @@ export const getAll = (orgId, token) => {
     return Axios.get(`${URL}/api/exams/organization/${orgId}`, {headers: {Authorization: token}});
 }
 
-export const add = (exam, orgId, token) => {
-    return Axios.post(`${URL}/api/exams/organization/${orgId}`, exam, {headers: {Authorization: token}});
+export const add = (exam, token) => {
+    return Axios.post(`${URL}/api/exams`, exam, {headers: {Authorization: token}});
 }

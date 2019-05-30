@@ -1,0 +1,27 @@
+.QuestionMenu .el-submenu .el-menu-item:hover, .el-submenu__title:hover{
+    background-color: unset;
+}
+
+.QuestionMenu .el-submenu
+{
+    background-color: #ff8a73;  
+}
+.QuestionMenu .el-submenu-title:hover{
+    background-color: #ff8a73;
+}
+.QuestionMenu .el-menu {
+    width: 21rem;
+}
+
+.QuestionMenu .el-submenu__title{
+   color : #1e120f ;
+}
+
+.QuestionMenu .el-submenu__title span i {
+    padding:  12px;
+}
+.el-menu-item-group
+{
+    background-color: #FFFFFF;
+    padding: 4px;
+}
