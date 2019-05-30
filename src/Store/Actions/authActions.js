@@ -1,5 +1,4 @@
-// import URL from '../../Api/Config/url'
-// import axios from 'axios'
+//import axios from 'axios'
 
 // export const LOGIN = 'LOGIN';
 // export const REGISTER = 'REGISTER';
@@ -12,7 +11,7 @@
 
 // export const logoutUser = (value) => {
 //     return { type: LOGOUT, payload: value }
-// }
+// } =
 
 // export const registerUserSuccess = (value) => {
 //     return { type: REGISTER, payload: value }

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {Form, Button, Input, DateRangePicker} from 'element-react/next';
+import {Form, Button, Input, DateRangePicker, Checkbox} from 'element-react/next';
+import {toSqlFormat} from '../../../Helpers/convertDateTime';
+import {connect} from 'react-redux';
+import * as examActions from '../../../Store/Actions/examActions';
 
 class ExamAdd extends Component {
 
@@ -7,6 +10,7 @@ class ExamAdd extends Component {
     super(props);
 
     this.state = {
+      DateRangePicker: [],
       // Exam Object to bind form data with 
       form: {
         Name: "",
@@ -14,7 +18,7 @@ class ExamAdd extends Component {
         StartDateTime: "",
         EndDateTime: "",
         IsPublic: false,
-        OrganizationId: 0
+        OrganizationId: 1
       },
       // Form Rules and Validations to be used by Element UI Form
       rules: {
@@ -29,12 +33,6 @@ class ExamAdd extends Component {
               }
             }
           }
-        ],
-        StartDateTime: [
-          { required: true, type: 'datetime', message: 'Please select A Company', trigger: 'change' }
-        ],
-        EndDateTime: [
-          { required: true, type: 'datetime', message: 'Please select A Company', trigger: 'change' }
         ],
         Mark: [
           { required: true, type: 'number', message: 'Please input the Exam Mark', trigger: 'blur' },
@@ -62,15 +60,11 @@ class ExamAdd extends Component {
   // Event Handler to handle Form Submit Button by validate it and then submit the product
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ loading: true });
     this.refs.form.validate((valid) => {
       if (valid) {
-       console.log("Valid", this.state.form);
-       console.log(this.state.form.StartDateTime);
+        this.props.onAddExam(this.state.form, this.props.token);
       }
       else {
-       console.log("Not Valid", this.state.form);
-       console.log(this.state.form.StartDateTime);
         return false;
       }
     });
@@ -100,9 +94,18 @@ class ExamAdd extends Component {
     });
   }
 
-  // Get Companies and The Product to be updated from database after component did mount
-  componentDidMount() {
-    
+  dateChanged = date => {
+    if(date)
+    {
+      this.setState({
+        DateRangePicker: date,
+        form: {
+          ...this.state.form,
+          StartDateTime: toSqlFormat(date[0]),
+          EndDateTime: toSqlFormat(date[1])
+        }
+      })
+    }
   }
 
   render() {
@@ -115,18 +118,15 @@ class ExamAdd extends Component {
           <Input type="number" value={this.state.form.Mark} onChange={this.onChange.bind(this, 'Mark')} autoComplete="off" />
         </Form.Item>
         <Form.Item label="Date Range">
-          <DateRangePicker
-                isShowTime={true}
-                value={this.state.StartDateTime}
-                placeholder="Pick a range"
-                onChange={date => {
-                  this.setState({ form: {
-                      ...this.state.form,
-                      StartDateTime: date[0].format('YYYY-MM-DD HH:mm:ss'),
-                      EndDateTime: date[1].format('YYYY-MM-DD HH:mm:ss')
-                  }})
-                }}
-              />
+            <DateRangePicker
+              isShowTime={true}
+              value={this.state.DateRangePicker}
+              placeholder="Pick a range"
+              onChange={this.dateChanged} 
+            />
+        </Form.Item>
+        <Form.Item label="Make it Public" prop="IsPublic">
+          <Checkbox checked={this.state.form.IsPublic} onChange={this.onChange.bind(this, 'IsPublic')}>Option</Checkbox>
         </Form.Item>
         <Form.Item>
           <Button type="primary" onClick={this.handleSubmit.bind(this)}>Submit</Button>
@@ -138,4 +138,16 @@ class ExamAdd extends Component {
 }
 
 
-export default ExamAdd;
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddExam: (exam, token) => {dispatch(examActions.add(exam, token))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExamAdd);
