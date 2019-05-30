@@ -1,0 +1,38 @@
+.SettingOptions {
+
+    margin-top: 1rem ;
+    z-index: 1px;
+}
+
+.SettingLabel
+{
+    position: absolute;
+    top: .6rem;
+    left: .5rem;
+
+}
+
+.SettingLabel2
+{
+    position: absolute;
+    top: 5.5rem;
+    left: .5rem;
+}
+
+.SettingOptions2 {
+
+    margin-top: 3rem ;
+  
+}
+
+.SettingLabel3
+{
+    position: absolute;
+    top: 9.8rem;
+    left: 6.5rem;
+}
+
+.QuestionSwitch
+{
+    top : .2rem;
+}

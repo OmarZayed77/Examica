@@ -12,21 +12,21 @@ class QuestionsList extends Component {
         id: 1,
         name: "Multiple Choise",
         icon: "fas fa-dot-circle",
-        type: 'Multiple Choise'
+        type: "/CreateQuestion/CreateChoiseQuestion/"
       },
       {
 
         id: 2,
         name: "Checkbox",
         icon: "fas fa-check-square",
-        type: 'Checkbox'
+        type: '/CreateQuestion/CreateChoiseQuestion/'
       },
       {
 
         id: 3,
         name: "TrueOrFalse",
         icon: "fas fa-times-circle",
-        type: 'TrueOrFalse'
+        type: '/CreateQuestion/CreateTrueOrFalseQuestion/'
 
       },
       {
@@ -34,7 +34,7 @@ class QuestionsList extends Component {
         id: 4,
         name: "FillInTheBlank",
         icon: "fas fa-fill-drip",
-        type: 'FillInTheBlank'
+        type: '/CreateQuestion/CreateFillInTheBlankQuestion/'
 
       },
       {
@@ -42,7 +42,7 @@ class QuestionsList extends Component {
         id: 5,
         name: "Matching",
         icon: "fas fa-random",
-        type: 'Matching'
+        type: '/CreateQuestionCreateMatchingQuestion'
 
       },
       {
@@ -50,7 +50,7 @@ class QuestionsList extends Component {
         id: 6,
         name: "Essay",
         icon: "fas fa-align-justify",
-        type: 'Essay'
+        type: '/CreateQuestionCreateEssayQuestion'
 
       },
       {
@@ -58,28 +58,28 @@ class QuestionsList extends Component {
         id: 7,
         name: "Comprehenssion",
         icon: "fas fa-align-center",
-        type: 'Comprehenssion'
+        type: 'CreateQuestionCreateComprehenssionQuestion'
 
       },
       {
 
         id: 8,
-        name: "Import quesstions",
+        name: "Import questions",
         icon: "fas fa-file-import",
-        type: 'Import quesstions'
+        type: 'CreateQuestionCreateImportQuestion'
 
       },
-
     ]
   }
   render() {
     const questionButton = this.state.questionButtons.map(btn => {
       return (
-      <Layout.Col span="10" offset="1">
+      <Layout.Col span="10" offset="1"   lg="10">
       <QuestionButton
         id={btn.id}
         name={btn.name}
         icon={btn.icon}
+        type={btn.type}
         className="questionlist"
         />
         </Layout.Col>
