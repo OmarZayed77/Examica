@@ -6,8 +6,8 @@
 		"axios": "^0.18.0",
 		"element-react": "^1.4.34",
 		"element-theme-default": "^1.4.13",
-		"moment": "^2.24.0",
 		"init": "^0.1.2",
+		"moment": "^2.24.0",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
 		"react-redux": "^7.0.3",
@@ -26,8 +26,16 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"devDependencies": {
 		"@fortawesome/fontawesome-free": "^5.8.2",

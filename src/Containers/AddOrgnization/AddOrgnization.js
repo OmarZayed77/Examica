@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './AddOrgnization.css';
-import { Form, Button, Input, Select } from 'element-react/next';
 import { connect } from 'react-redux';
+import { Form, Button, Input, Select, Layout } from 'element-react/next';
+import { addOrg } from '../../Api/orgAPI';
 
 class AddOrgnization extends Component {
 	constructor(props) {

@@ -1,4 +1,4 @@
-import * as examsAPI from '../../API/examsAPI';
+import * as examsAPI from '../../Api/examsAPI';
 
 export const ADD = 'ADD';
 export const EDIT = 'EDIT';
