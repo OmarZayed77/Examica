@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './AddOrgnization.css';
 import { Form, Button, Input, Select, Layout } from 'element-react/next';
-import { addOrg } from '../../Api/orgAPI';
+import { addOrg } from '../../API/orgAPI';
 
 class AddOrgnization extends Component {
 	constructor(props) {
