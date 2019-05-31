@@ -10,17 +10,17 @@ const FeatureCard = props=> {
         type="flex"
         justify="center"
       >
-        <Layout.Col span={5}>
+        <Layout.Col xs="10" sm="10" md="10" lg="5" className="FeatureCard-Container">
           <Card bodyStyle={{ padding: 0 }}>
             <img
               className="FeatureCard-Image"
-              src={this.props.image}
+              src={props.image}
               alt="timeIcon"
             />
             <div style={{ padding: 14 }}>
-              <span className="FeatureCard-Title">{this.props.title}</span>
+              <span className="FeatureCard-Title">{props.title}</span>
               <div className="bottom clearfix">
-                <p className="FeatureCard-Content">{this.props.content}</p>
+                <p className="FeatureCard-Content">{props.content}</p>
               </div>
             </div>
           </Card>

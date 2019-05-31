@@ -25,3 +25,16 @@
     background-color: #FFFFFF;
     padding: 4px;
 }
+.QuestionMenu
+{
+    /* margin-top: 4rem; */
+    /* margin-left: .2rem; */
+}
+
+.QuestionMenuCol{
+    border:1px solid #97a8be;
+    padding: 2rem; 
+    border-left: unset; 
+    border-top: unset; 
+    border-bottom: unset; 
+}

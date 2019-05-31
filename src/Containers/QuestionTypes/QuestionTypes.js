@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu } from 'element-react/next';
 import QuestionsList from '../Questions-list';
-import './QuestionSideNav.css';
+import './QuestionTypes.css';
 import QuestionSettings from '../QuestionSettings/QuestionSettings';
 
 class QuestionSideNav extends Component {
@@ -16,8 +16,8 @@ class QuestionSideNav extends Component {
   }
   render() {
     return (
-      <Layout.Row className="tac QuestionMenu" >
-        <Layout.Col span={8}>
+      <Layout.Row className="tac QuestionMenu " >
+        <Layout.Col span={8} className="QuestionMenuCol" lg="10">
           <Menu defaultActive="2" className="el-menu-vertical-demo" onOpen={this.Toggle.bind(this)}>
           <Menu.SubMenu index="1" title={<span><i class="far fa-question-circle"></i>Questions</span>}>
             <Menu.ItemGroup >
@@ -32,7 +32,6 @@ class QuestionSideNav extends Component {
               <QuestionSettings/>
             </Menu.ItemGroup>
           </Menu.SubMenu>
-       
         </Menu>
         </Layout.Col>
       </Layout.Row>
