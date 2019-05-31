@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './AddOrgnization.css';
 import { connect } from 'react-redux';
-import { Form, Button, Input, Select, Layout } from 'element-react/next';
-import { addOrg } from '../../Api/orgAPI';
+import { Form, Button, Input, Select} from 'element-react/next';
+import { addOrg } from '../../API/orgAPI';
 
 class AddOrgnization extends Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ class AddOrgnization extends Component {
 			form: {
 				Name: '',
 				PricingPlanId: '',
-				OwnerId: 1,
+				OwnerId: '',
 				Image: ''
 			},
 			rules: {
@@ -27,7 +27,7 @@ class AddOrgnization extends Component {
 		this.setState({
 			form: {
 				...this.state.form,
-				OwnerId: 1
+				OwnerId: "33a2a5d5-52c3-420e-89d6-98abeb276f84"
 				//OwnerId: this.props.userId
 			}
 		});
@@ -39,7 +39,7 @@ class AddOrgnization extends Component {
 		this.refs.form.validate((valid) => {
 			if (valid) {
 				console.log(this.state.form, this.props.token);
-				//addOrg(this.state.form, this.props.token);
+				addOrg(this.state.form, this.props.token);
 			} else {
 				return false;
 			}
