@@ -61,13 +61,13 @@ class Register extends Component {
     this.refs.form.validate((valid) => {
       if (valid) {
         alert('submit!');
-        console.log(this.state.form);
         this.props.registerUser(this.state.form);
       } else {
         console.log('error submit!!');
         return false;
       }
     });
+    
   }
 
   handleReset(e) {
@@ -124,4 +124,9 @@ const mapDispatchToProps = dispatch => {
     registerUser: (user) => dispatch(register(user))
   };
 };
-export default connect(null, mapDispatchToProps)(Register);
+const mapStateToProps=state=>{
+  return{
+    userData: state.authReducer.userData
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
