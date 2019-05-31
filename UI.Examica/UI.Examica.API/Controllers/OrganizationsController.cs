@@ -233,18 +233,15 @@ namespace UI.Examica.API.Controllers
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Organization>> PostOrganization(Organization organization)
         {
             AppUser user = await userManager.GetUserAsync(User);
-            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
-            if (user.IsOwnerOfOrg(organization.Id) || user.IsAdminOfOrg(organization.Id))
-            {
-                await unitOfWork.Organizations.Add(organization);
-                await unitOfWork.SaveAsync();
-
-                return CreatedAtAction("GetOrganization", new { id = organization.Id }, organization);
-            }
-            else return Unauthorized("You are not authorized");
+            if (user == null) return Unauthorized("You are not authorized");
+            await unitOfWork.Organizations.Add(organization);
+            int res = await unitOfWork.SaveAsync();
+            if (res > 0) return CreatedAtAction("GetOrganization", new { id = organization.Id }, organization);
+            else return BadRequest();
         }
 
         #endregion

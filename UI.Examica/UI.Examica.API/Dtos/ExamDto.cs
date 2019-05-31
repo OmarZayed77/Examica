@@ -14,5 +14,7 @@ namespace UI.Examica.API.Dtos
         public int Mark { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
+        public List<QuestionDto> Questions { get; set; }
+        public List<ComplexQuestionDto> ComplexQuestions { get; set; }
     }
 }

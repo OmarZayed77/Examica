@@ -89,21 +89,95 @@ namespace UI.Examica.API
                 config.CreateMap<PricingPlanDto, PricingPlan>();
                 config.CreateMap<PricingPlan, PricingPlanDto>();
                 config.CreateMap<AddQuestionDto, Question>();
+                config.CreateMap<OrganizationDto, Organization>();
+                config.CreateMap<ResultDto, Result>();
 
-                // Map Question Option to Option DTO
+                // Map QuestionOption to OptionDTO
                 config.CreateMap<QuestionOption, OptionDto>()
                 .ForMember(dest => dest.Id,
                         opt => opt.MapFrom(src => src.OptionId))
                 .ForMember(dest => dest.Name,
                         opt => opt.MapFrom(src => src.Option.Name));
-                // Map Question to Question DTO
+
+                // Map Question to QuestionDTO
                 config.CreateMap<Question, QuestionDto>()
                .ForMember(dest => dest.Options,
-                       // Map Each Question Option in List to option DTO
+                       // Map Each QuestionOption in List to optionDTO
                        opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<QuestionOption>, List<OptionDto>>(src.QuestionOptions)));
-                config.CreateMap<OrganizationDto, Organization>();
-                config.CreateMap<ResultDto, Result>();
+
+                // Map QuestionComplexQuestion to QuestionDTO
+                config.CreateMap<QuestionComplexQuestion, QuestionDto>()
+                .ForMember(dest => dest.Title,
+                opt => opt.MapFrom(src => src.Question.Title))
+                .ForMember(dest => dest.Type,
+                opt => opt.MapFrom(src => src.Question.Type))
+                .ForMember(dest => dest.Id,
+                opt => opt.MapFrom(src => src.QuestionId))
+                .ForMember(dest => dest.IsPublic,
+                opt => opt.MapFrom(src => src.Question.IsPublic))
+                .ForMember(dest => dest.Level,
+                opt => opt.MapFrom(src => src.Question.Level))
+                .ForMember(dest => dest.Mark,
+                opt => opt.MapFrom(src => src.Question.Mark))
+               .ForMember(dest => dest.Options,
+                opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<QuestionOption>, List<OptionDto>>(src.Question.QuestionOptions)));
+
+                // Map ComplexQuestion to ComplexQuestionDTO
+                config.CreateMap<ComplexQuestion, ComplexQuestionDto>()
+               .ForMember(dest => dest.Questions,
+                       opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<QuestionComplexQuestion>, List<QuestionDto>>(src.QuestionComplexQuestions)));
+
+                // Map Question Complex Question to Question DTO
+                config.CreateMap<QuestionComplexQuestion, QuestionDto>()
+                .ForAllMembers(opt => opt.MapFrom(src => AutoMapper.Mapper.Map<Question,QuestionDto>(src.Question)));
+
+               
+                // Map ExamQuestion to QuestionDTO
+                config.CreateMap<ExamQuestion, QuestionDto>()
+                .ForMember(dest => dest.Title,
+                opt => opt.MapFrom(src => src.Question.Title))
+                .ForMember(dest => dest.Type,
+                opt => opt.MapFrom(src => src.Question.Type))
+                .ForMember(dest => dest.Id,
+                opt => opt.MapFrom(src => src.QuestionId))
+                .ForMember(dest => dest.IsPublic,
+                opt => opt.MapFrom(src => src.Question.IsPublic))
+                .ForMember(dest => dest.Level,
+                opt => opt.MapFrom(src => src.Question.Level))
+                .ForMember(dest => dest.Mark,
+                opt => opt.MapFrom(src => src.Question.Mark))
+               .ForMember(dest => dest.Options,
+                opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<QuestionOption>, List<OptionDto>>(src.Question.QuestionOptions)));
+
+
+                // Complex Question To List of Question DTO
+                config.CreateMap<ComplexQuestion, List<QuestionDto>>()
+                    .ConvertUsing(src => src.QuestionComplexQuestions.Select(qcq =>
+                           AutoMapper.Mapper.Map<Question, QuestionDto>(qcq.Question)
+                        ).ToList()
+                    );
+
+                // Map Exam Complex Question to Complex Question DTO
+                config.CreateMap<ExamComplexQuestion, ComplexQuestionDto>()
+                .ForMember(dest => dest.Title,
+                opt => opt.MapFrom(src => src.ComplexQuestion.Title))
+                .ForMember(dest => dest.OrganizationId,
+                opt => opt.MapFrom(src => src.ComplexQuestion.OrganizationId))
+                .ForMember(dest => dest.Id,
+                opt => opt.MapFrom(src => src.ComplexQuestionId))
+                .ForMember(dest => dest.IsPublic,
+                opt => opt.MapFrom(src => src.ComplexQuestion.IsPublic))
+                .ForMember(dest => dest.Questions,
+                     opt => opt.MapFrom(src => AutoMapper.Mapper.Map<ComplexQuestion, List<QuestionDto>>(src.ComplexQuestion)));
+
+                // Map Exam to ExamDto
+                config.CreateMap<Exam, ExamDto>()
+                .ForMember(dest => dest.Questions,
+                opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<ExamQuestion>, List<QuestionDto>>(src.ExamQuestions)))
+                .ForMember(dest => dest.ComplexQuestions,
+                opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<ExamComplexQuestion>, List<ComplexQuestionDto>>(src.ExamComplexQuestions)));
             });
+
 
 
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());

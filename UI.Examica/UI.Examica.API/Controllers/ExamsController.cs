@@ -33,7 +33,7 @@ namespace UI.Examica.API.Controllers
         // GET: api/Exams
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [Authorize(Roles ="Developer")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Exam>>> GetExams()
         {
             return Ok(await unitOfWork.Exams.GetAll());
@@ -42,24 +42,19 @@ namespace UI.Examica.API.Controllers
         // GET: api/Exams/5
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Authorize]
         public async Task<ActionResult<Exam>> GetExam(int id)
         {
-            var exam = await unitOfWork.Exams.GetById(id);
+            var exam = await unitOfWork.Exams.GetExamWithQuestions(id);
+            if (exam == null) return NotFound();
             var orgId = exam.OrganizationId;
             AppUser user = await userManager.GetUserAsync(User);
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
-
             if (user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))
             {
-                    if (exam == null)
-                {
-                    return NotFound();
-                }
-                    else
-                {
-                    return Ok(exam);
-                }
+                return Ok(Mapper.Map<ExamDto>(exam));
             }
             else
             {
@@ -121,10 +116,10 @@ namespace UI.Examica.API.Controllers
 
         //// POST: api/Exams
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Authorize]
-        public async Task<ActionResult<Exam>> PostExam([FromBody]Exam exam)
+        public async Task<ActionResult<ExamDto>> PostExam([FromBody]Exam exam)
         {
             AppUser user = await userManager.GetUserAsync(User);
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
@@ -135,7 +130,7 @@ namespace UI.Examica.API.Controllers
 
                 if (result > 0)
                 {
-                    return Ok(exam);
+                    return Ok(Mapper.Map<ExamDto>(exam));
                 }
                 else
                 {

@@ -11,6 +11,6 @@ namespace UI.Examica.Model.Core.Repository
 {
     public interface IExamRepo : IRepository<Exam>
     {
-        IEnumerable<Exam> GetExamWithQuestions(params object[] id);
+        Task<Exam> GetExamWithQuestions(int id);
     }
 }
