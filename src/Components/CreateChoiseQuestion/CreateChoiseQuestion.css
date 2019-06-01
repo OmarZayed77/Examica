@@ -1,0 +1,13 @@
+.CreateMultipleChoiseQuestion .CreateMultipleChoiseQuestion-NumberInput {
+    width: 120px;
+}
+.CreateMultipleChoiseQuestion  .el-input-number{
+    width: 120px;
+}
+.CreateMultipleChoiseQuestion-Mark{
+    color: #58488C;
+    font-weight: 500;
+}
+.CreateMultipleChoiseQuestion .el-form-item__content{
+    margin: 0px;
+}

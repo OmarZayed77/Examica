@@ -20,64 +20,62 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="container">
-          <QuestionSideNav />
-          <Switch>
-            <Route path="/exams/add" component={AddExam} />
-            <Redirect from="/home" to="/" />
-            <Route path="/register" exact component={Register} />
-            <Route path="/CreateQuestion" exact component={CreateQuestion} />
-            <Route path="/login" exact component={Login} />
-            <Route
-              path="/CreateQuestion/CreateChoiseQuestion"
-              exact
-              component={CreateChoiseQuestion}
-            />
-            <Route
-              path="/CreateQuestion/CreateComprehenssionQuestion"
-              exact
-              component={CreateComprehenssionQuestion}
-            />
-            <Route
-              path="/CreateQuestion/CreateEssayQuestion"
-              exact
-              component={CreateEssayQuestion}
-            />
-            <Route
-              path="/CreateQuestion/CreateFillInTheBlankQuestion"
-              exact
-              component={CreateFillInTheBlankQuestion}
-            />
-            <Route
-              path="/CreateQuestion/CreateMatchingQuestion"
-              exact
-              component={CreateMatchingQuestion}
-            />
-            <Route
-              path="/CreateQuestion/CreateTrueOrFalseQuestion"
-              exact
-              component={CreateTrueOrFalseQuestion}
-            />
-            <Route
-              path="/CreateQuestion/CreateImportQuestion"
-              exact
-              component={CreateImportQuestion}
-            />
-            <Route path="/" exact component={AddOrgnization} />
-            <Route
-              path="/"
-              exact
-              render={() => {
-                return "Home Sweet Home";
-              }}
-            />
-            <Route
-              render={() => {
-                return "not found!!!";
-              }}
-            />
-          </Switch>
-        </div>
+        <QuestionSideNav />
+        <Switch>
+          <Route path="/exams/add" component={AddExam} />
+          <Redirect from="/home" to="/" />
+          <Route path="/register" exact component={Register} />
+          <Route path="/CreateQuestion" exact component={CreateQuestion} />
+          <Route path="/login" exact component={Login} />
+          <Route
+            path="/CreateQuestion/CreateChoiseQuestion"
+            exact
+            component={CreateChoiseQuestion}
+          />
+          <Route
+            path="/CreateQuestion/CreateComprehenssionQuestion"
+            exact
+            component={CreateComprehenssionQuestion}
+          />
+          <Route
+            path="/CreateQuestion/CreateEssayQuestion"
+            exact
+            component={CreateEssayQuestion}
+          />
+          <Route
+            path="/CreateQuestion/CreateFillInTheBlankQuestion"
+            exact
+            component={CreateFillInTheBlankQuestion}
+          />
+          <Route
+            path="/CreateQuestion/CreateMatchingQuestion"
+            exact
+            component={CreateMatchingQuestion}
+          />
+          <Route
+            path="/CreateQuestion/CreateTrueOrFalseQuestion"
+            exact
+            component={CreateTrueOrFalseQuestion}
+          />
+          <Route
+            path="/CreateQuestion/CreateImportQuestion"
+            exact
+            component={CreateImportQuestion}
+          />
+          <Route path="/" exact component={AddOrgnization} />
+          <Route
+            path="/"
+            exact
+            render={() => {
+              return "Home Sweet Home";
+            }}
+          />
+          <Route
+            render={() => {
+              return "not found!!!";
+            }}
+          />
+        </Switch>
       </div>
     </BrowserRouter>
   );
