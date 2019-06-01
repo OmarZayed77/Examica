@@ -23,13 +23,10 @@ namespace UI.Examica.API.Controllers
         private readonly IUnitOfWork unitofwork;
         private readonly UserManager<AppUser> userManager;
 
-
-
-
-        public ResultsController(IUnitOfWork _unitofwork)
+        public ResultsController(IUnitOfWork _unitofwork, UserManager<AppUser> _userManager)
         {
             unitofwork = _unitofwork;
-     
+            userManager = _userManager;
         }
 
       

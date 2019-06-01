@@ -91,6 +91,7 @@ namespace UI.Examica.API
                 config.CreateMap<AddQuestionDto, Question>();
                 config.CreateMap<OrganizationDto, Organization>();
                 config.CreateMap<ResultDto, Result>();
+                config.CreateMap<AppUser, UserDto>();
 
                 // Map QuestionOption to OptionDTO
                 config.CreateMap<QuestionOption, OptionDto>()

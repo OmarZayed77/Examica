@@ -20,7 +20,6 @@ namespace UI.Examica.API.Controllers
     public class AnswersController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly UserManager<AppUser> userManager;
         public AnswersController(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;

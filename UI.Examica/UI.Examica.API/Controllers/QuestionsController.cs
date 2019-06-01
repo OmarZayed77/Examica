@@ -127,7 +127,7 @@ namespace UI.Examica.API.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<QuestionDto>> updateQuestion(int id, [FromBody]AddQuestionDto questionDto)
+        public async Task<ActionResult<QuestionDto>> UpdateQuestion(int id, [FromBody]AddQuestionDto questionDto)
         {
             Question question = await unitOfWork.Questions.GetById(id);
             if (question == null) return NotFound();
