@@ -69,7 +69,7 @@ class FeatureCardList extends Component {
 
   render() {
     let featrues = this.state.features.map(feature => (
-      <Layout.Col xs="20" sm="10" md="8" lg="5">
+      <Layout.Col xs="20" sm="10" md="8" lg="6">
         <FeatureCard
           className="FeatureCard"
           key={feature.id}
@@ -80,7 +80,7 @@ class FeatureCardList extends Component {
       </Layout.Col>
     ));
     return (
-      <Layout.Row gutter="10" className="FeatureCardList">
+      <Layout.Row gutter="5" className="FeatureCardList">
         {featrues}
       </Layout.Row>
     );

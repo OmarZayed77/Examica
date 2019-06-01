@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './AddOrgnization.css';
+<<<<<<< HEAD
 import { connect } from 'react-redux';
 import { Form, Button, Input, Select } from 'element-react/next';
+=======
+import { Form, Button, Input, Select, Layout } from 'element-react/next';
+>>>>>>> 68b74494b33740a18e01c96a842e9e7f97aace04
 import { addOrg } from '../../API/orgAPI';
 
 class AddOrgnization extends Component {
@@ -12,25 +16,19 @@ class AddOrgnization extends Component {
 			form: {
 				Name: '',
 				PricingPlanId: '',
-				OwnerId: 1,
+				Owner: '',
 				Image: ''
 			},
 			rules: {
-				Name: [{ required: true, message: 'Please input Organization name', trigger: 'blur' }],
-				PricingPlanId: [{ required: true, type: "number", message: 'Please Select a Pricing Plan', trigger: 'blur' }]
-			},
-			pricingPlans: [{ Id: 1, Name: 'Premium' }, { Id: 2, Name: 'Gold' }, { Id: 3, Name: 'Silver' }]
-		};
-	}
+				Name: [ { required: true, message: 'Please input Organization name', trigger: 'blur' } ],
+				PricingPlanId: [ { required: true, message: 'Please select A Plane', trigger: 'change' } ],
+				phoneNum: [ { required: true, message: 'Please enter org Number', trigger: 'change' } ],
 
-	componentDidMount() {
-		this.setState({
-			form: {
-				...this.state.form,
-				OwnerId: 1
-				//OwnerId: this.props.userId
+				sName: [ { required: true, message: 'Please enter a site name', trigger: 'blur' } ],
+
+				desc: [ { required: true, message: 'Please input activity form', trigger: 'blur' } ]
 			}
-		});
+		};
 	}
 
 	handleSubmit(e) {
@@ -38,22 +36,15 @@ class AddOrgnization extends Component {
 
 		this.refs.form.validate((valid) => {
 			if (valid) {
-				console.log(this.state.form, this.props.token);
-				//addOrg(this.state.form, this.props.token);
+				// this.setState({
+				// 	form: {
+				// 		...this.state.form,
+				// 		OwnerId : this.props.userId
+				// 	}
+				// });
+				addOrg(this.state.form, this.props.token);
 			} else {
 				return false;
-			}
-		});
-	}
-
-	handleReset(e) {
-		e.preventDefault();
-		this.refs.form.resetFields();
-		this.setState({
-			form: {
-				Name: '',
-				PricingPlanId: '',
-				Image: ''
 			}
 		});
 	}
@@ -76,29 +67,61 @@ class AddOrgnization extends Component {
 						rules={this.state.rules}
 						onSubmit={this.handleSubmit.bind(this)}
 					>
-						<Form.Item label="Organization name" prop="Name"><Input value={this.state.form.Name} onChange={this.onChange.bind(this, 'Name')} />
+						<Form.Item label="Organization name" prop="name">
+							<Layout.Col>
+								<Input value={this.state.form.name} onChange={this.onChange.bind(this, 'name')} />
+							</Layout.Col>
 						</Form.Item>
-						<Form.Item label="Pricing Plan" prop="PricingPlanId">
+						<Form.Item label="Pricing Plane" prop="pPlan">
 							<Select
-								value={this.state.form.PricingPlanId}
-								onChange={this.onChange.bind(this, 'PricingPlanId')}
+								value={this.state.form.pPlan}
+								onChange={this.onChange.bind(this, 'pPlan')}
 								placeholder="Please select a Plan"
 							>
-								{this.state.pricingPlans.map((item) => (
-									<Select.Option key={item.Id} label={item.Name} value={item.Id} />
-								))}
+								<Select.Option label="free" value="free" />
+								<Select.Option label="medium" value="medium" />
+								<Select.Option label="premium" value="premium" />
 							</Select>
 						</Form.Item>
 
-						<Form.Item label="Image" prop="Image">
-							<Input value={this.state.form.Image} onChange={this.onChange.bind(this, 'Image')} />
+						<Form.Item label="Organization Phone" prop="phoneNum">
+							<Layout.Col>
+								<Input
+									type="number"
+									value={this.state.form.phoneNum}
+									onChange={this.onChange.bind(this, 'phoneNum')}
+								/>
+							</Layout.Col>
 						</Form.Item>
 
+						<Form.Item label="Site name" prop="sName">
+							<Layout.Col>
+								<Input value={this.state.form.sName} onChange={this.onChange.bind(this, 'sName')} />
+							</Layout.Col>
+						</Form.Item>
+						<Form.Item label="upload image" prop="img">
+							<Layout.Col>
+								<Input
+									type="text"
+									value={this.state.form.img}
+									onChange={this.onChange.bind(this, 'img')}
+								/>
+							</Layout.Col>
+						</Form.Item>
+						<Form.Item label="Organization Description" prop="desc">
+							<Layout.Col>
+								<Input
+									autosize={true}
+									type="textarea"
+									value={this.state.form.desc}
+									onChange={this.onChange.bind(this, 'desc')}
+								/>
+							</Layout.Col>
+						</Form.Item>
 						<Form.Item>
 							<Button type="primary" nativeType="submit" onClick={this.handleSubmit.bind(this)}>
-								submit
+								Create
 							</Button>
-							<Button onClick={this.handleReset.bind(this)}>Reset</Button>
 						</Form.Item>
 					</Form>
 				</div>
@@ -107,10 +130,6 @@ class AddOrgnization extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		token: state.auth.token
-	};
-};
 
-export default connect(mapStateToProps)(AddOrgnization);
+
+export default AddOrgnization;
