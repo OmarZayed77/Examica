@@ -35,7 +35,7 @@ class CreateMultipleChoiseQuestion extends Component {
             trigger: "blur"
           }
         ],
-        region: [
+        Options: [
           {
             required: true,
             message: "Please select Activity zone",
