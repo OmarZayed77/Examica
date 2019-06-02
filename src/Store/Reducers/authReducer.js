@@ -3,7 +3,8 @@ import * as authActions from '../Actions/authActions';
 const initialState = {
 	isLoggedIn: false,
 	token:
-		'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvQGcuY29tIiwianRpIjoiN2YxNGYzMWUtZTI5Zi00YzkyLTkzY2EtNmNlYTQ2MmRjYmEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzM2EyYTVkNS01MmMzLTQyMGUtODlkNi05OGFiZWIyNzZmODQiLCJleHAiOjE1NjAwMDcyNTAsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTU3NjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjE1NzY2In0.OaqW8X3xUQ2BdAiK6pvw77DeQZ0fIEBgbmilOlL2nCQ'
+		'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvQGcuY29tIiwianRpIjoiN2YxNGYzMWUtZTI5Zi00YzkyLTkzY2EtNmNlYTQ2MmRjYmEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzM2EyYTVkNS01MmMzLTQyMGUtODlkNi05OGFiZWIyNzZmODQiLCJleHAiOjE1NjAwMDcyNTAsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTU3NjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjE1NzY2In0.OaqW8X3xUQ2BdAiK6pvw77DeQZ0fIEBgbmilOlL2nCQ',
+
 };
 
 const authReducer = (state = initialState, action) => {
@@ -20,6 +21,10 @@ const authReducer = (state = initialState, action) => {
 		case authActions.LOGOUT:
 			newState.isLoggedIn = false;
 			newState.token = null;
+			break;
+		case authActions.TOKEN:
+			newState.TOKEN = action.payload;
+			newState.isLoggedIn = true;
 			break;
 		default:
 			break;
