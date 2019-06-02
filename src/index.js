@@ -1,3 +1,5 @@
+import { i18n } from 'element-react';
+import locale from 'element-react/src/locale/lang/en';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -8,8 +10,7 @@ import { Provider } from 'react-redux';
 import rootReducer from './Store/rootReducer';
 import thunk from 'redux-thunk';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { i18n } from 'element-react';
-import locale from 'element-react/src/locale/lang/en';
+
 i18n.use(locale);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

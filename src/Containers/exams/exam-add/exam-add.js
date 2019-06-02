@@ -125,8 +125,8 @@ class ExamAdd extends Component {
               onChange={this.dateChanged} 
             />
         </Form.Item>
-        <Form.Item label="Make it Public" prop="IsPublic">
-          <Checkbox checked={this.state.form.IsPublic} onChange={this.onChange.bind(this, 'IsPublic')}>Option</Checkbox>
+        <Form.Item prop="IsPublic">
+          <Checkbox checked={this.state.form.IsPublic} onChange={this.onChange.bind(this, 'IsPublic')}>Make it Public</Checkbox>
         </Form.Item>
         <Form.Item>
           <Button type="primary" onClick={this.handleSubmit.bind(this)}>Submit</Button>

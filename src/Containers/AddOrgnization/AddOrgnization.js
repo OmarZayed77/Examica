@@ -11,7 +11,7 @@ class AddOrgnization extends Component {
 		this.state = {
 			form: {
 				Name: '',
-				PricingPlanId: '',
+				PricingPlanId: 0,
 				OwnerId: '',
 				Image: ''
 			},
@@ -39,7 +39,7 @@ class AddOrgnization extends Component {
 		this.refs.form.validate((valid) => {
 			if (valid) {
 				console.log(this.state.form, this.props.token);
-				addOrg(this.state.form, this.props.token);
+				//addOrg(this.state.form, this.props.token);
 			} else {
 				return false;
 			}
