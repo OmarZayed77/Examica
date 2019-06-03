@@ -1,26 +1,25 @@
-import React from 'react';
-import 'element-theme-default';
-import './App.css';
-import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
-import Register from '../../Containers/Account/Register'
-import CreateQuestion from '../../Components/CreateQuestion';
-import AddExam from '../../Containers/exams/exam-add'
-import CreateChoiseQuestion from '../../Components/CreateChoiseQuestion'
-import CreateComprehenssionQuestion from '../../Components/CreateComprehenssionQuestion'
-import CreateEssayQuestion from '../../Components/CreateEssayQuestion'
-import CreateFillInTheBlankQuestion from '../../Components/CreateFillInTheBlankQuestion'
-import CreateMatchingQuestion from '../CreateMatchingQuestion'
-import CreateTrueOrFalseQuestion from '../../Components/CreateTrueOrFalseQuestion'
-import CreateImportQuestion from '../CreateImportQuestion'
-import Login from '../../Containers/Account/Login'
-import QuestionSideNav from '../../Components/QuestionSideNav';
-import AddOrgnization from '../../Containers/AddOrgnization';
+import React from "react";
+import "element-theme-default";
+import "./App.css";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import Register from "../../Containers/Account/Register";
+import CreateQuestion from "../../Components/CreateQuestion";
+import AddExam from "../../Containers/exams/exam-add";
+import CreateChoiseQuestion from "../../Components/CreateChoiseQuestion";
+import CreateComprehenssionQuestion from "../../Components/CreateComprehenssionQuestion";
+import CreateEssayQuestion from "../../Components/CreateEssayQuestion";
+import CreateFillInTheBlankQuestion from "../../Components/CreateFillInTheBlankQuestion";
+import CreateMatchingQuestion from "../CreateMatchingQuestion";
+import CreateTrueOrFalseQuestion from "../../Components/CreateTrueOrFalseQuestion";
+import CreateImportQuestion from "../CreateImportQuestion";
+import Login from "../../Containers/Account/Login";
+import QuestionSideNav from "../../Components/QuestionSideNav";
+import AddOrgnization from "../../Containers/AddOrgnization";
 
 function App() {
   return (
     <BrowserRouter>
      <div className="App">
-   
          <QuestionSideNav/>
       <Switch>
         <Route path="/exams/add" component={AddExam}/>

@@ -27,7 +27,7 @@ class QuestionTypes extends Component {
           <Layout.Row className="tac">
         <Layout.Col span={8}>
           <Menu defaultActive="2" className="el-menu-vertical-demo" onOpen={this.Toggle.bind(this)}>
-          <Menu.SubMenu index="1" title={<span><i class="fas fa-cog"></i>Popular Settings</span>}>
+          <Menu.SubMenu index="1" title={<span><i className="fas fa-cog"></i>Popular Settings</span>}>
             <Menu.ItemGroup >
               <QuestionSettings/>
             </Menu.ItemGroup>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Button, Layout } from 'element-react/next';
 import {login} from '../../../Store/Actions/authActions'
 import { connect } from 'react-redux'
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -38,8 +39,9 @@ class Login extends Component {
 
     this.refs.form.validate((valid) => {
       if (valid) {
-        alert('submit!');
+        //alert('submit!');
         this.props.loginUser(this.state.form);
+
       } else {
         console.log('error submit!!');
         return false;
