@@ -36,22 +36,26 @@ namespace UI.Examica.API.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<object> Login([FromBody] LoginDto model)
+        public async Task<ActionResult<AuthDto>> Login([FromBody] LoginDto model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
 
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return GenerateJwtToken(model.Email, appUser);
+                AuthDto auth = new AuthDto
+                {
+                    Token = GenerateJwtToken(model.Email, appUser),
+                    UserId = appUser.Id
+                };
+                return Ok(auth);
             }
-
-            throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
+            else return BadRequest();
         }
 
         [HttpPost]
         [Route("register")]
-        public async Task<object> Register([FromBody] RegisterDto model)
+        public async Task<ActionResult<AuthDto>> Register([FromBody] RegisterDto model)
         {
             var user = new AppUser
             {
@@ -63,10 +67,14 @@ namespace UI.Examica.API.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return GenerateJwtToken(model.Email, user);
+                AuthDto auth = new AuthDto
+                {
+                    Token = GenerateJwtToken(model.Email, user),
+                    UserId = user.Id
+                };
+                return Ok(auth);
             }
-
-            throw new ApplicationException("UNKNOWN_ERROR");
+            else return BadRequest();
         }
         private string GenerateJwtToken(string email, AppUser user)
         {

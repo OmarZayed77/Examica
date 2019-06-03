@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UI.Examica.API.Dtos;
+using UI.Examica.API.Helpers;
 using UI.Examica.Model.Core;
 using UI.Examica.Model.Core.Domains;
 using UI.Examica.Model.Helpers;
@@ -30,9 +31,24 @@ namespace UI.Examica.API.Controllers
         // GET: api/Exams
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<Exam>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
-            return Ok("users");
+            IEnumerable<AppUser> users = await unitOfWork.AppUsers.GetAll();
+            return Ok(Mapper.Map<List<UserDto>>(users));
+        }
+
+        [HttpGet("organization/{orgId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsersOfOrg(int orgId)
+        {
+            Organization org = await unitOfWork.Organizations.GetOrganizationWithUsers(orgId);
+            List<UserDto> users = new List<UserDto> { Mapper.Map<UserDto>(org.Owner) };
+            users.AddRange(Mapper.Map<List<UserDto>>(org.OrganizationAdmins));
+            users.AddRange(Mapper.Map<List<UserDto>>(org.OrganizationExaminers));
+            users.AddRange(Mapper.Map<List<UserDto>>(org.OrganizationExaminees));
+            users.AddRange(Mapper.Map<List<UserDto>>(org.OrganizationObservers));
+            UserDtoComparer comparer = new UserDtoComparer();
+            return Ok(users.Distinct(comparer));
         }
 
         // GET: api/users/1/1

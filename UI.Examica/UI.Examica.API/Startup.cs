@@ -92,6 +92,46 @@ namespace UI.Examica.API
                 config.CreateMap<OrganizationDto, Organization>();
                 config.CreateMap<ResultDto, Result>();
                 config.CreateMap<AppUser, UserDto>();
+                // OrganizationAdmin to UserDto
+                config.CreateMap<OrganizationAdmin, UserDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.AppUser.Id))
+                .ForMember(dest => dest.UserName,
+                        opt => opt.MapFrom(src => src.AppUser.UserName))
+                .ForMember(dest => dest.PhoneNumber,
+                        opt => opt.MapFrom(src => src.AppUser.PhoneNumber))
+                .ForMember(dest => dest.Email,
+                        opt => opt.MapFrom(src => src.AppUser.Email));
+                // OrganizationExaminer to UserDto
+                config.CreateMap<OrganizationExaminer, UserDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.AppUser.Id))
+                .ForMember(dest => dest.UserName,
+                        opt => opt.MapFrom(src => src.AppUser.UserName))
+                .ForMember(dest => dest.PhoneNumber,
+                        opt => opt.MapFrom(src => src.AppUser.PhoneNumber))
+                .ForMember(dest => dest.Email,
+                        opt => opt.MapFrom(src => src.AppUser.Email));
+                // OrganizationExaminee to UserDto
+                config.CreateMap<OrganizationExaminee, UserDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.AppUser.Id))
+                .ForMember(dest => dest.UserName,
+                        opt => opt.MapFrom(src => src.AppUser.UserName))
+                .ForMember(dest => dest.PhoneNumber,
+                        opt => opt.MapFrom(src => src.AppUser.PhoneNumber))
+                .ForMember(dest => dest.Email,
+                        opt => opt.MapFrom(src => src.AppUser.Email));
+                // Organizationobserver to UserDto
+                config.CreateMap<OrganizationObserver, UserDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.AppUser.Id))
+                .ForMember(dest => dest.UserName,
+                        opt => opt.MapFrom(src => src.AppUser.UserName))
+                .ForMember(dest => dest.PhoneNumber,
+                        opt => opt.MapFrom(src => src.AppUser.PhoneNumber))
+                .ForMember(dest => dest.Email,
+                        opt => opt.MapFrom(src => src.AppUser.Email));
 
                 // Map QuestionOption to OptionDTO
                 config.CreateMap<QuestionOption, OptionDto>()

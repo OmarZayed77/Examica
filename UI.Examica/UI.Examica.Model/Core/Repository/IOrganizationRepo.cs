@@ -13,5 +13,6 @@ namespace UI.Examica.Model.Core.Repository
     public interface IOrganizationRepo : IRepository<Organization>
     {
         Task<bool> IsExistedAsync(Expression<Func<Organization, bool>> predicate);
+        Task<Organization> GetOrganizationWithUsers(int orgId);
     }
 }
