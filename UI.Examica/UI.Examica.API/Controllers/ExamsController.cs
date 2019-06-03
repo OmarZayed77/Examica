@@ -18,6 +18,7 @@ namespace UI.Examica.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ExamsController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
@@ -33,10 +34,10 @@ namespace UI.Examica.API.Controllers
         // GET: api/Exams
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [Authorize]
+        [Authorize(Roles = "Developer")]
         public async Task<ActionResult<IEnumerable<Exam>>> GetExams()
         {
-            return Ok(await unitOfWork.Exams.GetAll());
+            return Ok(Mapper.Map<List<ExamDto>>(await unitOfWork.Exams.GetAll()));
         }
 
         // GET: api/Exams/5
@@ -52,7 +53,7 @@ namespace UI.Examica.API.Controllers
             var orgId = exam.OrganizationId;
             AppUser user = await userManager.GetUserAsync(User);
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
-            if (user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))
+            if (exam.IsPublic || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))
             {
                 return Ok(Mapper.Map<ExamDto>(exam));
             }
@@ -79,7 +80,7 @@ namespace UI.Examica.API.Controllers
                 }
                 else
                 {
-                    return Ok(exams);
+                    return Ok(Mapper.Map<List<ExamDto>>(exams));
 
                 }
             }

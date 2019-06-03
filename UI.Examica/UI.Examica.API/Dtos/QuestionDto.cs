@@ -11,6 +11,7 @@ namespace UI.Examica.API.Dtos
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public int OrganizationId { get; set; }
         public string Level { get; set; }
         public string Type { get; set; }
         public int Mark { get; set; }

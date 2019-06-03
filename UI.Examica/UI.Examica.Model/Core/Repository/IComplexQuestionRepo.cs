@@ -11,5 +11,7 @@ namespace UI.Examica.Model.Core.Repository
 {
     public interface IComplexQuestionRepo : IRepository<ComplexQuestion>
     {
+        Task<ComplexQuestion> GetComplexWithSubById(int id);
+        Task<List<ComplexQuestion>> GetComplexsWithSubByOrgId(int orgId);
     }
 }

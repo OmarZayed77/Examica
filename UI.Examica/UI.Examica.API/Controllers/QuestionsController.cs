@@ -53,7 +53,7 @@ namespace UI.Examica.API.Controllers
             if (question == null) return NotFound();
             AppUser user = await userManager.GetUserAsync(User);
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
-            if (!(user.IsOwnerOfOrg(question.OrganizationId) || user.IsExaminerOfOrg(question.OrganizationId) || user.IsExamineeOfOrg(question.OrganizationId))) return Forbid();
+            if (!question.IsPublic && !(user.IsOwnerOfOrg(question.OrganizationId) || user.IsExaminerOfOrg(question.OrganizationId) || user.IsExamineeOfOrg(question.OrganizationId))) return Forbid();
             return Ok(Mapper.Map<QuestionDto>(await unitOfWork.Questions.GetQuestionWithOptionsById(id)));
         }
 

@@ -169,10 +169,9 @@ namespace UI.Examica.API
                        opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<QuestionComplexQuestion>, List<QuestionDto>>(src.QuestionComplexQuestions)));
 
                 // Map Question Complex Question to Question DTO
-                config.CreateMap<QuestionComplexQuestion, QuestionDto>()
-                .ForAllMembers(opt => opt.MapFrom(src => AutoMapper.Mapper.Map<Question,QuestionDto>(src.Question)));
+                config.CreateMap<QuestionComplexQuestion, ComplexQuestionDto>();
 
-               
+
                 // Map ExamQuestion to QuestionDTO
                 config.CreateMap<ExamQuestion, QuestionDto>()
                 .ForMember(dest => dest.Title,
