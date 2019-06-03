@@ -150,27 +150,14 @@ namespace UI.Examica.API.Controllers
         public async Task<ActionResult<Exam>> DeleteExam(int id)
         {
             var exam = await unitOfWork.Exams.SingleOrDefault(e => e.Id == id);
+            if (exam == null) return BadRequest();
             var orgId = exam.OrganizationId;
             AppUser user = await userManager.GetUserAsync(User);
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
-
-            if (user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))
-            {
-                if (exam == null)
-            {
-                return NotFound();
-            }
-
+            if (user == null) return Unauthorized();
+            if (!(user.IsObserverOfOrg(orgId) || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))) return Forbid();
             unitOfWork.Exams.Remove(exam);
-            await unitOfWork.SaveAsync();
-
-            return exam;
-            }
-            else
-            {
-                return Unauthorized("you are not Authorized");
-            }
-
+            return Ok(await unitOfWork.SaveAsync());
         }
     }
 }

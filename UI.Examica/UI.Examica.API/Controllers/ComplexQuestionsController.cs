@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace UI.Examica.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ComplexQuestionsController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
@@ -56,6 +58,21 @@ namespace UI.Examica.API.Controllers
             if (!(user.IsOwnerOfOrg(id) || user.IsExaminerOfOrg(id) || user.IsExamineeOfOrg(id))) return Forbid();
             IEnumerable<ComplexQuestion> questions = await unitOfWork.ComplexQuestions.GetComplexsWithSubByOrgId(id);
             return Ok(Mapper.Map<IEnumerable<ComplexQuestion>, List<ComplexQuestionDto>>(questions));
+        }
+
+        // DELETE: api/complexquestions/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Exam>> DeleteComplexQuestion(int id)
+        {
+            ComplexQuestion complexQuestion = await unitOfWork.ComplexQuestions.SingleOrDefault(cq => cq.Id == id);
+            if (complexQuestion == null) return BadRequest();
+            var orgId = complexQuestion.OrganizationId;
+            AppUser user = await userManager.GetUserAsync(User);
+            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
+            if (user == null) return Unauthorized();
+            if (!(user.IsObserverOfOrg(orgId) || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))) return Forbid();
+            unitOfWork.ComplexQuestions.Remove(complexQuestion);
+            return Ok(await unitOfWork.SaveAsync());
         }
     }
 }
