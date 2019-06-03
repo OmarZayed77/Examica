@@ -13,7 +13,7 @@ export const loginUserSuccess = (value) => {
 
 export const logoutUser = () => {
     return dispatch => {
-        dispatch({ type: LOGOUT})
+        dispatch({ type: LOGOUT })
     }
 }
 
@@ -25,16 +25,18 @@ export const registerUserSuccess = (value) => {
 export const login = (user) => {
 
     return dispatch => {
-        var token = localStorage.getItem("token");
+        //let token = localStorage.getItem("token");
+        let token = `bearer ${localStorage.getItem("token")}`;
+        console.log(token);
         axios.post(`${URL}/api/account/login`, user, { headers: { Authorization: token } })
             .then((response) => {
                 if (response.status === 200) {
-                    let token =  response.data;
-                    localStorage.setItem("token",token);
-                    alert("loggedIn successfully");
+                    let token = `bearer ${response.data}`;
+                    localStorage.setItem("token", token);
+                    //alert("loggedIn successfully");
+                    dispatch(loginUserSuccess(token));
                 }
-                dispatch(loginUserSuccess(response.data));
-            }).catch((error) => { console.log(error); })
+            }).catch((error) => { alert("Login Failed! Please check your user name and password") })
     }
 }
 
@@ -42,10 +44,11 @@ export const register = (user) => {
     return dispatch => {
         axios.post(`${URL}/api/account/register`, user)
             .then((response) => {
-                localStorage.setItem("token", response.data);
+                let token = `bearer ${response.data}`;
+                localStorage.setItem("token", token);
                 if (response.status === 200) {
-                    alert("new user added");
-                    dispatch(registerUserSuccess(response.data));
+                    //alert("new user added");
+                    dispatch(registerUserSuccess(token));
                 }
             }).catch((error) => { console.log(error); })
     }
