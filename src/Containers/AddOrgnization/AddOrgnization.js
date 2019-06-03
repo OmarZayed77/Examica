@@ -40,6 +40,7 @@ class AddOrgnization extends Component {
 			if (valid) {
 				console.log(this.state.form, this.props.token);
 				addOrg(this.state.form, this.props.token);
+				//addOrg(this.state.form, this.props.token);
 			} else {
 				return false;
 			}

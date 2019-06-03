@@ -19,7 +19,7 @@ class QuestionSideNav extends Component {
       <Layout.Row className="tac QuestionMenu " >
         <Layout.Col span={8} className="QuestionMenuCol" lg="10">
           <Menu defaultActive="2" className="el-menu-vertical-demo" onOpen={this.Toggle.bind(this)}>
-          <Menu.SubMenu index="1" title={<span><i class="far fa-question-circle"></i>Questions</span>}>
+          <Menu.SubMenu index="1" title={<span><i className="far fa-question-circle"></i>Questions</span>}>
             <Menu.ItemGroup >
                <QuestionsList/>
             </Menu.ItemGroup>
@@ -27,7 +27,7 @@ class QuestionSideNav extends Component {
           <Layout.Row className="tac">
         <Layout.Col span={8}>
           <Menu defaultActive="2" className="el-menu-vertical-demo" onOpen={this.Toggle.bind(this)}>
-          <Menu.SubMenu index="1" title={<span><i class="fas fa-cog"></i>Popular Settings</span>}>
+          <Menu.SubMenu index="1" title={<span><i className="fas fa-cog"></i>Popular Settings</span>}>
             <Menu.ItemGroup >
               <QuestionSettings/>
             </Menu.ItemGroup>
