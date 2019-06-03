@@ -1,0 +1,33 @@
+.CreateTrueOrFalseQuestion h3 
+{
+    color:  #645794;
+    position: absolute;
+    top: 1.3rem;
+    left: 7rem;
+  
+}
+
+.CreateTrueOrFalseQuestion button 
+{
+    position: absolute;
+    top: 1.3rem;
+    left: 67rem;
+    border: 1 solid black;
+}
+
+.CreateTrueOrFalseQuestion .primary
+{
+    position: absolute;
+    top: 1.3rem;
+    left: 59rem;
+}
+.CreateTrueOrFalseQuestion .el-button--success
+{
+    background-color: #5580FF;
+}
+.CreateTrueOrFalseQuestion .el-button--primary
+{
+    background-color: #FFFFFF;
+    color: black;
+    border-color: black;
+}
