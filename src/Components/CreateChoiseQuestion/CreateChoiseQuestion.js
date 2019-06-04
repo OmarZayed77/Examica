@@ -14,12 +14,11 @@ import { Layout } from "element-react/next";
 class CreateMultipleChoiseQuestion extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
+    this.state={
       form: {
-        Title: "",
-        Type: "",
-        Level: null,
+        Title:"",
+        Type:"",
+        Level:null,
         Mark: null,
         IsPublic: false,
         Options: [],
@@ -80,7 +79,6 @@ class CreateMultipleChoiseQuestion extends Component {
   }
 
   onAddOption() {
-    // if (this.state.choiceType === "Multi Choices")
     var check = document.createElement("input");
     check.setAttribute("type", "checkbox");
     check.setAttribute("name", "Options");

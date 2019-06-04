@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Layout } from 'element-react/next';
-import {register} from '../../../Store/Actions/authActions'
+import { register } from '../../../Store/Actions/authActions'
 import { connect } from 'react-redux'
 class Register extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class Register extends Component {
         checkPass: '',
 
       },
+      regExp: new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"),
       rules: {
         name: [
           { required: true, message: 'Please input your name', trigger: 'blur' }
@@ -31,6 +32,10 @@ class Register extends Component {
               } else {
                 if (this.state.form.checkPass !== '') {
                   this.refs.form.validateField('checkPass');
+                } else {
+                  if (!this.state.regExp.test(value)) {
+                    callback(new Error('Password must contain one lowercase,uppercase,special character and 8 char long'))
+                  }
                 }
                 callback();
               }
@@ -60,14 +65,14 @@ class Register extends Component {
 
     this.refs.form.validate((valid) => {
       if (valid) {
-        alert('submit!');
+        //alert('submit!');
         this.props.registerUser(this.state.form);
       } else {
         console.log('error submit!!');
         return false;
       }
     });
-    
+
   }
 
   handleReset(e) {
@@ -96,16 +101,16 @@ class Register extends Component {
             <Form ref="form" model={this.state.form} rules={this.state.rules} labelWidth="100" className="demo-ruleForm">
               <Form.Item label="User Name" prop="name">
                 <Input value={this.state.form.name} onChange={this.onChange.bind(this, 'name')}></Input>
-              </Form.Item>
+              </Form.Item><br></br>
               <Form.Item prop="Email" label="Email">
                 <Input value={this.state.form.Email} onChange={this.onEmailChange.bind(this)}></Input>
-              </Form.Item>
+              </Form.Item><br></br>
               <Form.Item label="Password" prop="Password">
                 <Input type="password" value={this.state.form.Password} onChange={this.onChange.bind(this, 'Password')} autoComplete="off" />
-              </Form.Item>
+              </Form.Item><br></br>
               <Form.Item label="Confirm Password" prop="checkPass">
                 <Input type="password" value={this.state.form.checkPass} onChange={this.onChange.bind(this, 'checkPass')} autoComplete="off" />
-              </Form.Item>
+              </Form.Item><br></br>
               <Form.Item>
                 <Button type="primary" onClick={this.handleSubmit.bind(this)}>Submit</Button>
                 <Button onClick={this.handleReset.bind(this)}>Reset</Button>
@@ -124,8 +129,8 @@ const mapDispatchToProps = dispatch => {
     registerUser: (user) => dispatch(register(user))
   };
 };
-const mapStateToProps=state=>{
-  return{
+const mapStateToProps = state => {
+  return {
     userData: state.authReducer.userData
   }
 }

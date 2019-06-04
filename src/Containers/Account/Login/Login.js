@@ -39,7 +39,7 @@ class Login extends Component {
 
     this.refs.form.validate((valid) => {
       if (valid) {
-        alert('submit!');
+        //alert('submit!');
         this.props.loginUser(this.state.form);
 
       } else {
