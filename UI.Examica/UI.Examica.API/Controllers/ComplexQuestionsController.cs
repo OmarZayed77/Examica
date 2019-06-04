@@ -62,7 +62,7 @@ namespace UI.Examica.API.Controllers
 
         // DELETE: api/complexquestions/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Exam>> DeleteComplexQuestion(int id)
+        public async Task<ActionResult<ComplexQuestionDto>> DeleteComplexQuestion(int id)
         {
             ComplexQuestion complexQuestion = await unitOfWork.ComplexQuestions.SingleOrDefault(cq => cq.Id == id);
             if (complexQuestion == null) return BadRequest();
@@ -73,6 +73,47 @@ namespace UI.Examica.API.Controllers
             if (!(user.IsObserverOfOrg(orgId) || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))) return Forbid();
             unitOfWork.ComplexQuestions.Remove(complexQuestion);
             return Ok(await unitOfWork.SaveAsync());
+        }
+
+        // POST: api/complexquestions
+        [HttpPost]
+        public async Task<ActionResult<ComplexQuestionDto>> PostComplexQuestion([FromBody] ComplexQuestionDto complexQuestionDto)
+        {
+            int orgId = complexQuestionDto.OrganizationId;
+            AppUser user = await userManager.GetUserAsync(User);
+            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
+            if (!(user.IsOwnerOfOrg(orgId) || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))) return Forbid();
+            complexQuestionDto.Id = 0;
+            ComplexQuestion comp = Mapper.Map<ComplexQuestion>(complexQuestionDto);
+            await unitOfWork.ComplexQuestions.Add(comp);
+            await unitOfWork.SaveAsync();
+            return Ok(Mapper.Map<ComplexQuestionDto>(comp));
+        }
+
+        // PUT: api/complexquestions/questions
+        [HttpPut("questions")]
+        [Authorize]
+        public async Task<IActionResult> PutExamQuestions(ComplexQuestionsQuestionsDto dto)
+        {
+            ComplexQuestion comp = await unitOfWork.ComplexQuestions.GetById(dto.ComplexQuestionId);
+            if (comp == null) return BadRequest();
+            var orgId = comp.OrganizationId;
+            AppUser user = await userManager.GetUserAsync(User);
+            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
+            if (!(user.IsOwnerOfOrg(orgId) || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))) return Forbid();
+            unitOfWork.QuestionComplexQuestions.RemoveRange(await unitOfWork.QuestionComplexQuestions.Find(qcq => qcq.ComplexQuestionId == comp.Id));
+            await unitOfWork.SaveAsync();
+            List<QuestionComplexQuestion> questions = new List<QuestionComplexQuestion>();
+            foreach (int quesId in dto.QuestionsIds)
+            {
+                Question q = await unitOfWork.Questions.GetById(quesId);
+                if (q == null) return BadRequest();
+                if (q.IsPublic || q.OrganizationId == comp.OrganizationId)
+                    questions.Add(new QuestionComplexQuestion { ComplexQuestionId = comp.Id, QuestionId = quesId });
+            };
+            await unitOfWork.QuestionComplexQuestions.AddRange(questions);
+            await unitOfWork.SaveAsync();
+            return Ok(Mapper.Map<ComplexQuestionDto>(await unitOfWork.ComplexQuestions.GetComplexWithSubById(dto.ComplexQuestionId)));
         }
     }
 }

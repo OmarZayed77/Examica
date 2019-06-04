@@ -132,6 +132,46 @@ namespace UI.Examica.API
                         opt => opt.MapFrom(src => src.AppUser.PhoneNumber))
                 .ForMember(dest => dest.Email,
                         opt => opt.MapFrom(src => src.AppUser.Email));
+                // OrganizationAdmin to OrganizationDto
+                config.CreateMap<OrganizationAdmin, OrganizationDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.Organization.Id))
+                .ForMember(dest => dest.Name,
+                        opt => opt.MapFrom(src => src.Organization.Name))
+                .ForMember(dest => dest.Image,
+                        opt => opt.MapFrom(src => src.Organization.Image))
+                .ForMember(dest => dest.OwnerId,
+                        opt => opt.MapFrom(src => src.Organization.OwnerId));
+                // OrganizationExaminer to OrganizationDto
+                config.CreateMap<OrganizationExaminer, OrganizationDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.Organization.Id))
+                .ForMember(dest => dest.Name,
+                        opt => opt.MapFrom(src => src.Organization.Name))
+                .ForMember(dest => dest.Image,
+                        opt => opt.MapFrom(src => src.Organization.Image))
+                .ForMember(dest => dest.OwnerId,
+                        opt => opt.MapFrom(src => src.Organization.OwnerId));
+                // OrganizationExaminee to OrganizationDto
+                config.CreateMap<OrganizationExaminee, OrganizationDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.Organization.Id))
+                .ForMember(dest => dest.Name,
+                        opt => opt.MapFrom(src => src.Organization.Name))
+                .ForMember(dest => dest.Image,
+                        opt => opt.MapFrom(src => src.Organization.Image))
+                .ForMember(dest => dest.OwnerId,
+                        opt => opt.MapFrom(src => src.Organization.OwnerId));
+                // OrganizationObserver to OrganizationDto
+                config.CreateMap<OrganizationObserver, OrganizationDto>()
+                .ForMember(dest => dest.Id,
+                        opt => opt.MapFrom(src => src.Organization.Id))
+                .ForMember(dest => dest.Name,
+                        opt => opt.MapFrom(src => src.Organization.Name))
+                .ForMember(dest => dest.Image,
+                        opt => opt.MapFrom(src => src.Organization.Image))
+                .ForMember(dest => dest.OwnerId,
+                        opt => opt.MapFrom(src => src.Organization.OwnerId));
 
                 // Map QuestionOption to OptionDTO
                 config.CreateMap<QuestionOption, OptionDto>()
@@ -167,6 +207,8 @@ namespace UI.Examica.API
                 config.CreateMap<ComplexQuestion, ComplexQuestionDto>()
                .ForMember(dest => dest.Questions,
                        opt => opt.MapFrom(src => AutoMapper.Mapper.Map<List<QuestionComplexQuestion>, List<QuestionDto>>(src.QuestionComplexQuestions)));
+
+                config.CreateMap<ComplexQuestionDto, ComplexQuestion>();
 
                 // Map Question Complex Question to Question DTO
                 config.CreateMap<QuestionComplexQuestion, ComplexQuestionDto>();

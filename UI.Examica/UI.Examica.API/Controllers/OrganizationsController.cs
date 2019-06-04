@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UI.Examica.API.Dtos;
+using UI.Examica.API.Helpers;
 using UI.Examica.Model.Core;
 using UI.Examica.Model.Core.Domains;
 using UI.Examica.Model.Helpers;
@@ -40,7 +41,26 @@ namespace UI.Examica.API.Controllers
 
         public async Task<ActionResult<IEnumerable<Organization>>> GetOrganizations()
         {
-            return Ok(await unitOfWork.Organizations.GetAll());
+            return Ok(Mapper.Map<List<OrganizationDto>>(await unitOfWork.Organizations.GetAll()));
+        }
+        #endregion
+
+        #region Get Organizations By User
+        // GET: api/Organizations
+        [HttpGet("user")]
+
+        public async Task<ActionResult<IEnumerable<Organization>>> GetOrganizationsOfUser()
+        {
+            AppUser user = await userManager.GetUserAsync(User);
+            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
+            List<OrganizationDto> organizations = new List<OrganizationDto>();
+            organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.Organizations));
+            organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.OrganizationAdmins));
+            organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.OrganizationExaminers));
+            organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.OrganizationExaminees));
+            organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.OrganizationObservers));
+            OrganizationDtoComparer comparer = new OrganizationDtoComparer();
+            return Ok(organizations.Distinct(comparer));
         }
         #endregion
 
@@ -63,7 +83,7 @@ namespace UI.Examica.API.Controllers
                     return NotFound();
                 }
 
-                return organization;
+                return Ok(Mapper.Map<OrganizationDto>(organization));
             }
             else return Unauthorized("You are not an owner!");
         }

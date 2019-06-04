@@ -71,7 +71,7 @@ namespace UI.Examica.API.Controllers
             AppUser user = await userManager.GetUserAsync(User);
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
            
-            if (user.IsExaminerOfOrg(id) || user.IsAdminOfOrg(id))
+            if (user.IsAdminOfOrg(id) || user.IsExaminerOfOrg(id) || user.IsAdminOfOrg(id))
             {       
                 var exams = await unitOfWork.Exams.Find(e => e.OrganizationId == id || e.IsPublic);   
                 if (exams == null)
@@ -86,7 +86,7 @@ namespace UI.Examica.API.Controllers
             }
             else
             {
-                return Unauthorized("You  are not an Examiner");
+                return Unauthorized("You  are not authorized");
             }
 
         }
@@ -158,6 +158,42 @@ namespace UI.Examica.API.Controllers
             if (!(user.IsObserverOfOrg(orgId) || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))) return Forbid();
             unitOfWork.Exams.Remove(exam);
             return Ok(await unitOfWork.SaveAsync());
+        }
+
+        // PUT: api/Exams/questions
+        [HttpPut("questions")]
+        [Authorize]
+        public async Task<IActionResult> PutExamQuestions(ExamQuestionsDto examQuestionsDto)
+        {
+            Exam exam = await unitOfWork.Exams.GetById(examQuestionsDto.ExamId);
+            if (exam == null) return BadRequest();
+            var orgId = exam.OrganizationId;
+            AppUser user = await userManager.GetUserAsync(User);
+            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
+            if (!(user.IsOwnerOfOrg(orgId) || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))) return Forbid();
+            unitOfWork.ExamQuestions.RemoveRange(await unitOfWork.ExamQuestions.Find(eq => eq.ExamId == exam.Id));
+            unitOfWork.ExamComplexQuestions.RemoveRange(await unitOfWork.ExamComplexQuestions.Find(ecq => ecq.ExamId == exam.Id));
+            await unitOfWork.SaveAsync();
+            List<ExamQuestion> questions = new List<ExamQuestion>();
+            List<ExamComplexQuestion> complexQuestions = new List<ExamComplexQuestion>();
+            foreach (int quesId in examQuestionsDto.QuestionsIds)
+            {
+                Question q = await unitOfWork.Questions.GetById(quesId);
+                if (q == null) return BadRequest();
+                if (q.IsPublic || q.OrganizationId == exam.OrganizationId)
+                questions.Add(new ExamQuestion { ExamId = exam.Id, QuestionId = quesId });   
+            };
+            foreach (int comQuesId in examQuestionsDto.ComplexQuestionsIds)
+            {
+                ComplexQuestion cq = await unitOfWork.ComplexQuestions.GetById(comQuesId);
+                if (cq == null) return BadRequest();
+                if (cq.IsPublic || cq.OrganizationId == exam.OrganizationId)
+                complexQuestions.Add(new ExamComplexQuestion { ExamId = exam.Id, ComplexQuestionId = comQuesId });
+            };
+            await unitOfWork.ExamQuestions.AddRange(questions);
+            await unitOfWork.ExamComplexQuestions.AddRange(complexQuestions);
+            await unitOfWork.SaveAsync();
+            return Ok(Mapper.Map<ExamDto>(await unitOfWork.Exams.GetExamWithQuestions(examQuestionsDto.ExamId)));
         }
     }
 }

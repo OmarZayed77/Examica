@@ -19,9 +19,13 @@ namespace UI.Examica.Model.Persistence.Repository
         {
             return  entities.Include(user => user.Organizations)
                             .Include(user => user.OrganizationAdmins)
+                            .ThenInclude(oa => oa.Organization)
                             .Include(user => user.OrganizationExaminees)
+                            .ThenInclude(oee => oee.Organization)
                             .Include(user => user.OrganizationExaminers)
+                            .ThenInclude(oer => oer.Organization)
                             .Include(user => user.OrganizationObservers)
+                            .ThenInclude(oo => oo.Organization)
                             .FirstOrDefault(user => user.Id == id);
         }
     }
