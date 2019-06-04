@@ -5,7 +5,7 @@ import 'element-theme-default';
 import './App.css';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Register from '../Pages/Register'
-import Login from '../Pages/Login'
+import Login from '../Containers/Account/Login'
 import Logout from '../Components/LogoutButton'
 import CreateQuestion from '../Components/CreateQuestion';
 import AddExam from '../Containers/exams/exam-add'
