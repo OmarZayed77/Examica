@@ -104,27 +104,27 @@ class CreateMultipleChoiseQuestion extends Component {
 
   onAddOption() {
     var check = document.createElement("Checkbox");
-    check.setAttribute("type", "checkbox");
-    check.setAttribute("name", "Options");
+    check.setAttribute("checked", "this.state.isChecked")
+    check.setAttribute("onChange","this.onCheckedBox.bind(this)")
 
     var checkInput = document.createElement("Input");
-    checkInput.setAttribute("type", "Options");
+    checkInput.setAttribute("id","option1")
 
     var btn = document.createElement("Button");
     btn.setAttribute("type", "primary");
     btn.setAttribute("icon", "delete");
 
-    var x = document.getElementById("extraOption");
+    var xtraOption = document.getElementById("extraOption");
+    console.log(xtraOption);
 
-    check.append(x);
-    checkInput.append(x);
-    btn.append(x);
-    console.log(x);
+    xtraOption.append(check);
+    xtraOption.append(checkInput);
+    xtraOption.append(btn);
   }
 
   onCheckedBox(e) {
     let value = document.getElementById("option1").value;
-    let options = [...this.state.Options];
+    let options = [...this.state.form.Options];
 
     if (e) options.push({ name: value });
     else {
@@ -134,7 +134,10 @@ class CreateMultipleChoiseQuestion extends Component {
 
     this.setState({
       isChecked: e,
-      Options: options
+      form: {
+        ...this.state.form,
+        Options: options
+      }
     });
   }
 
