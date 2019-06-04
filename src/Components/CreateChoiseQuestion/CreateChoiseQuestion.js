@@ -5,6 +5,8 @@ import {
   Button,
   Select,
   Switch,
+  Checkbox,
+  Radio,
   InputNumber
 } from "element-react/next";
 import { Rate } from "element-react";
@@ -14,11 +16,11 @@ import { Layout } from "element-react/next";
 class CreateMultipleChoiseQuestion extends Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       form: {
-        Title:"",
-        Type:"",
-        Level:null,
+        Title: "",
+        Type: "",
+        Level: null,
         Mark: null,
         IsPublic: false,
         Options: [],
@@ -32,22 +34,31 @@ class CreateMultipleChoiseQuestion extends Component {
             trigger: "blur"
           }
         ],
-        Options: [
+        Level: [
           {
-            type: "array",
             required: true,
-            message: "Please select at least one Correct answer",
-            trigger: "change"
+            message: "Please input the Question Difficulty level",
+            trigger: "blur"
           }
         ],
+        // Options: [
+        //   {
+        //     type: "array",
+        //     required: true,
+        //     message: "Please select at least one Correct answer",
+        //     trigger: "change"
+        //   }
+        // ],
         Mark: [
           {
             required: true,
-            message: "Please input activity form",
+            type: "number",
+            message: "Please input the Exam Mark",
             trigger: "blur"
           }
         ]
       },
+      isChecked: false,
       choiceType: "Multi Choices",
       Options: []
     };
@@ -68,8 +79,21 @@ class CreateMultipleChoiseQuestion extends Component {
 
   handleReset(e) {
     e.preventDefault();
-
     this.refs.form.resetFields();
+    this.setState({
+      form: {
+        Title: "",
+        Type: "",
+        Level: null,
+        Mark: null,
+        IsPublic: false,
+        Options: [],
+        OrganizationId: 2
+      }
+    });
+    this.setState({
+      Options: []
+    });
   }
 
   onChange(key, value) {
@@ -79,54 +103,76 @@ class CreateMultipleChoiseQuestion extends Component {
   }
 
   onAddOption() {
-    var check = document.createElement("input");
+    var check = document.createElement("Checkbox");
     check.setAttribute("type", "checkbox");
     check.setAttribute("name", "Options");
 
-    var checkInput = document.createElement("input");
+    var checkInput = document.createElement("Input");
     checkInput.setAttribute("type", "Options");
 
-    var btn = document.createElement("Button")
-    btn.setAttribute("type","primary")
-    btn.setAttribute("icon","delete")
-    
-    var x = document.getElementById("section");
+    var btn = document.createElement("Button");
+    btn.setAttribute("type", "primary");
+    btn.setAttribute("icon", "delete");
+
+    var x = document.getElementById("extraOption");
+
     check.append(x);
     checkInput.append(x);
-    btn.append(x)
+    btn.append(x);
     console.log(x);
   }
+
+  onCheckedBox(e) {
+    let value = document.getElementById("option1").value;
+    let options = [...this.state.Options];
+
+    if (e) options.push({ name: value });
+    else {
+      let opt = options.findIndex(opt => opt.name === value);
+      options.splice(opt, 1);
+    }
+
+    this.setState({
+      isChecked: e,
+      Options: options
+    });
+  }
+
+  componentDidMount() {
+    var qType = this.props.history.location.pathname.split("/");
+    this.setState({
+      form: {
+        ...this.state.form,
+        Type: qType[qType.length - 2]
+      }
+    });
+  }
+
   render() {
     console.log(this.state);
 
     var answerOptions = null;
     let radio = (
-      <Form.Item prop="Options">
-        <input type="radio" name="Options" />
-      </Form.Item>
+      <>
+        <Radio value="option1" />
+        <Input id="option1" />
+        <Button type="primary" icon="delete" />
+      </>
     );
 
     let checks = (
-      <Form.Item prop="Options">
-        <div id="section">
-          <Layout.Row gutters={5}>
-            <Layout.Col span={1}>
-              <input type="checkbox" name="Options" />
-            </Layout.Col>
-            <Layout.Col span={7}>
-              <Input onChange={this.onChange.bind(this, "Options")} />
-            </Layout.Col>
-            <Layout.Col span={1} offset={1}>
-              <Button type="primary" icon="delete" />
-            </Layout.Col>
-          </Layout.Row>
-        </div>
-      </Form.Item>
+      <>
+        <Checkbox
+          checked={this.state.isChecked}
+          onChange={this.onCheckedBox.bind(this)}
+        />
+        <Input id="option1" />
+        <Button type="primary" icon="delete" />
+      </>
     );
 
     if (this.state.choiceType === "Multi Choices") answerOptions = checks;
     else answerOptions = radio;
-    var qType = this.props.history.location.pathname.split("/");
 
     return (
       <Form
@@ -142,14 +188,16 @@ class CreateMultipleChoiseQuestion extends Component {
           </Button>
           <Button onClick={this.handleReset.bind(this)}>Reset</Button>
         </Form.Item>
+
         <Form.Item prop="Title">
           <Layout.Row>
             <Layout.Col>
               <label className="CreateMultipleChoiseQuestion-Question-type">
-                {qType[qType.length - 2]}
+                {this.state.form.Type}
               </label>
             </Layout.Col>
           </Layout.Row>
+
           <Layout.Row gutters={10}>
             <Layout.Col span={15}>
               <Input
@@ -159,6 +207,7 @@ class CreateMultipleChoiseQuestion extends Component {
                 placeholder="Please Type Your Question Here"
               />
             </Layout.Col>
+
             <Layout.Col span={3} offset={1}>
               <label className="CreateMultipleChoiseQuestion-Mark">
                 Question Mark
@@ -176,41 +225,25 @@ class CreateMultipleChoiseQuestion extends Component {
           </Layout.Row>
         </Form.Item>
 
-        <Layout.Row>
-          <Layout.Col>
-            <Form.Item>
-              <label className="CreateMultipleChoiseQuestion-level-label">
-                Question Level Of Difficulty
-              </label>
-              <Rate
-                onChange={this.onChange.bind(this, "Level")}
-                showText={true}
-                texts={[
-                  "easy",
-                  "easy",
-                  "intermidiate",
-                  "intermidiate",
-                  "advanced"
-                ]}
-              />
-            </Form.Item>
-          </Layout.Col>
-          <Layout.Col>{answerOptions}</Layout.Col>
-        </Layout.Row>
+        <Form.Item>
+          <label className="CreateMultipleChoiseQuestion-level-label">
+            Question Level Of Difficulty
+          </label>
+          <Rate
+            onChange={this.onChange.bind(this, "Level")}
+            showText={true}
+            texts={["easy", "easy", "intermidiate", "intermidiate", "advanced"]}
+          />
+        </Form.Item>
+        <Form.Item>
+          <div id="extraOption">{answerOptions}</div>
+        </Form.Item>
 
-        <Layout.Row>
-          <Layout.Col>
-            <Form.Item>
-              <Button
-                onClick={() => this.onAddOption()}
-                type="primary"
-                icon="plus"
-              >
-                Add New Option
-              </Button>
-            </Form.Item>
-          </Layout.Col>
-        </Layout.Row>
+        <Form.Item>
+          <Button onClick={() => this.onAddOption()} type="primary" icon="plus">
+            Add New Option
+          </Button>
+        </Form.Item>
 
         <Layout.Row>
           <Layout.Col span={8}>
