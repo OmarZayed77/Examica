@@ -32,7 +32,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <div className="container">
             <QuestionSideNav />
             <Switch>
               <Route path="/exams/add" component={AddExam} />
@@ -53,7 +52,6 @@ class App extends Component {
               <Route render={() => { return "not found!!!" }} />
             </Switch>
           </div>
-        </div>
       </BrowserRouter>
     );
   }

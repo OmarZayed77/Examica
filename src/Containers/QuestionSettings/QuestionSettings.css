@@ -1,38 +1,36 @@
-.QuestionSettings .SettingOptions {
-
+.QuestionSettings .select1{
     margin-top: 1rem ;
     z-index: 1px;
 }
 
-.QuestionSettings .SettingLabel
+.QuestionSettings .label1
 {
     position: absolute;
     top: .6rem;
     left: .5rem;
-
 }
 
-.QuestionSettings .SettingLabel2
+.QuestionSettings .label2
 {
     position: absolute;
     top: 5.5rem;
     left: .5rem;
 }
 
-.QuestionSettings .SettingOptions2 {
+.QuestionSettings .select2{
 
     margin-top: 3rem ;
   
 }
 
-.QuestionSettings .SettingLabel3
+.QuestionSettings .label3
 {
     position: absolute;
     top: 9.8rem;
     left: 8.5rem;
 }
 
-.QuestionSettings .QuestionSwitch
+.QuestionSettings .select3
 {
     top : .2rem;
 }
