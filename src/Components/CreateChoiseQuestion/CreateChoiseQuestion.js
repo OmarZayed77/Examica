@@ -103,23 +103,52 @@ class CreateMultipleChoiseQuestion extends Component {
   }
 
   onAddOption() {
-    var check = document.createElement("Checkbox");
-    check.setAttribute("checked", "this.state.isChecked")
-    check.setAttribute("onChange","this.onCheckedBox.bind(this)")
+    var label = document.createElement("label");
+    label.setAttribute("class", "el-checkbox");
 
-    var checkInput = document.createElement("Input");
-    checkInput.setAttribute("id","option1")
+    var spanContainer = document.createElement("span");
+    spanContainer.setAttribute("class", "el-checkbox__input");
 
-    var btn = document.createElement("Button");
-    btn.setAttribute("type", "primary");
-    btn.setAttribute("icon", "delete");
+    var span = document.createElement("span");
+    span.setAttribute("class", "el-checkbox__inner");
+
+    var input = document.createElement("input");
+    input.setAttribute("class", "el-checkbox__original");
+    input.setAttribute("type", "checkbox");
+
+    var checkLabel = document.createElement("span");
+
+    checkLabel.setAttribute("class", "el-checkbox__label");
+    spanContainer.append(span);
+    spanContainer.append(input);
+    label.append(spanContainer);
+    label.append(checkLabel);
+
+    var inputDiv = document.createElement("div");
+    inputDiv.setAttribute("class", "el-input");
+    var input2 = document.createElement("input");
+    input2.setAttribute("id", "option1");
+    input2.setAttribute("class", "el-input__inner");
+    input2.setAttribute("type", "text");
+    input2.setAttribute("autocomplete", "off");
+    inputDiv.append(input2);
+
+    var delBtn = document.createElement("button");
+    delBtn.setAttribute("class", "el-button el-button--primary");
+    delBtn.setAttribute("type", "button");
+
+    var icon = document.createElement("i");
+    icon.setAttribute("class", "el-icon-delete");
+    var span3 = document.createElement("span");
+    delBtn.append(icon);
+    delBtn.append(span3);
 
     var xtraOption = document.getElementById("extraOption");
-    console.log(xtraOption);
+    xtraOption.append(label);
+    xtraOption.append(inputDiv);
+    xtraOption.append(delBtn);
 
-    xtraOption.append(check);
-    xtraOption.append(checkInput);
-    xtraOption.append(btn);
+    console.log(xtraOption);
   }
 
   onCheckedBox(e) {
