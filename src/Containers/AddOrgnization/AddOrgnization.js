@@ -110,7 +110,7 @@ class AddOrgnization extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		token: state.authReducer.token
+		token: state.auth.token
 	};
 };
 

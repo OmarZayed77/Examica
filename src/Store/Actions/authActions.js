@@ -50,7 +50,7 @@ export const register = (user) => {
                     //alert("new user added");
                     dispatch(registerUserSuccess(token));
                 }
-            }).catch((error) => { console.log(error); })
+            }).catch((error) => { alert("Register Failed! Please try again.") })
     }
 }
 

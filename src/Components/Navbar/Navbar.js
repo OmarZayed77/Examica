@@ -14,10 +14,10 @@ const Navbar = (props) => {
     <div>
       <Menu defaultActive="1" className="el-menu-demo Navbar" mode="horizontal" onSelect={onSelect}>
     <Layout.Row >
-        <Layout.Col span="15">
+        <Layout.Col span="14">
         <Menu.Item  className="logo" index="1" to="/" >Examica</Menu.Item>
         </Layout.Col>
-        <Layout.Col span="8" className="listOfContent">
+        <Layout.Col span="10" className="listOfContent">
         <Menu.Item index="2" to="/" >Home</Menu.Item>
         <Menu.Item index="3" to="/features" >Features</Menu.Item>
         <Menu.Item index="4" to="/pricing" >Pricing</Menu.Item>

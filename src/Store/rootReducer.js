@@ -5,7 +5,7 @@ import ExamReducer from './Reducers/examReducer';
 const rootReducer = combineReducers(
     {
        exams: ExamReducer,
-       authReducer: AuthReducer
+       auth: AuthReducer
     }
 );
 

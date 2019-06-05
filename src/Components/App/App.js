@@ -3,6 +3,7 @@ import "element-theme-default";
 import "./App.css";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Register from "../../Containers/Account/Register";
+import SearchBox from "../../Components/SearchBox";
 import CreateQuestion from "../../Components/CreateQuestion";
 import AddExam from "../../Containers/exams/exam-add";
 import CreateChoiseQuestion from "../../Components/CreateChoiseQuestion";
@@ -25,6 +26,7 @@ function App() {
         <Route path="/exams/add" component={AddExam}/>
         <Redirect from="/home" to="/"/>
         <Route path="/register" exact component={Register}/>
+        <Route path="/searchBox" exact component={SearchBox}/>
         <Route path="/CreateQuestion" exact component={CreateQuestion}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/CreateQuestion/CreateChoiseQuestion" exact component={CreateChoiseQuestion}/>
