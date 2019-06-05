@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout, Button, Input, Radio, Form, InputNumber, Switch } from 'element-react/next';
+import { Layout, Button, Input, Radio, InputNumber, Switch } from 'element-react/next';
 import { Rate } from 'element-react';
 import { connect } from "react-redux";
 import * as questionActions from "../../Store/Actions/questionActions";
@@ -128,7 +128,7 @@ class CreateTrueOrFalseQuestion extends Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.authReducer.token
+    token: state.auth.token
   }
 } 
 
