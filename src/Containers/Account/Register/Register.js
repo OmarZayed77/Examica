@@ -14,7 +14,7 @@ class Register extends Component {
         checkPass: '',
 
       },
-      regExp: new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"),
+      regExp: new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"),
       rules: {
         name: [
           { required: true, message: 'Please input your name', trigger: 'blur' }
@@ -34,7 +34,7 @@ class Register extends Component {
                   this.refs.form.validateField('checkPass');
                 } else {
                   if (!this.state.regExp.test(value)) {
-                    callback(new Error('Password must contain one lowercase,uppercase,special character and 8 char long'))
+                    callback(new Error('lower/uppercase, special char, 8 char long'))
                   }
                 }
                 callback();
@@ -95,24 +95,28 @@ class Register extends Component {
   render() {
     return (
       <>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
         <Layout.Row gutter="10" type="flex" justify="center" align="middle">
           {/* register Form */}
           <Layout.Col span="8">
             <Form ref="form" model={this.state.form} rules={this.state.rules} labelWidth="100" className="demo-ruleForm">
               <Form.Item label="User Name" prop="name">
                 <Input value={this.state.form.name} onChange={this.onChange.bind(this, 'name')}></Input>
-              </Form.Item><br></br>
+              </Form.Item>
               <Form.Item prop="Email" label="Email">
                 <Input value={this.state.form.Email} onChange={this.onEmailChange.bind(this)}></Input>
-              </Form.Item><br></br>
+              </Form.Item>
               <Form.Item label="Password" prop="Password">
                 <Input type="password" value={this.state.form.Password} onChange={this.onChange.bind(this, 'Password')} autoComplete="off" />
-              </Form.Item><br></br>
+              </Form.Item>
               <Form.Item label="Confirm Password" prop="checkPass">
                 <Input type="password" value={this.state.form.checkPass} onChange={this.onChange.bind(this, 'checkPass')} autoComplete="off" />
               </Form.Item><br></br>
               <Form.Item>
-                <Button type="primary" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+                <Button type="primary" onClick={this.handleSubmit.bind(this)}>Sign Up</Button>
                 <Button onClick={this.handleReset.bind(this)}>Reset</Button>
               </Form.Item>
             </Form>
@@ -131,7 +135,7 @@ const mapDispatchToProps = dispatch => {
 };
 const mapStateToProps = state => {
   return {
-    userData: state.authReducer.userData
+    userData: state.auth.userData
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -4,7 +4,9 @@ import { setToken } from '../Store/Actions/authActions'
 import 'element-theme-default';
 import './App.css';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import Register from '../Containers/Account/Register'
+import Register from '../Pages/Register'
+import Login from '../Containers/Account/Login'
+import Logout from '../Components/LogoutButton'
 import CreateQuestion from '../Components/CreateQuestion';
 import AddExam from '../Containers/exams/exam-add'
 import CreateChoiseQuestion from '../Components/CreateChoiseQuestion'
@@ -14,8 +16,6 @@ import CreateFillInTheBlankQuestion from '../Components/CreateFillInTheBlankQues
 import CreateMatchingQuestion from '../Components/CreateMatchingQuestion'
 import CreateTrueOrFalseQuestion from '../Components/CreateTrueOrFalseQuestion'
 import CreateImportQuestion from '../Components/CreateImportQuestion'
-import Login from '../Containers/Account/Login'
-import Logout from '../Components/LogoutButton'
 import QuestionSideNav from '../Components/QuestionSideNav';
 import AddOrganization from '../Containers/AddOrgnization';
 
@@ -65,7 +65,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
 
-    userData: state.authReducer.userData
+    userData: state.auth.userData
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
