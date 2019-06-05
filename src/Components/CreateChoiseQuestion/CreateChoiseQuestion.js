@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   Form,
   Input,
@@ -60,7 +60,7 @@ class CreateMultipleChoiseQuestion extends Component {
       },
       isChecked: false,
       choiceType: "Multi Choices",
-      Options: []
+      optionsNumb: [1]
     };
   }
 
@@ -103,52 +103,12 @@ class CreateMultipleChoiseQuestion extends Component {
   }
 
   onAddOption() {
-    var label = document.createElement("label");
-    label.setAttribute("class", "el-checkbox");
-
-    var spanContainer = document.createElement("span");
-    spanContainer.setAttribute("class", "el-checkbox__input");
-
-    var span = document.createElement("span");
-    span.setAttribute("class", "el-checkbox__inner");
-
-    var input = document.createElement("input");
-    input.setAttribute("class", "el-checkbox__original");
-    input.setAttribute("type", "checkbox");
-
-    var checkLabel = document.createElement("span");
-
-    checkLabel.setAttribute("class", "el-checkbox__label");
-    spanContainer.append(span);
-    spanContainer.append(input);
-    label.append(spanContainer);
-    label.append(checkLabel);
-
-    var inputDiv = document.createElement("div");
-    inputDiv.setAttribute("class", "el-input");
-    var input2 = document.createElement("input");
-    input2.setAttribute("id", "option1");
-    input2.setAttribute("class", "el-input__inner");
-    input2.setAttribute("type", "text");
-    input2.setAttribute("autocomplete", "off");
-    inputDiv.append(input2);
-
-    var delBtn = document.createElement("button");
-    delBtn.setAttribute("class", "el-button el-button--primary");
-    delBtn.setAttribute("type", "button");
-
-    var icon = document.createElement("i");
-    icon.setAttribute("class", "el-icon-delete");
-    var span3 = document.createElement("span");
-    delBtn.append(icon);
-    delBtn.append(span3);
-
-    var xtraOption = document.getElementById("extraOption");
-    xtraOption.append(label);
-    xtraOption.append(inputDiv);
-    xtraOption.append(delBtn);
-
-    console.log(xtraOption);
+    let addOption = [...this.state.optionsNumb];
+    addOption.push(parseInt(this.state.optionsNumb.length) + 1);
+    this.setState({
+      optionsNumb: addOption
+    });
+    console.log(addOption);
   }
 
   onCheckedBox(e) {
@@ -180,32 +140,56 @@ class CreateMultipleChoiseQuestion extends Component {
     });
   }
 
+  getOptionsType() {
+    let answerOptions = null;
+    if (this.state.choiceType === "Multi Choices") {
+      answerOptions = this.state.optionsNumb.map(opt => (
+        <Layout.Row key={opt}>
+          <Layout.Col span={1}>
+            <Checkbox
+              checked={this.state.isChecked}
+              onChange={this.onCheckedBox.bind(this)}
+            />
+          </Layout.Col>
+          <Layout.Col xs={9} sm={15} md={10} lg={10}>
+            <Input id="option1" />
+          </Layout.Col>
+          <Layout.Col span={1}>
+            <Button
+              onClick={this.onOptionDeleted.bind()}
+              type="primary"
+              icon="delete"
+            />
+          </Layout.Col>
+        </Layout.Row>
+      ));
+    } else {
+      answerOptions = this.state.optionsNumb.map(opt => (
+        <Fragment key={opt}>
+          <Radio value="option1" />
+          <Input id="option1" />
+          <Button type="primary" icon="delete" />
+        </Fragment>
+      ));
+    }
+    return answerOptions;
+  }
+
+  onOptionDeleted() {
+    //const optionsNumb = [this.state.optionsNumb];
+    console.log(this.state.optionsNumb);
+    // console.log(optionsNumb[optionsNumb.length-1])
+    // console.log()
+    // optionsNumb.splice(index,1)
+    // this.setState({
+    //   optionsNumb: [1]
+    // });
+    // this.getOptionsType();
+  }
+
   render() {
+    let answerOptions = this.getOptionsType();
     console.log(this.state);
-
-    var answerOptions = null;
-    let radio = (
-      <>
-        <Radio value="option1" />
-        <Input id="option1" />
-        <Button type="primary" icon="delete" />
-      </>
-    );
-
-    let checks = (
-      <>
-        <Checkbox
-          checked={this.state.isChecked}
-          onChange={this.onCheckedBox.bind(this)}
-        />
-        <Input id="option1" />
-        <Button type="primary" icon="delete" />
-      </>
-    );
-
-    if (this.state.choiceType === "Multi Choices") answerOptions = checks;
-    else answerOptions = radio;
-
     return (
       <Form
         ref="form"
@@ -223,14 +207,14 @@ class CreateMultipleChoiseQuestion extends Component {
 
         <Form.Item prop="Title">
           <Layout.Row>
-            <Layout.Col>
+            <Layout.Col span={20}>
               <label className="CreateMultipleChoiseQuestion-Question-type">
                 {this.state.form.Type}
               </label>
             </Layout.Col>
           </Layout.Row>
 
-          <Layout.Row gutters={10}>
+          <Layout.Row>
             <Layout.Col span={15}>
               <Input
                 className="CreateMultipleChoiseQuestion-Title"
@@ -240,7 +224,7 @@ class CreateMultipleChoiseQuestion extends Component {
               />
             </Layout.Col>
 
-            <Layout.Col span={3} offset={1}>
+            <Layout.Col span={2} offset={1}>
               <label className="CreateMultipleChoiseQuestion-Mark">
                 Question Mark
               </label>
@@ -278,7 +262,7 @@ class CreateMultipleChoiseQuestion extends Component {
         </Form.Item>
 
         <Layout.Row>
-          <Layout.Col span={8}>
+          <Layout.Col xs={11} sm={12} md={8} lg={8}>
             <Form.Item prop="choiceType">
               <Select
                 value={this.state.choiceType}
@@ -289,13 +273,18 @@ class CreateMultipleChoiseQuestion extends Component {
               </Select>
             </Form.Item>
           </Layout.Col>
+
           <Layout.Col
             className="CreateMultipleChoiseQuestion-privacy"
-            span={5}
-            offset={1}
+            xs={5}
+            sm={7}
+            md={7}
+            lg={4}
             prop="IsPublic"
           >
-            <label>Question Privacy</label>
+            <label className="CreateMultipleChoiseQuestion-Question-type">
+              Question Privacy
+            </label>
             <Switch
               onText="Private"
               offText="Public"
