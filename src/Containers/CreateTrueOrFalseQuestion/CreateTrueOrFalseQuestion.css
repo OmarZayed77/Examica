@@ -1,0 +1,157 @@
+.CreateTrueOrFalseQuestion h3 
+{
+    color:  #645794;
+    position: absolute;
+    top: 1.3rem;
+    left: 7rem;
+  
+}
+
+.CreateTrueOrFalseQuestion button 
+{
+    position: absolute;
+    top: 1.3rem;
+    left: 67rem;
+    border: 1 solid black;
+}
+
+.CreateTrueOrFalseQuestion .primary
+{
+    position: absolute;
+    top: 1.3rem;
+    left: 59rem;
+}
+.CreateTrueOrFalseQuestion .el-button--success
+{
+    background-color: #5580FF;
+}
+.CreateTrueOrFalseQuestion .el-button--primary
+{
+    background-color: #FFFFFF;
+    color: black;
+    border-color: black;
+}
+.CreateTrueOrFalseQuestion .textButton
+{
+    position: absolute;
+    top: 1.3rem;
+    left: 54.4rem;
+    color: #D3D3D3;
+}
+
+.CreateTrueOrFalseQuestion .fa-share-alt
+{
+    position: absolute;
+    top: 1.9rem;
+    left: 53rem;
+}
+
+.CreateTrueOrFalseQuestion .textButton2
+{
+    position: absolute;
+    top: 1.3rem;
+    left: 48.8rem;
+    color: #D3D3D3;
+}
+
+.CreateTrueOrFalseQuestion .fa-cog
+{
+    position: absolute;
+    top: 1.9rem;
+    left: 47rem;
+}
+
+.CreateTrueOrFalseQuestion .textButton3
+{
+    position: absolute;
+    top: 1.3rem;
+    left: 42.8rem;
+    color: #D3D3D3;
+}
+
+.CreateTrueOrFalseQuestion .fa-pen
+{
+    position: absolute;
+    top: 1.9rem;
+    left: 41rem;
+}
+
+.CreateTrueOrFalseQuestion .questionhead 
+{
+    position: absolute ; 
+    top : 12rem;
+    left: 14rem;
+}
+
+.CreateTrueOrFalseQuestion .el-input
+{
+    width: 33rem;
+} 
+
+.CreateTrueOrFalseQuestion .questionhead .radios
+{
+    position: absolute;
+    top: 4rem;
+    left: 1rem;
+}
+
+.CreateTrueOrFalseQuestion .questionhead .radios .optionB
+{
+    position: absolute;
+    top: 3rem;
+    left: -0.9rem;
+}
+
+.CreateTrueOrFalseQuestion .level
+{
+    font-weight: 600;
+    color: #58488C;
+    position: absolute;
+    top: 25rem;
+    left: 14rem;
+}
+
+.CreateTrueOrFalseQuestion .rate 
+{
+    position: absolute;
+    top: 27.5rem;
+    left: 14.5rem;
+}
+
+.CreateTrueOrFalseQuestion .el-input-number
+{
+    width: 12rem;
+}
+
+.CreateTrueOrFalseQuestion .NumberInput
+{
+    position: absolute;
+    top: 27rem;
+    left: 41rem;
+    width: 12rem;
+}
+
+.CreateTrueOrFalseQuestion .Mark 
+{
+    font-weight: 600;
+    color: #58488C;
+    position: absolute;
+    top: 25rem;
+    left: 41rem;
+}
+
+.CreateTrueOrFalseQuestion .IsPuplic
+{
+    font-weight: 600;
+    color: #58488C;
+    position: absolute;
+    top:32rem;
+    left: 14.5rem;
+}
+
+.CreateTrueOrFalseQuestion .switch
+{
+    position: absolute;
+    top:35rem;
+    left: 14.5rem;
+}
