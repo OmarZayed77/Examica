@@ -91,19 +91,61 @@ class CreateMultipleChoiseQuestion extends Component {
   }
 
   onChange(key, value) {
-    if(key === "choiceType")
-    {
+    if (key === "choiceType") {
       this.setState({
         ...this.state,
         choiceType: value
-      })
-    }
-    else 
-    {
+      });
+    } else {
       this.setState({
         form: Object.assign({}, this.state.form, { [key]: value })
       });
     }
+  }
+
+  getOptionsType() {
+    let answerOptions = null;
+    if (this.state.choiceType === "Multi Choices") {
+      answerOptions = this.state.optionsNumb.map(opt => (
+        <Layout.Row key={opt}>
+          <Layout.Col span={1}>
+            <Checkbox
+              checked={this.state.isChecked}
+              onChange={this.onCheckedBox.bind(this, opt)}
+            />
+          </Layout.Col>
+          <Layout.Col xs={9} sm={15} md={10} lg={10}>
+            <Input id={"option" + opt} />
+          </Layout.Col>
+          <Layout.Col span={1}>
+            <Button
+              onClick={this.onOptionDeleted.bind(this, opt)}
+              type="primary"
+              icon="delete"
+            />
+          </Layout.Col>
+        </Layout.Row>
+      ));
+    } else {
+      answerOptions = this.state.optionsNumb.map(opt => (
+        <Layout.Row key={opt}>
+          <Layout.Col span={1}>
+            <Radio value="" />
+          </Layout.Col>
+          <Layout.Col xs={9} sm={15} md={10} lg={10}>
+            <Input id={"option" + opt} />
+          </Layout.Col>
+          <Layout.Col span={1}>
+            <Button
+              onClick={this.onOptionDeleted.bind(this, opt)}
+              type="primary"
+              icon="delete"
+            />
+          </Layout.Col>
+        </Layout.Row>
+      ));
+    }
+    return answerOptions;
   }
 
   onAddOption() {
@@ -112,11 +154,19 @@ class CreateMultipleChoiseQuestion extends Component {
     this.setState({
       optionsNumb: addOption
     });
-    console.log(addOption);
   }
 
-  onCheckedBox(optNumb,event) {
-    let value = document.getElementById("option"+optNumb).value;
+  onOptionDeleted(optNumb, event) {
+    let optionsNum = [...this.state.optionsNumb];
+    let index = optionsNum.findIndex(i => i === optNumb);
+    optionsNum.splice(index, 1);
+    this.setState({
+      optionsNumb: optionsNum
+    });
+  }
+
+  onCheckedBox(optNumb, event) {
+    let value = document.getElementById("option" + optNumb).value;
     let options = [...this.state.form.Options];
     if (event) options.push({ name: value });
     else {
@@ -130,60 +180,6 @@ class CreateMultipleChoiseQuestion extends Component {
         Options: options
       }
     });
-  }
-
-  getOptionsType() {
-    let answerOptions = null;
-    if (this.state.choiceType === "Multi Choices") {
-      answerOptions = this.state.optionsNumb.map(opt => (
-        <Layout.Row key={opt}>
-          <Layout.Col span={1}>
-            <Checkbox
-              checked={this.state.isChecked}
-              onChange={this.onCheckedBox.bind(this,opt)}
-            />
-          </Layout.Col>
-          <Layout.Col xs={9} sm={15} md={10} lg={10}>
-            <Input id={"option" + opt} />
-          </Layout.Col>
-          <Layout.Col span={1}>
-            <Button
-              onClick={this.onOptionDeleted.bind(this,opt)}
-              type="primary"
-              icon="delete"
-            />
-          </Layout.Col>
-        </Layout.Row>
-      ));
-    } else {
-      answerOptions = this.state.optionsNumb.map(opt => (
-        <Layout.Row key={opt}>
-        <Layout.col span={1}>
-          <Radio value="option1" />
-        </Layout.col>
-        <Layout.col xs={9} sm={15} md={10} lg={10}>
-          <Input id="option1" />
-        </Layout.col>
-        <Layout.col span={1}>
-          <Button type="primary" icon="delete" />
-        </Layout.col>
-        </Layout.Row>
-      ));
-    }
-    return answerOptions;
-  }
-
-  onOptionDeleted(e,d) {
-    //let optionsNum = [...this.state.optionsNumb];
-    console.log(e,d);
-    
-    // console.log(optionsNumb[optionsNumb.length-1])
-    // console.log()
-    // optionsNumb.splice(index,1)
-    // this.setState({
-    //   optionsNumb: [1]
-    // });
-    // this.getOptionsType();
   }
 
   componentDidMount() {
