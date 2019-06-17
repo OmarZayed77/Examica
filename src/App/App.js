@@ -21,11 +21,8 @@ import AddOrganization from '../Containers/AddOrgnization';
 import OrganizationsList from '../Components/OrganizationsList';
 import PoolOfQuestions from '../Containers/PoolOfQuestions'
 import * as orgActions from '../Store/Actions/organizationActions';
-<<<<<<< HEAD
 import UserList from '../Containers/Users/UsersList';
-=======
 import Exam from '../Containers/exams/render-exam';
->>>>>>> 846bf4d40a7169659cf1f667a27e819b042982d4
 
 class App extends Component {
   
