@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FeatureCard from "../../Components/feature-card";
+import FeatureCard from "../../../Components/feature-card";
 import { Layout } from "element-react/next";
 import "./feature-card-list.css";
 
@@ -69,10 +69,8 @@ class FeatureCardList extends Component {
 
   render() {
     let featrues = this.state.features.map(feature => (
-      <Layout.Col xs="20" sm="10" md="8" lg="6">
+      <Layout.Col key={feature.id} xs="20" sm="17" md="15" lg="7">
         <FeatureCard
-          className="FeatureCard"
-          key={feature.id}
           title={feature.title}
           content={feature.content}
           image={feature.image}
@@ -80,8 +78,11 @@ class FeatureCardList extends Component {
       </Layout.Col>
     ));
     return (
-      <Layout.Row gutter="5" className="FeatureCardList">
-        {featrues}
+      <Layout.Row className="FeatureCardList">
+        <Layout.Row>
+          <h2 className="FeatureCardList-title">Our Features</h2>
+        </Layout.Row>
+        <Layout.Row className="FeatureCardList-featrues">{featrues}</Layout.Row>
       </Layout.Row>
     );
   }

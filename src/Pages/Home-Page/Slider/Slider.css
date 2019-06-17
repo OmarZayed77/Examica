@@ -34,10 +34,7 @@
 .Slider h2{
   text-align: center;
 }
-.Slider .buttons{
-  position: absolute;
-  margin: auto;
-}
+
 .Slider .Buttonprimary{
   border-radius: 20px;
   background-color: #FF8A73;
