@@ -1,0 +1,13 @@
+.box-card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    left: 50%;
+    top:20%;
+    margin-top: 20px;
+}
+.txt{
+    font-weight: 600;
+    line-height: 1.5px;
+}
