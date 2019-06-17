@@ -13,12 +13,12 @@ class CreateTrueOrFalseQuestion extends Component {
     this.state = {
       addQuestion: {
         Title: "",
-        Type: "",
+        Type: "TrueOrFalse",
         Level: null,
         Mark: null,
         IsPublic: false,
         Options: [],
-        OrganizationId: 3,
+        OrganizationId: 1
       },
      
     }
@@ -27,7 +27,6 @@ class CreateTrueOrFalseQuestion extends Component {
   changeHandlerTitle = (e) => {
     const addquestion = { ...this.state.addQuestion };
     addquestion.Title = e;
-    console.log(addquestion);
     this.setState({ addQuestion: addquestion });
   }
 
@@ -57,13 +56,12 @@ class CreateTrueOrFalseQuestion extends Component {
 
 
   onAddTrueOrFalseQuestion = (e) => {
-    this.props.onAddQuestion(this.state.addQuestion)
+    this.props.onAddQuestion(this.state.addQuestion, this.props.token);
   }
 
   render() {
-    console.log(this.state);
     return (
-      <fragment className="CreateTrueOrFalseQuestion" >
+      <div className="CreateTrueOrFalseQuestion" >
         <Layout.Row lg="10" >
           <Layout.Col span="24"><div className="grid-content bg-purple-dark"></div>
             <h3>Examica</h3>
@@ -73,11 +71,11 @@ class CreateTrueOrFalseQuestion extends Component {
                   <Button type="success" onClick={this.onAddTrueOrFalseQuestion}>Done</Button>
                   <Button type="primary" className="primary">Preview</Button>
                   <Button type="text" className="textButton">Share</Button>
-                  <i class="fas fa-share-alt"></i>
+                  <i className="fas fa-share-alt"></i>
                   <Button type="text" className="textButton2">Settings</Button>
-                  <i class="fas fa-cog"></i>
+                  <i className="fas fa-cog"></i>
                   <Button type="text" className="textButton3">Create</Button>
-                  <i class="fas fa-pen"></i>
+                  <i className="fas fa-pen"></i>
                 </span>
               </div>
             </div>
@@ -120,7 +118,7 @@ class CreateTrueOrFalseQuestion extends Component {
             </Switch>
           </Layout.Col>
         </Layout.Row>
-      </fragment>
+      </div>
     )
   }
 };

@@ -20,6 +20,7 @@ import QuestionSideNav from '../Components/QuestionSideNav';
 import AddOrganization from '../Containers/AddOrgnization';
 import OrganizationsList from '../Components/OrganizationsList';
 import * as orgActions from '../Store/Actions/organizationActions';
+import Exam from '../Containers/exams/render-exam';
 
 class App extends Component {
   
@@ -38,6 +39,7 @@ class App extends Component {
         <div className="App">
             <QuestionSideNav />
             <Switch>
+              <Route path="/exam" component={Exam} />
               <Route path="/exams/add" component={AddExam} />
               <Redirect from="/home" to="/" />
               <Route path="/register" exact component={Register} />
@@ -56,7 +58,7 @@ class App extends Component {
               <Route render={() => { return "not found!!!" }} />
             </Switch>
           </div>
-          <OrganizationsList></OrganizationsList>
+          {/* <OrganizationsList></OrganizationsList> */}
       </BrowserRouter>
     );
   }
