@@ -19,7 +19,6 @@ import CreateImportQuestion from '../Containers/CreateImportQuestion'
 import QuestionSideNav from '../Components/QuestionSideNav';
 import AddOrganization from '../Containers/AddOrgnization';
 import OrganizationsList from '../Components/OrganizationsList';
-import QuestionHeader from '../Components/QuestionHeader'
 import PoolOfQuestions from '../Containers/PoolOfQuestions'
 import * as orgActions from '../Store/Actions/organizationActions';
 
@@ -53,7 +52,6 @@ class App extends Component {
               <Route path="/CreateQuestion/CreateMatchingQuestion" exact component={CreateMatchingQuestion} />
               <Route path="/CreateQuestion/CreateTrueOrFalseQuestion" exact component={CreateTrueOrFalseQuestion} />
               <Route path="/CreateQuestion/CreateImportQuestion" exact component={CreateImportQuestion} />
-              <Route path="/QuestionHeader" exact component={QuestionHeader} />
               <Route path="/PoolOfQuestions" exact component={PoolOfQuestions} />
               <Route path="/" exact component={AddOrganization} />
               <Route path="/" exact render={() => { return "Home Sweet Home" }} />

@@ -1,0 +1,13 @@
+.Exam .el-card
+{
+    width:16rem;
+    position: absolute;
+    left: 7rem;
+    top: 2rem;
+}
+
+.Exam .image
+{
+    width: 12rem;
+    justify-content:center;
+}
