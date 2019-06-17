@@ -1,4 +1,4 @@
-import * as organizationAPI from '../../API/orgAPI';
+import * as organizationAPI from '../../API/orgAPI'
 
 export const ALL = "ALL";
 export const CURRENT = "CURRENT";

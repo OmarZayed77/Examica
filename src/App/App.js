@@ -19,6 +19,8 @@ import CreateImportQuestion from '../Containers/CreateImportQuestion'
 import QuestionSideNav from '../Components/QuestionSideNav';
 import AddOrganization from '../Containers/AddOrgnization';
 import OrganizationsList from '../Components/OrganizationsList';
+import QuestionHeader from '../Components/QuestionHeader'
+import PoolOfQuestions from '../Containers/PoolOfQuestions'
 import * as orgActions from '../Store/Actions/organizationActions';
 
 class App extends Component {
@@ -27,7 +29,7 @@ class App extends Component {
     
     if (localStorage.getItem("token")) {
       this.props.setToken(localStorage.getItem("token"));
-      //this.props.getAll(localStorage.getItem("token"));
+      //this.props.getAQuestionHeaderll(localStorage.getItem("token"));
     }
     else this.props.getOrgs('bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvQGcuY29tIiwianRpIjoiODE1ZmY4MjEtNTJhOS00MmJhLWJjNzktN2M1YTMwNmM4ZmU3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzM2EyYTVkNS01MmMzLTQyMGUtODlkNi05OGFiZWIyNzZmODQiLCJleHAiOjE1NjE0NjcyMjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTU3NjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjE1NzY2In0.ZtQY3C3YYG7NDJi2phG8HT0Nv9ObTCcGr8bIioNvwq8');
   }
@@ -51,6 +53,8 @@ class App extends Component {
               <Route path="/CreateQuestion/CreateMatchingQuestion" exact component={CreateMatchingQuestion} />
               <Route path="/CreateQuestion/CreateTrueOrFalseQuestion" exact component={CreateTrueOrFalseQuestion} />
               <Route path="/CreateQuestion/CreateImportQuestion" exact component={CreateImportQuestion} />
+              <Route path="/QuestionHeader" exact component={QuestionHeader} />
+              <Route path="/PoolOfQuestions" exact component={PoolOfQuestions} />
               <Route path="/" exact component={AddOrganization} />
               <Route path="/" exact render={() => { return "Home Sweet Home" }} />
               <Route render={() => { return "not found!!!" }} />
