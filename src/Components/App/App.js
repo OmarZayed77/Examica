@@ -16,6 +16,8 @@ import CreateImportQuestion from "../CreateImportQuestion";
 import Login from "../../Containers/Account/Login";
 import QuestionSideNav from "../../Components/QuestionSideNav";
 import AddOrgnization from "../../Containers/AddOrgnization";
+import exam from "../exams/exam/exam";
+
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
         <Route path="/CreateQuestion/CreateMatchingQuestion" exact component={CreateMatchingQuestion}/>
         <Route path="/CreateQuestion/CreateTrueOrFalseQuestion" exact component={CreateTrueOrFalseQuestion}/>
         <Route path="/CreateQuestion/CreateImportQuestion" exact component={CreateImportQuestion}/>
+        <Route path="/exam" exact component={exam}/>
       <Route path="/" exact component={AddOrgnization} />
         <Route path="/" exact render={()=>{return "Home Sweet Home"}}/>
         <Route render={()=>{return "not found!!!"}}/>

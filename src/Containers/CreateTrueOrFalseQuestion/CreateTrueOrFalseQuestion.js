@@ -132,7 +132,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddQuestion: (question, token) => {dispatch(questionActions.addTrueOrFalseQuestion(question, token))}
+    onAddQuestion: (question, token) => {dispatch(questionActions.addNewQuestion(question, token))}
   }
 }
 
