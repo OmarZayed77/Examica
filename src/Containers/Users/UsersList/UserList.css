@@ -1,0 +1,5 @@
+.UserList .UserList-Cards
+{
+    display: flex;
+    justify-content: space-around;
+}
