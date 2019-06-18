@@ -9,10 +9,13 @@ const examReducer = (state = initialState, action) => {
 			newState.push(action.payload);
 			console.log(action.payload, 'was added!');
 			break;
+
+		case examActions.GET:
+				newState = action.payload ; 
+				break;
 		default:
 			break;
 	}
 	return newState;
-};
-
+}
 export default examReducer;
