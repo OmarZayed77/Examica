@@ -1,0 +1,13 @@
+.RenderExam .RenderExam-Name
+{
+    color: #58488C;
+    font-size: 47px;
+    font-weight: bold;
+}
+
+.RenderExam .RenderExam-Number
+{
+    color: #2D2D47;
+    font-size: 28px;
+    font-weight: bold;
+}

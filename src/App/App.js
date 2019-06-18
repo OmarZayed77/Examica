@@ -18,15 +18,13 @@ import CreateTrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion'
 import CreateImportQuestion from '../Containers/CreateImportQuestion'
 import QuestionSideNav from '../Components/QuestionSideNav';
 import AddOrganization from '../Containers/AddOrgnization';
-import OrganizationsList from '../Components/OrganizationsList';
 import PoolOfQuestions from '../Containers/PoolOfQuestions'
 import * as orgActions from '../Store/Actions/organizationActions';
 import Exam from '../Containers/exams/render-exam';
 
 class App extends Component {
-  
-  componentDidMount() {
-    
+
+  componentDidMount(){
     if (localStorage.getItem("token")) {
       this.props.setToken(localStorage.getItem("token"));
       //this.props.getAQuestionHeaderll(localStorage.getItem("token"));
@@ -40,7 +38,7 @@ class App extends Component {
         <div className="App">
             <QuestionSideNav />
             <Switch>
-              <Route path="/exam" component={Exam} />
+              <Route path="/exam/:id" exact component={Exam} />
               <Route path="/exams/add" component={AddExam} />
               <Redirect from="/home" to="/" />
               <Route path="/register" exact component={Register} />
@@ -60,7 +58,6 @@ class App extends Component {
               <Route render={() => { return "not found!!!" }} />
             </Switch>
           </div>
-          {/* <OrganizationsList></OrganizationsList> */}
       </BrowserRouter>
     );
   }
@@ -70,13 +67,15 @@ const mapDispatchToProps = dispatch => {
   return {
     setToken: (token) => dispatch(setToken(token)),
     getOrgs: (token) => dispatch(orgActions.getAll(token))
-  };
-};
+  }
+}
+
 const mapStateToProps = state => {
   return {
 
     userData: state.auth.userData
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
