@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import UserCard from '../UserCard';
 import { connect } from 'react-redux';
-import { Layout } from 'element-react/next';
 import SearchBox from '../../../Components/SearchBox';
 import './UserList.css';
 import * as userActions from '../../../Store/Actions/userActions';
@@ -15,25 +14,20 @@ class UserList extends Component {
     console.log(this.props);
     let users = this.props.users.map(user=>{
       return(
-        <Layout.Col span="10" offset="1"  lg="20">
           <UserCard 
           key={user.id}
           UserName={user.UserName}
           Email={user.Email}
           PhoneNumber={user.PhoneNumber}
           />
-       
-        
-        </Layout.Col>
-
 )});
     return(
-      <>
+    <div className="UserList">
     <SearchBox className="search"/>
-      <Layout.Row gutter="10" className="userCardList">
+    <div className="UserList-Cards">
       {users}
-    </Layout.Row>
-    </>
+    </div>
+    </div>
     );
   }
   

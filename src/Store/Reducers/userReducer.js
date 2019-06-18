@@ -2,8 +2,8 @@ import * as userActions from '../Actions/userActions';
 
 const initial ={
     allUsers: [
-        {Id: "1", UserName: "Dina", PhoneNumber: "011" , Email: "d@gmail.com"},
-        {Id: "1", UserName: "Dina", PhoneNumber: "011" , Email: "d@gmail.com"},
+        {Id: "1", UserName: "Dina Gamal Abdelrahman", PhoneNumber: "011" , Email: "d@gmail.com"},
+        {Id: "1", UserName: "Annonymous ay 7aga", PhoneNumber: "011" , Email: "d@gmail.com"},
         {Id: "1", UserName: "Dina", PhoneNumber: "011" , Email: "d@gmail.com"},
     ],
     oneUser :null,

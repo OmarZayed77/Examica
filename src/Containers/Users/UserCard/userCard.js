@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, Layout} from 'element-react/next';
+import {Card} from 'element-react/next';
 import './UserCard.css' ;
 
 
@@ -7,14 +7,12 @@ class UserCard extends Component {
     render() {
       console.log(this.props);
       return (
-        <Layout.Col md="12">
         <Card className="box-card">
-          <div className="userName"><span className="txt">username:</span>{this.props.UserName}</div>
-          <div className="email"><span className="txt">Email:</span> {this.props.Email}</div>
-          <div className="phoneNum"><span className="txt">phoneNum:</span> {this.props.PhoneNumber}</div>
+          <img alt="Profile Picture" className="userCard-img" src="http://www.mattmovingsystems.com/root/images/profile_user.gif"></img>
+          <div className="userName">{this.props.UserName}</div>
+          <div className="email">{this.props.Email}</div>
+          <div className="phoneNum">{this.props.PhoneNumber}</div>
         </Card>
-        </Layout.Col>
-        
       )
     } 
   }

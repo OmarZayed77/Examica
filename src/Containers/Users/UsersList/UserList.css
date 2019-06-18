@@ -1,7 +1,5 @@
-.userCardList{
-    margin: 40px;
+.UserList .UserList-Cards
+{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
-
