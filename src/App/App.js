@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Register from '../Pages/Register'
 import Login from '../Containers/Account/Login'
 import Logout from '../Components/LogoutButton'
+import Exams from '../Pages/Exams'
 import CreateQuestion from '../Components/CreateQuestion';
 import AddExam from '../Containers/exams/exam-add'
 import CreateChoiseQuestion from '../Containers/CreateChoiseQuestion'
@@ -44,6 +45,7 @@ class App extends Component {
               <Route path="/CreateQuestion" exact component={CreateQuestion} />
               <Route path="/login" exact component={Login} />
               <Route path="/logout" exact component={Logout} />
+              <Route path="/exams" exact component={Exams} />
               <Route path="/CreateQuestion/CreateChoiseQuestion" exact component={CreateChoiseQuestion} />
               <Route path="/CreateQuestion/CreateComprehenssionQuestion" exact component={CreateComprehenssionQuestion} />
               <Route path="/CreateQuestion/CreateEssayQuestion" exact component={CreateEssayQuestion} />

@@ -1,13 +1,15 @@
-.Exam .el-card
+
+.Exam .Exam-card
 {
     width:16rem;
-    position: absolute;
-    left: 7rem;
-    top: 2rem;
+    margin-left: 6.5rem;
+    margin-top: 5rem;    
 }
 
-.Exam .image
+.Exam img
 {
-    width: 12rem;
-    justify-content:center;
+    width: 12.9rem;
+    margin-top: -51px;
+    margin-left: 0rem;
 }
+
