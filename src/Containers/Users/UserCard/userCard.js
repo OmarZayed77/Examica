@@ -5,6 +5,7 @@ import './UserCard.css' ;
 
 class UserCard extends Component {
     render() {
+      console.log(this.props);
       return (
         <Layout.Col md="12">
         <Card className="box-card">

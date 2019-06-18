@@ -1,7 +1,11 @@
 import * as userActions from '../Actions/userActions';
 
 const initial ={
-    allUsers =[],
+    allUsers: [
+        {Id: "1", UserName: "Dina", PhoneNumber: "011" , Email: "d@gmail.com"},
+        {Id: "1", UserName: "Dina", PhoneNumber: "011" , Email: "d@gmail.com"},
+        {Id: "1", UserName: "Dina", PhoneNumber: "011" , Email: "d@gmail.com"},
+    ],
     oneUser :null,
 
 };

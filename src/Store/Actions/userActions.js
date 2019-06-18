@@ -4,7 +4,7 @@ export const GET_ALL = "GET_ALL";
 export const GET_USER = "GET_USER";
 
 
-export const getAll=(token) =>{
+export const getAll=(orgId, token) =>{
     return (dispatch)=>{
             userAPI.getAllUsers(orgId,token)
             .then(res=>{

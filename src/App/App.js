@@ -14,7 +14,6 @@ import CreateComprehenssionQuestion from '../Containers/CreateComprehenssionQues
 import CreateEssayQuestion from '../Containers/CreateEssayQuestion'
 import CreateFillInTheBlankQuestion from '../Containers/CreateFillInTheBlankQuestion'
 import CreateMatchingQuestion from '../Containers/CreateMatchingQuestion'
-import CreateTrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion'
 import CreateImportQuestion from '../Containers/CreateImportQuestion'
 import QuestionSideNav from '../Components/QuestionSideNav';
 import AddOrganization from '../Containers/AddOrgnization';
@@ -23,6 +22,7 @@ import PoolOfQuestions from '../Containers/PoolOfQuestions'
 import * as orgActions from '../Store/Actions/organizationActions';
 import UserList from '../Containers/Users/UsersList';
 import Exam from '../Containers/exams/render-exam';
+import CreateTrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion';
 
 class App extends Component {
   
