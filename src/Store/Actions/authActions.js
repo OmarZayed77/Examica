@@ -25,18 +25,16 @@ export const registerUserSuccess = (value) => {
 export const login = (user) => {
 
     return dispatch => {
-        //let token = localStorage.getItem("token");
-        let token = `bearer ${localStorage.getItem("token")}`;
-        console.log(token);
-        axios.post(`${URL}/api/account/login`, user, { headers: { Authorization: token } })
+        axios.post(`${URL}/api/account/login`, user)
             .then((response) => {
                 if (response.status === 200) {
-                    let token = `bearer ${response.data}`;
+
+                    let token = `bearer ${response.data.token}`;
                     localStorage.setItem("token", token);
-                    //alert("loggedIn successfully");
-                    dispatch(loginUserSuccess(token));
+                    dispatch(loginUserSuccess(response.data));
                 }
-            }).catch((error) => { alert("Login Failed! Please check your user name and password") })
+            })
+            .catch((error) => { alert("Login Failed! Please check your user name and password") })
     }
 }
 
@@ -44,11 +42,10 @@ export const register = (user) => {
     return dispatch => {
         axios.post(`${URL}/api/account/register`, user)
             .then((response) => {
-                let token = `bearer ${response.data}`;
+                let token = `bearer ${response.data.token}`;
                 localStorage.setItem("token", token);
                 if (response.status === 200) {
-                    //alert("new user added");
-                    dispatch(registerUserSuccess(token));
+                    dispatch(registerUserSuccess(response.data));
                 }
             }).catch((error) => { alert("Register Failed! Please try again.") })
     }
