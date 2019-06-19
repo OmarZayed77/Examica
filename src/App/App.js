@@ -16,12 +16,9 @@ import "./App.css";
 class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.props.setToken(localStorage.getItem("token"));
-      //this.props.getAll(localStorage.getItem("token"));
-    } else
-      this.props.getOrgs(
-        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvQGcuY29tIiwianRpIjoiODE1ZmY4MjEtNTJhOS00MmJhLWJjNzktN2M1YTMwNmM4ZmU3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzM2EyYTVkNS01MmMzLTQyMGUtODlkNi05OGFiZWIyNzZmODQiLCJleHAiOjE1NjE0NjcyMjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTU3NjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjE1NzY2In0.ZtQY3C3YYG7NDJi2phG8HT0Nv9ObTCcGr8bIioNvwq8"
-      );
+      this.props.setToken();
+      this.props.getOrgs(localStorage.getItem("token"));
+    }
   }
 
   render() {

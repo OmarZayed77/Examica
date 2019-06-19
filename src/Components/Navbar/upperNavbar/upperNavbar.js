@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Menu, Layout, Button } from "element-react/next";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import LogOutButton from '../../LogoutButton';
 import "./upperNavbar.css";
 
 class UpperNavbar extends Component {
@@ -13,8 +14,8 @@ class UpperNavbar extends Component {
     let btns = null;
     if (this.props.token) {
       btns = (
-        <Menu.Item index="6" to="/Logout">
-          Log Out
+        <Menu.Item index="6" onClick={()=>{console.log("sign out")}}>
+          <LogOutButton/>
         </Menu.Item>
       );
     } else {
@@ -68,4 +69,5 @@ const mapStateToProps = state => {
     token: state.auth.token
   };
 };
+
 export default connect(mapStateToProps)(withRouter(UpperNavbar));
