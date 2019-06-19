@@ -23,18 +23,15 @@ class QuestionsPool extends Component {
 
   filter = (index) => {
     let newArr = [];
-    let questionsArr = [];
+    let questionsArr = [...this.props.questions];
     if (index === 'ALL') {
       newArr = this.props.questions
     } else if (index === 'Beginner' || index === 'Intermediate' || index === 'Advanced') {
-
-      questionsArr = [...this.props.questions];
       newArr = questionsArr.filter((q) => {
         return q.Level === index
       })
     }
     else {
-      questionsArr = [...this.props.questions];
       newArr = questionsArr.filter((q) => {
         return q.Type === index
       })
@@ -46,9 +43,9 @@ class QuestionsPool extends Component {
   }
   render() {
     let QuestionTable = null;
-    if(this.state.data) {
+    if (this.state.data) {
       QuestionTable = (this.state.data.length > 0) ? (<Pool List={this.state.data}></Pool>) : (<h3>No Questions Found</h3>);
-    } 
+    }
     return (
       <>
         <Layout.Row gutter="2" className="poolNav">

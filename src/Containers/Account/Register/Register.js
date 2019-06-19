@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Layout } from 'element-react/next';
-import { register , REMOVE_ERROR} from '../../../Store/Actions/authActions';
+import { Form, Input, Button, Layout,MessageBox } from 'element-react/next';
+import { register, REMOVE_ERROR } from '../../../Store/Actions/authActions';
 import { connect } from 'react-redux';
 
 class Register extends Component {
@@ -80,7 +80,7 @@ class Register extends Component {
     };
   }
 
-  
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -112,16 +112,20 @@ class Register extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.isLoggedIn) this.props.history.push("/");
+    if (this.props.isLoggedIn) this.props.history.push("/");
     // show your pop up here instead and dipatch REMOVE_ERROR after that
-    else if (this.props.isError)
-    {
-      alert("You registered with this email before");
-      this.props.removeError();
+    else if (this.props.isError) {
+      MessageBox.confirm('You registered with this email before', 'Warning', {
+        confirmButtonText: 'OK',
+        type: 'error'
+      }).then(() => {
+        this.props.removeError();
+      }).catch(() => {
+      });
     }
   }
 
-  
+
   render() {
     return (
       <>
@@ -187,7 +191,7 @@ class Register extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     registerUser: user => dispatch(register(user)),
-    removeError: () => dispatch({type: REMOVE_ERROR})
+    removeError: () => dispatch({ type: REMOVE_ERROR })
   };
 };
 const mapStateToProps = state => {
