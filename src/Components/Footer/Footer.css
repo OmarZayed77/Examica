@@ -1,0 +1,38 @@
+.Footer .el-menu 
+{
+    justify-content: center;
+    display: flex;
+    height: 192px;
+    background-color: #2D2D47;
+}
+
+.Footer li 
+{
+    color: #B8B5BF;
+    font-size: 25px;
+}
+
+.Footer p 
+{
+    color: #FFFFFF;
+    position:absolute;
+    top: 4rem;
+    font-size: 18px ;
+    left: 27.8rem;
+}
+
+.Footer p span 
+{
+    color: #FF8A73;
+}
+
+.Footer  a
+{
+    position: relative;
+    top: 7rem;
+    left: -19rem;
+    padding: 1rem;
+    color: #B8B5BF;
+}
+
+
