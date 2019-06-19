@@ -18,6 +18,7 @@ const userReducer =(state=initial,action)=>{
             newArrOfUsers=action.payload
             break;
         case userActions.GET_USER:
+        case userActions.ADD_ROLE:
             newUser=action.payload
             break;
       default:

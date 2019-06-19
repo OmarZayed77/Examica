@@ -2,6 +2,8 @@ import * as userAPI from '../../API/userAPI';
 
 export const GET_ALL = "GET_ALL";
 export const GET_USER = "GET_USER";
+export const ADD_ROLE = "ADDROLE";
+
 
 
 export const getAll=(orgId, token) =>{
@@ -34,11 +36,29 @@ export const getOneUser =(userId,orgId,token)=>{
         .catch(console.error)
     };
 
-}
+};
+
+export const addRole = (user, token) =>{
+    return dispatch => {
+        userAPI.addRole(user, token)
+        .then(res =>{
+            if (res.status === 200) {
+                dispatch(addRoleSuccess(res.data))
+            }
+        })
+        .catch(console.error);
+    }
+  }
 
 export const getUserSuccess =(value)=>{
    return {
        type:GET_USER,
        payload:value,
    }
+}
+
+export const addRoleSuccess = (value) => {
+    return {
+        type:ADD_ROLE, 
+        payload: value }
 }
