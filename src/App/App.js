@@ -12,6 +12,7 @@ import LogOut from '../Components/LogoutButton/LogoutButton';
 import * as orgActions from "../Store/Actions/organizationActions";
 import "./App.css";
 
+
 class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
