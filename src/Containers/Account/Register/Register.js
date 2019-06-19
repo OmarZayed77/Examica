@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { Form, Input, Button, Layout } from "element-react/next";
-import { register } from "../../../Store/Actions/authActions";
-import { connect } from "react-redux";
-import './Register.css'
+import React, { Component } from 'react';
+import { Form, Input, Button, Layout,MessageBox } from 'element-react/next';
+import { register, REMOVE_ERROR } from '../../../Store/Actions/authActions';
+import { connect } from 'react-redux';
 
 class Register extends Component {
   constructor(props) {
@@ -81,12 +80,12 @@ class Register extends Component {
     };
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
 
     this.refs.form.validate(valid => {
       if (valid) {
-        //alert('submit!');
         this.props.registerUser(this.state.form);
       } else {
         console.log("error submit!!");
@@ -112,6 +111,21 @@ class Register extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) this.props.history.push("/");
+    // show your pop up here instead and dipatch REMOVE_ERROR after that
+    else if (this.props.isError) {
+      MessageBox.confirm('You registered with this email before', 'Warning', {
+        confirmButtonText: 'OK',
+        type: 'error'
+      }).then(() => {
+        this.props.removeError();
+      }).catch(() => {
+      });
+    }
+  }
+
+
   render() {
     return (
       <>
@@ -122,7 +136,6 @@ class Register extends Component {
           justify="center"
           align="middle"
         >
-          {/* register Form */}
           <Layout.Col span="8">
             <Form
               ref="form"
@@ -172,17 +185,20 @@ class Register extends Component {
       </>
     );
   }
+
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    registerUser: user => dispatch(register(user))
+    registerUser: user => dispatch(register(user)),
+    removeError: () => dispatch({ type: REMOVE_ERROR })
   };
 };
 const mapStateToProps = state => {
   return {
     userData: state.auth.userData,
-    isLoggedIn: state.auth.isLoggedIn
+    isLoggedIn: state.auth.isLoggedIn,
+    isError: state.auth.isError
   };
 };
 export default connect(
