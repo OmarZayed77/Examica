@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { setToken } from '../Store/Actions/authActions'
-import Nav from '../Components/Navbar';
-import Home from '../Pages/Home-Page';
-import 'element-theme-default';
-import './App.css';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import * as orgActions from '../Store/Actions/organizationActions';
-import Users from '../Containers/Users/UsersList';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { setToken } from "../Store/Actions/authActions";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "element-theme-default";
+import Nav from "./../Components/Navbar/Navbar";
+import Home from "../Pages/Home-Page/Home-Page";
+import Profile from '../Pages/Profile-Page/Profile-Page'
+import Register from '../Containers/Account/Register/Register';
+import Login from '../Containers/Account/Login/Login';
+import LogOut from '../Components/LogoutButton/LogoutButton';
+import * as orgActions from "../Store/Actions/organizationActions";
+import "./App.css";
 
 
 class App extends Component {
@@ -20,7 +22,6 @@ class App extends Component {
       this.props.getOrgs(
         "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvQGcuY29tIiwianRpIjoiODE1ZmY4MjEtNTJhOS00MmJhLWJjNzktN2M1YTMwNmM4ZmU3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzM2EyYTVkNS01MmMzLTQyMGUtODlkNi05OGFiZWIyNzZmODQiLCJleHAiOjE1NjE0NjcyMjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTU3NjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjE1NzY2In0.ZtQY3C3YYG7NDJi2phG8HT0Nv9ObTCcGr8bIioNvwq8"
       );
-
   }
 
   render() {
@@ -29,9 +30,12 @@ class App extends Component {
         <div className="App">
           <Nav />
           <Switch>
-            <Route path="/users" component={Users} />
-            <Redirect from="/home" to="/" />
-            <Route path="/" component={Home} />
+            <Route path="/home" component={Home} />
+            <Route path="/profile" component={Profile}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route path="/Login" component={Login}></Route>
+            <Route path="/LogOut" component={LogOut}></Route>
+
             <Route
               render={() => {
                 return "not found!!!";
