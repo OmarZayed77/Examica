@@ -1,7 +1,7 @@
 import * as userActions from '../Actions/userActions';
 
 const initial ={
-    allUsers =[],
+    allUsers : [],
     oneUser :null,
 
 };

@@ -1,0 +1,10 @@
+.Person-pic{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-image: url("https://www.povertyalliance.org/wp-content/uploads/2019/03/Portrait_Placeholder.png");
+}
