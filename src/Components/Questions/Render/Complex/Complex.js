@@ -11,7 +11,7 @@ const Complex = (props) => {
         question = <TrueOrFalse key={q.id} index={i} question={q} />
           break;
       case "MCQ_SingleAnswer":
-      case "MCQ_MultipleAnswers":
+      case "MCQ_MultiAnswers":
         question = <MCQ key={q.id} index={i+1} question={q} />
         break;
       default:

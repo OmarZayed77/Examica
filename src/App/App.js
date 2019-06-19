@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setToken } from "../Store/Actions/authActions";
-import "element-theme-default";
-import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "element-theme-default";
 import Nav from "./../Components/Navbar/Navbar";
 import Home from "../Pages/Home-Page/Home-Page";
-import * as orgActions from "../Store/Actions/organizationActions";
 import Profile from '../Pages/Profile-Page/Profile-Page'
+import Register from '../Containers/Account/Register/Register';
+import Login from '../Containers/Account/Login/Login';
+import LogOut from '../Components/LogoutButton/LogoutButton';
+import * as orgActions from "../Store/Actions/organizationActions";
+import "./App.css";
+
 class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
@@ -27,6 +31,10 @@ class App extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/profile" component={Profile}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route path="/Login" component={Login}></Route>
+            <Route path="/LogOut" component={LogOut}></Route>
+
             <Route
               render={() => {
                 return "not found!!!";
