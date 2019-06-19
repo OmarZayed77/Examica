@@ -25,7 +25,7 @@ class ProfilePage extends Component {
     return (
       <Fragment>
         <Layout.Row className="ProfilePage">
-          <Layout.Col span={5}>
+          <Layout.Col sm={11} md={8} lg={5}>
             <Layout.Row>
               <Layout.Col className="ProfilePage-left-section">
                 <div className="ProfilePage-pic" />
@@ -48,7 +48,7 @@ class ProfilePage extends Component {
             </Layout.Row>
           </Layout.Col>
         
-        <Layout.Col span={17} className="ProfilePage-right-section">
+        <Layout.Col  sm={11} md={14} lg={17} className="ProfilePage-right-section">
           <div>test 1</div>
           <div>test 2</div>
         </Layout.Col>
