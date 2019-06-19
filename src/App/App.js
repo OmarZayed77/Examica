@@ -4,13 +4,15 @@ import { setToken } from "../Store/Actions/authActions";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "element-theme-default";
 import Nav from "./../Components/Navbar/Navbar";
-import Home from "../Pages/Home-Page/Home-Page";
 import Profile from '../Pages/Profile-Page/Profile-Page'
 import Register from '../Containers/Account/Register/Register';
 import Login from '../Containers/Account/Login/Login';
 import LogOut from '../Components/LogoutButton/LogoutButton';
+import Footer from '../Components/Footer';
 import * as orgActions from "../Store/Actions/organizationActions";
 import "./App.css";
+import ContactUs from '../Containers/Contact-Us'
+
 
 
 class App extends Component {
@@ -35,14 +37,14 @@ class App extends Component {
             <Route path="/register" component={Register}></Route>
             <Route path="/Login" component={Login}></Route>
             <Route path="/LogOut" component={LogOut}></Route>
-            <Route path="/" component={Home} />
-            
             <Route
               render={() => {
                 return "not found!!!";
               }}
             />
           </Switch>
+          <Footer></Footer>
+          <ContactUs/>
         </div>
       </BrowserRouter>
     );
