@@ -11,7 +11,7 @@ import LogOut from '../Components/LogoutButton/LogoutButton';
 import Footer from '../Components/Footer';
 import * as orgActions from "../Store/Actions/organizationActions";
 import "./App.css";
-import ContactUs from '../Containers/Contact-Us'
+import Home from '../Pages/Home-Page';
 
 
 
@@ -26,7 +26,6 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
           <Nav />
           <Switch>
             <Redirect from="/home" to="/" />
@@ -34,6 +33,7 @@ class App extends Component {
             <Route path="/register" component={Register}></Route>
             <Route path="/Login" component={Login}></Route>
             <Route path="/LogOut" component={LogOut}></Route>
+            <Route path="/" component={Home} />
             <Route
               render={() => {
                 return "not found!!!";
@@ -41,8 +41,6 @@ class App extends Component {
             />
           </Switch>
           <Footer></Footer>
-          <ContactUs/>
-        </div>
       </BrowserRouter>
     );
   }
