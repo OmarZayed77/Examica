@@ -74,7 +74,7 @@ class QuestionsList extends Component {
   render() {
     const questionButton = this.state.questionButtons.map(btn => {
       return (
-      <Layout.Col span="10" offset="1"   lg="10">
+      <Layout.Col span="10" offset="1"  lg="10">
       <QuestionButton
         id={btn.id}
         name={btn.name}
@@ -98,4 +98,5 @@ const mapStateToProps = state => {
     questionbuttons: state.questionbuttons
   };
 };
+
 export default connect(mapStateToProps, null)(QuestionsList);

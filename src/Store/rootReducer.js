@@ -3,13 +3,15 @@ import AuthReducer from './Reducers/authReducer';
 import ExamReducer from './Reducers/examReducer';
 import OrgReducer from './Reducers/organizationReducer';
 import QuestionReducer from './Reducers/questionReducer';
+import UserReducer from './Reducers/userReducer';
 
 const rootReducer = combineReducers(
     {
        exams: ExamReducer,
        auth: AuthReducer,
        organizations: OrgReducer,
-       questions: QuestionReducer
+       questions: QuestionReducer,
+       users: UserReducer
     }
 );
 

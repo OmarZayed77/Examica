@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { Form, Input, Button, Layout } from 'element-react/next';
-import {login} from '../../../Store/Actions/authActions'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { Form, Input, Button, Layout } from "element-react/next";
+import { login, REMOVE_ERROR } from "../../../Store/Actions/authActions";
+import { connect } from "react-redux";
+import "./Login.css";
 
 class Login extends Component {
   constructor(props) {
@@ -9,26 +10,36 @@ class Login extends Component {
 
     this.state = {
       form: {
-        Email: '',
-        Password: '',
+        Email: "",
+        Password: ""
       },
       rules: {
-
         Email: [
-          { required: true, message: 'Please input email address', trigger: 'blur' },
-          { type: 'email', message: 'Please input correct email address', trigger: 'blur,change' }
+          {
+            required: true,
+            message: "Please input email address",
+            trigger: "blur"
+          },
+          {
+            type: "email",
+            message: "Please input correct email address",
+            trigger: "blur,change"
+          }
         ],
         Password: [
-          { required: true, message: 'Please input the password', trigger: 'blur' },
+          {
+            required: true,
+            message: "Please input the password",
+            trigger: "blur"
+          },
           {
             validator: (rule, value, callback) => {
-              if (value === '') {
-                callback(new Error('Please input the password'));
-              } 
-                callback();
+              if (value === "") {
+                callback(new Error("Please input the password"));
               }
+              callback();
             }
-          
+          }
         ]
       }
     };
@@ -37,13 +48,12 @@ class Login extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.refs.form.validate((valid) => {
+    this.refs.form.validate(valid => {
       if (valid) {
         //alert('submit!');
         this.props.loginUser(this.state.form);
-
       } else {
-        console.log('error submit!!');
+        console.log("error submit!!");
         return false;
       }
     });
@@ -66,35 +76,77 @@ class Login extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if(this.props.isLoggedIn) this.props.history.push("/");
+    // show your pop up here instead and dipatch REMOVE_ERROR after that
+    else if (this.props.isError)
+    {
+      alert("Log In Failed!, Please Try Again");
+      this.props.removeError();
+    }
+  }
+
   render() {
     return (
       <>
-        <Layout.Row gutter="10" type="flex" justify="center" align="middle">
+        <Layout.Row
+          className="Login"
+          gutter="10"
+          type="flex"
+          justify="center"
+          align="middle"
+        >
           {/* register Form */}
           <Layout.Col span="8">
-            <Form ref="form" model={this.state.form} rules={this.state.rules} labelWidth="100" className="demo-ruleForm">
+            <Form
+              ref="form"
+              model={this.state.form}
+              rules={this.state.rules}
+              labelWidth="100"
+              className="demo-ruleForm"
+            >
               <Form.Item prop="Email" label="Email">
-                <Input value={this.state.form.Email} onChange={this.onEmailChange.bind(this)}></Input>
+                <Input
+                  value={this.state.form.Email}
+                  onChange={this.onEmailChange.bind(this)}
+                />
               </Form.Item>
               <Form.Item label="Password" prop="Password">
-                <Input type="password" value={this.state.form.Password} onChange={this.onChange.bind(this, 'Password')} autoComplete="off" />
+                <Input
+                  type="password"
+                  value={this.state.form.Password}
+                  onChange={this.onChange.bind(this, "Password")}
+                  autoComplete="off"
+                />
               </Form.Item>
 
               <Form.Item>
-                <Button type="primary" onClick={this.handleSubmit.bind(this)}>Login</Button>
+                <Button type="primary" onClick={this.handleSubmit.bind(this)}>
+                  Login
+                </Button>
               </Form.Item>
             </Form>
           </Layout.Col>
         </Layout.Row>
       </>
-    )
+    );
   }
-
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    loginUser: (user) => dispatch(login(user))
+    loginUser: user => dispatch(login(user)),
+    removeError: () => dispatch({type: REMOVE_ERROR})
   };
 };
-export default connect(null, mapDispatchToProps)(Login);
+
+const mapStateToProps = state => {
+return {
+  isLoggedIn: state.auth.isLoggedIn,
+  isError: state.auth.isError
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

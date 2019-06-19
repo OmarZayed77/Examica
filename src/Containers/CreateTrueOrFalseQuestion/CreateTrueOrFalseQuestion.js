@@ -11,55 +11,56 @@ class CreateTrueOrFalseQuestion extends Component {
     super(props);
 
     this.state = {
-      addQuestion: {
+      question: {
         Title: "",
         Type: "TrueOrFalse",
         Level: null,
         Mark: null,
         IsPublic: false,
-        Options: [],
-        OrganizationId: 1
+        Options: [{name: ""}],
+        OrganizationId: 1,
       },
-     
     }
   }
 
   changeHandlerTitle = (e) => {
-    const addquestion = { ...this.state.addQuestion };
+    const addquestion = { ...this.state.question };
     addquestion.Title = e;
-    this.setState({ addQuestion: addquestion });
+    this.setState({ question: addquestion });
   }
 
   changeHandlerRate = (e) => {
-    const addquestion = { ...this.state.addQuestion };
+    const addquestion = { ...this.state.question };
     addquestion.Level = e;
-    this.setState({ addQuestion: addquestion })
+    this.setState({ question: addquestion })
   }
 
   changeHandlerInputNumber = (e) => {
-    const addquestion = { ...this.state.addQuestion };
+    const addquestion = { ...this.state.question };
     addquestion.Mark = e;
-    this.setState({ addQuestion: addquestion })
+    this.setState({ question: addquestion })
   }
 
   changeHandlerIsPublic = (e) => {
-    const addquestion = { ...this.state.addQuestion };
+    const addquestion = { ...this.state.question };
     addquestion.IsPublic = e;
-    this.setState({ addQuestion: addquestion })
+    this.setState({ question: addquestion })
   }
 
   onChange(value) {
-    const addquestion = { ...this.state.addQuestion };
-    addquestion.Options = value;
-    this.setState({ addQuestion: addquestion });
+    console.log(value);
+    const addquestion = { ...this.state.question };
+    addquestion.Options = [{name: value}];
+    this.setState({ question: addquestion });
   }
 
 
   onAddTrueOrFalseQuestion = (e) => {
-    this.props.onAddQuestion(this.state.addQuestion, this.props.token);
+    this.props.onAddQuestion(this.state.question , this.props.token);
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="CreateTrueOrFalseQuestion" >
         <Layout.Row lg="10" >
@@ -85,10 +86,10 @@ class CreateTrueOrFalseQuestion extends Component {
 
         <Layout.Row className="questionhead">
           <Layout.Col span="12"><div className="grid-content bg-purple-dark"></div>
-            <Input placeholder="Is [Your Statment Here] True or False ?" onChange={this.changeHandlerTitle} />
+            <Input placeholder="Is [Your Statment Here] True or False ?" onChange={this.changeHandlerTitle}/>
             <div className="radios">
-              <Radio value="True" checked={this.state.value === "True"} onChange={this.onChange.bind(this)}>True</Radio>
-              <Radio className="optionB" value="False" checked={this.state.value === "Flase"} onChange={this.onChange.bind(this)}>False</Radio>
+              <Radio value="True" checked={this.state.question.Options[0].name === "True"} onChange={this.onChange.bind(this)}>True</Radio>
+              <Radio value="False" className="optionB" checked={this.state.question.Options[0].name === "False"} onChange={this.onChange.bind(this)}>False</Radio>
             </div>
           </Layout.Col>
         </Layout.Row>
@@ -110,7 +111,7 @@ class CreateTrueOrFalseQuestion extends Component {
             <label className="IsPuplic">Question Privacy</label>
             <Switch
               className="switch"
-              value={this.state.addQuestion.IsPublic}
+              value={this.state.question.IsPublic}
               onText="Public"
               offText="Private"
               onChange={this.changeHandlerIsPublic.bind(this)}

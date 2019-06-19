@@ -4,7 +4,6 @@
     position: absolute;
     top: 1.3rem;
     left: 7rem;
-  
 }
 
 .CreateTrueOrFalseQuestion button 
@@ -83,11 +82,15 @@
     left: 14rem;
 }
 
-.CreateTrueOrFalseQuestion .el-input
+.CreateTrueOrFalseQuestion .questionhead  .el-input
 {
     width: 33rem;
 } 
 
+.CreateTrueOrFalseQuestion  .el-input
+{
+    width: 9.7rem;
+}
 .CreateTrueOrFalseQuestion .questionhead .radios
 {
     position: absolute;
@@ -118,17 +121,17 @@
     left: 14.5rem;
 }
 
-.CreateTrueOrFalseQuestion .el-input-number
+/* .CreateTrueOrFalseQuestion .el-input-number
 {
-    width: 12rem;
-}
+    width: 8.5rem;
+} */
 
-.CreateTrueOrFalseQuestion .NumberInput
+.CreateTrueOrFalseQuestion .NumberInput 
 {
     position: absolute;
     top: 27rem;
     left: 41rem;
-    width: 12rem;
+    width: 9.5rem;
 }
 
 .CreateTrueOrFalseQuestion .Mark 

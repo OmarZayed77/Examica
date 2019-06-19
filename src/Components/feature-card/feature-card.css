@@ -1,8 +1,6 @@
-.FeatureCard .FeatureCard-Container{
-    width:100%;
-}
-.FeatureCard .el-card{
-    height: 444px;
+.FeatureCard{
+    height: 30rem;
+    margin: 1rem;
     margin-bottom: 10px;
 
 }
@@ -10,11 +8,17 @@
     width:100%;
     height: 275px;
 }
+.FeatureCard  .FeatureCard-content{
+    text-align: center;
+}
+
 .FeatureCard .FeatureCard-Title{
     color:#FF8A73;
+    
     font-size: 25px;
     font-weight: 700;
 }
 .FeatureCard .FeatureCard-Content{
     font-size: 15px;
+    text-align: center;
 }

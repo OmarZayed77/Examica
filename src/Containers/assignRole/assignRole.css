@@ -1,0 +1,27 @@
+.assignRole {
+    height: 500px;
+    justify-content: center;
+}
+
+.assignRole.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.assignRole img {
+    background-color: rgb(248, 220, 247);
+    width: 200px;
+    height: 200px;
+}
+
+.assignRole li {
+    list-style: none;
+}
+
+.assignRole .Buttonprimary {
+    border-radius: 5px;
+    background-color: #FF8A73;
+    border: .5px solid rgb(252, 130, 105);
+    font-size: 16px;
+    color: white;
+}
