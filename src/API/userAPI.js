@@ -8,5 +8,9 @@ export const getAllUsers = (orgId,token)=>{
 }
 
 export const getUser = (userId,orgId,token)=>{
-    return Axios.get(`${URL}/api/users/${userId}/${orgId}`,{headers:{Authorization:token}})
+    return Axios.get(`${URL}/api/users/${userId}/${orgId}`, {headers:{Authorization:token}})
+}
+
+export const addRole = (user, token) => {
+    return Axios.post(`${URL}/api/users/assign`, user, {headers: {Authorization: token}});
 }
