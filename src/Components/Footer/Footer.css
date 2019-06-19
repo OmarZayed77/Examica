@@ -1,24 +1,25 @@
 .Footer .el-menu 
 {
-    justify-content: center;
-    display: flex;
+    position: relative;
     height: 192px;
     background-color: #2D2D47;
 }
 
 .Footer li 
 {
+    position: absolute;
+    left: 28rem;
     color: #B8B5BF;
-    font-size: 25px;
+    font-size: 17px;
 }
 
 .Footer p 
 {
     color: #FFFFFF;
-    position:absolute;
-    top: 4rem;
-    font-size: 18px ;
-    left: 27.8rem;
+    margin-top: 4rem;
+    margin-left: 33rem;
+    font-size: 13px ;
+  
 }
 
 .Footer p span 
@@ -26,13 +27,16 @@
     color: #FF8A73;
 }
 
-.Footer  a
+.Footer  .SocialLinks
 {
-    position: relative;
+    position: absolute;
+    left: 36rem;
     top: 7rem;
-    left: -19rem;
+}
+
+.Footer .SocialLinks a 
+{
     padding: 1rem;
     color: #B8B5BF;
 }
-
 
