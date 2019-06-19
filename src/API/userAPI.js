@@ -8,5 +8,5 @@ export const getAllUsers = (orgId,token)=>{
 }
 
 export const getUser = (userId,orgId,token)=>{
-    return Axios.get(`${URL}/api/${userId}/${orgId}`,{headers:{Authorization:token}})
+    return Axios.get(`${URL}/api/users/${userId}/${orgId}`,{headers:{Authorization:token}})
 }
