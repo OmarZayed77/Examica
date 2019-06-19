@@ -1,0 +1,19 @@
+.upperNavbar .el-menu{
+    margin-top: 0;
+    background-color: transparent;
+}
+.upperNavbar i {
+   border: none;
+   color: #FF8A73;
+}
+.upperNavbar .Buttonprimary {
+    border-radius: 15px;
+    background-color: #FF8A73;
+    border-color: #FF8A73;
+    color: white;
+
+}
+.upperNavbar .el-menu--horizontal.el-menu-item {
+    height: 0px;
+    line-height: 0px;
+}
