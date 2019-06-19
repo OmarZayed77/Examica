@@ -17,13 +17,8 @@ class CreateTrueOrFalseQuestion extends Component {
         Level: null,
         Mark: null,
         IsPublic: false,
-<<<<<<< HEAD
         Options: [{name: ""}],
-        OrganizationId: 3,
-=======
-        Options: [],
-        OrganizationId: 1
->>>>>>> 6564dccf54fe55f00b90b1339d780320987fc16a
+        OrganizationId: 1,
       },
     }
   }
@@ -31,11 +26,7 @@ class CreateTrueOrFalseQuestion extends Component {
   changeHandlerTitle = (e) => {
     const addquestion = { ...this.state.question };
     addquestion.Title = e;
-<<<<<<< HEAD
     this.setState({ question: addquestion });
-=======
-    this.setState({ addQuestion: addquestion });
->>>>>>> 6564dccf54fe55f00b90b1339d780320987fc16a
   }
 
   changeHandlerRate = (e) => {
@@ -65,18 +56,11 @@ class CreateTrueOrFalseQuestion extends Component {
 
 
   onAddTrueOrFalseQuestion = (e) => {
-<<<<<<< HEAD
     this.props.onAddQuestion(this.state.question , this.props.token);
   }
 
   render() {
     console.log(this.state)
-=======
-    this.props.onAddQuestion(this.state.addQuestion, this.props.token);
-  }
-
-  render() {
->>>>>>> 6564dccf54fe55f00b90b1339d780320987fc16a
     return (
       <div className="CreateTrueOrFalseQuestion" >
         <Layout.Row lg="10" >
