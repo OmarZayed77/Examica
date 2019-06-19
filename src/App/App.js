@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setToken } from "../Store/Actions/authActions";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "element-theme-default";
 import Nav from "./../Components/Navbar/Navbar";
 import Home from "../Pages/Home-Page/Home-Page";
@@ -30,12 +30,13 @@ class App extends Component {
         <div className="App">
           <Nav />
           <Switch>
-            <Route path="/home" component={Home} />
+            <Redirect from="/home" to="/" />
             <Route path="/profile" component={Profile}></Route>
             <Route path="/register" component={Register}></Route>
             <Route path="/Login" component={Login}></Route>
             <Route path="/LogOut" component={LogOut}></Route>
-
+            <Route path="/" component={Home} />
+            
             <Route
               render={() => {
                 return "not found!!!";

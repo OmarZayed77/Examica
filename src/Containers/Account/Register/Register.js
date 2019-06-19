@@ -181,7 +181,8 @@ const mapDispatchToProps = dispatch => {
 };
 const mapStateToProps = state => {
   return {
-    userData: state.auth.userData
+    userData: state.auth.userData,
+    isLoggedIn: state.auth.isLoggedIn
   };
 };
 export default connect(
