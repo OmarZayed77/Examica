@@ -25,15 +25,12 @@ export const registerUserSuccess = (value) => {
 export const login = (user) => {
 
     return dispatch => {
-        //let token = localStorage.getItem("token");
         let token = `bearer ${localStorage.getItem("token")}`;
-        console.log(token);
         axios.post(`${URL}/api/account/login`, user, { headers: { Authorization: token } })
             .then((response) => {
                 if (response.status === 200) {
                     let token = `bearer ${response.data}`;
                     localStorage.setItem("token", token);
-                    //alert("loggedIn successfully");
                     dispatch(loginUserSuccess(token));
                 }
             }).catch((error) => { alert("Login Failed! Please check your user name and password") })

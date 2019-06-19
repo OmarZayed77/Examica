@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Button, Layout } from 'element-react/next';
 import { register } from '../../../Store/Actions/authActions'
 import { connect } from 'react-redux'
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -95,10 +96,10 @@ class Register extends Component {
   render() {
     return (
       <>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <Layout.Row gutter="10" type="flex" justify="center" align="middle">
           {/* register Form */}
           <Layout.Col span="8">

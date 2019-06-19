@@ -1,9 +1,14 @@
 
 .SearchBox-input{
     border: 1px solid gray;
+    padding: 0.4rem;
+    border-radius: 0.4rem;
    
 }
 
 .SearchBox-icon{
-    margin-left: -2rem;
+    margin-left: -3rem;
+    border-left: 1px solid gray;
+    height: 1.6rem;
+    padding: 0.4rem; 
 }
