@@ -13,6 +13,7 @@ import PricingPlan from '../Pages/PricingPlan'
 import * as orgActions from "../Store/Actions/organizationActions";
 import "./App.css";
 import Home from '../Pages/Home-Page';
+import AddOrganization from '../Containers/AddOrgnization';
 
 
 
@@ -31,6 +32,7 @@ class App extends Component {
           <Switch>
             <Redirect from="/home" to="/" />
             <Route path="/profile" component={Profile}></Route>
+            <Route path="/organization/buy" component={AddOrganization}></Route>
             <Route path="/register" component={Register}></Route>
             <Route path="/Login" component={Login}></Route>
             <Route path="/LogOut" component={LogOut}></Route>
