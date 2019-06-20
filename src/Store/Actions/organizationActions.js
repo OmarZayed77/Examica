@@ -2,6 +2,7 @@ import * as organizationAPI from '../../API/orgAPI';
 
 export const ALL = "ALL";
 export const CURRENT = "CURRENT";
+export const ADDORG = "ADDORG";
 
 
 export const getAll = (token) => {
@@ -33,4 +34,21 @@ export const getCurrent = (userId, orgId, token) => {
 };
 export const getCurrentSuccess = (value) => {
 	return { type: ALL, payload: value };
+};
+
+export const addOrg = (org, token) => {
+	return (dispatch) => {
+        dispatch({type: "IsLoading"});
+        organizationAPI.addOrg(org, token)
+        .then(res => {
+            if (res.status === 200) {
+                dispatch(addOrgSuccess(res.data));
+            }
+            dispatch({type: "Loaded"});
+        })
+        .catch(err => dispatch({type: "Loaded"}));
+	};
+};
+export const addOrgSuccess = (value) => {
+	return { type: ADDORG, payload: value };
 };

@@ -15,6 +15,9 @@ const organizationReducer = (state = initialState, action) => {
         case orgActions.CURRENT:
 			newOrg= action.payload;
             break;
+        case orgActions.ADDORG:
+            newArr.push(action.payload);
+            break;
 		default:
 			break;
     }
