@@ -23,10 +23,12 @@ class UpperNavbar extends Component {
           >
             <LogOutButton />
           </Menu.Item>
+
           <Menu.Item>
             <div className="UpperNavbar-pic" />
           </Menu.Item>
-          <Menu.SubMenu className="UpperNavbar-dropDown" index="2">
+
+          <Menu.SubMenu mode="horizontal" className="UpperNavbar-dropDown" index="2">
             <Menu.Item index="2-1">Profile</Menu.Item>
             <Menu.Item index="2-2">My Organizations</Menu.Item>
             <Menu.Item index="2-3">Buy Organization</Menu.Item>
