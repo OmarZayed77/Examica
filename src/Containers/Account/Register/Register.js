@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Layout,MessageBox } from 'element-react/next';
+import { Form, Input, Button, Layout, MessageBox } from 'element-react/next';
 import { register, REMOVE_ERROR } from '../../../Store/Actions/authActions';
 import { connect } from 'react-redux';
 

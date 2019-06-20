@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Layout } from "element-react/next";
+import { Form, Input, Button, Layout, MessageBox} from "element-react/next";
 import { login, REMOVE_ERROR } from "../../../Store/Actions/authActions";
 import { connect } from "react-redux";
 import "./Login.css";
@@ -50,10 +50,8 @@ class Login extends Component {
 
     this.refs.form.validate(valid => {
       if (valid) {
-        //alert('submit!');
         this.props.loginUser(this.state.form);
       } else {
-        console.log("error submit!!");
         return false;
       }
     });
@@ -77,12 +75,16 @@ class Login extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.isLoggedIn) this.props.history.push("/");
+    if (this.props.isLoggedIn) this.props.history.push("/");
     // show your pop up here instead and dipatch REMOVE_ERROR after that
-    else if (this.props.isError)
-    {
-      alert("Log In Failed!, Please Try Again");
-      this.props.removeError();
+    else if (this.props.isError) {
+      MessageBox.confirm('Login Failed!, Please try again', 'error', {
+        confirmButtonText: 'OK',
+        type: 'error'
+      }).then(() => {
+        this.props.removeError();
+      }).catch(() => {
+      });
     }
   }
 
@@ -136,14 +138,14 @@ class Login extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     loginUser: user => dispatch(login(user)),
-    removeError: () => dispatch({type: REMOVE_ERROR})
+    removeError: () => dispatch({ type: REMOVE_ERROR })
   };
 };
 
 const mapStateToProps = state => {
-return {
-  isLoggedIn: state.auth.isLoggedIn,
-  isError: state.auth.isError
+  return {
+    isLoggedIn: state.auth.isLoggedIn,
+    isError: state.auth.isError
   };
 };
 export default connect(
