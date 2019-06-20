@@ -21,7 +21,7 @@ const authReducer = (state = initialState, action) => {
 			localStorage.setItem("token", token);
 			localStorage.setItem("userId", action.payload.userId);
 			newState.isLoggedIn = true;
-			newState.token = action.payload.token;
+			newState.token = token;
 			newState.userId = action.payload.userId;
 			break;
 		case authActions.LOGOUT:

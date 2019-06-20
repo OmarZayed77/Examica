@@ -6,10 +6,18 @@ import LogOutButton from "../../LogoutButton";
 import "./upperNavbar.css";
 
 class UpperNavbar extends Component {
+  onSelect = (index, indexPath, item) => {
+    if (item.props.to) this.props.history.push(item.props.to);
+  };
   render() {
-    const onSelect = (index, indexPath, item) => {
-      if (item.props.to) this.props.history.push(item.props.to);
-    };
+    let orgs = null;
+    if(this.props.orgs.length > 0) {
+      orgs= (
+        <Menu.ItemGroup title="My Organization">
+          {this.props.orgs.map(org => <Menu.Item key={org.id} index={`2-3-${org.id}`}  to={`/organization/${org.id}`}>{org.name}</Menu.Item>)}
+        </Menu.ItemGroup>
+      );
+    }
 
     let btns = null;
     if (this.props.isLoggedIn) {
@@ -24,14 +32,14 @@ class UpperNavbar extends Component {
             <LogOutButton />
           </Menu.Item>
 
-          <Menu.Item index="0" className="userIcon">
+          <Menu.Item index="0" className="userIcon" to="/profile">
             <div className="UpperNavbar-pic" />
           </Menu.Item>
 
           <Menu.SubMenu index="1" title="">
-            <Menu.Item index="2-1">Profile</Menu.Item>
-            <Menu.Item index="2-2">Buy a new Organization</Menu.Item>
-            <Menu.Item index="2-3">My Organization</Menu.Item>
+            <Menu.Item index="2-1" to="/profile">Profile</Menu.Item>
+            <Menu.Item index="2-2" to="/organization/buy">Buy a new Organization</Menu.Item>
+            {orgs}
           </Menu.SubMenu>
         </>
       );
@@ -53,7 +61,7 @@ class UpperNavbar extends Component {
           defaultActive="1"
           className="el-menu-demo"
           mode="horizontal"
-          onSelect={onSelect}
+          onSelect={this.onSelect.bind(this)}
         >
           <Layout.Row>
             <Layout.Col span="18">
@@ -83,7 +91,9 @@ class UpperNavbar extends Component {
 }
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.auth.isLoggedIn
+    isLoggedIn: state.auth.isLoggedIn,
+    token: state.auth.token,
+    orgs: state.organizations.all
   };
 };
 

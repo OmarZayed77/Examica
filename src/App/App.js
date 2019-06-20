@@ -22,7 +22,6 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       this.props.setToken();
-      this.props.getOrgs(localStorage.getItem("token"));
     }
   }
 

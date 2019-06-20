@@ -17,7 +17,7 @@ const organizationReducer = (state = initialState, action) => {
             break;
 		default:
 			break;
-	}
+    }
     return {
         all: newArr,
         currentOrgnaziation: newOrg
