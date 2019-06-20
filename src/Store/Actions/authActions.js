@@ -29,7 +29,6 @@ export const login = (user) => {
         dispatch({type: "IsLoading"});
         userAPI.login(user)
             .then((response) => {
-                console.log("response", response);
                 if (response.status === 200) {
                     dispatch(loginUserSuccess(response.data));
                 }

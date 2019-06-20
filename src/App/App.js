@@ -12,7 +12,7 @@ import Footer from "../Components/Footer";
 import PricingPlan from "../Pages/PricingPlan";
 import * as orgActions from "../Store/Actions/organizationActions";
 import Exam from '../Containers/exams/exam-list/exam-list';
-
+import AboutUs from '../Components/AboutUs';
 import "./App.css";
 import Home from "../Pages/Home-Page";
 import AddOrganization from "../Containers/AddOrgnization";
@@ -44,6 +44,7 @@ class App extends Component {
             <Route path="/LogOut" component={LogOut} />
             <Route path="/Pricing" component={PricingPlan} />
             <Route path="/exam" component={Exam} />
+            <Route path="/aboutus" component={AboutUs} />
             <Route path="/" component={Home} />
             <Route
               render={() => {

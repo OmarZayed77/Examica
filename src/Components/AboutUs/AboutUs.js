@@ -33,17 +33,14 @@ const AboutUs = () => {
 
       <div className="AboutUs-headLine">Our Team</div>
 
-      <div className="AboutUs-img container">
-
+       <div className="AboutUs-img container">
         <AboutUsTeam name={"Dina"} imageUrl={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoNzeu-hym_Aa077lHA0YMAkwGgayU7XsXlI3S8nHLexrTwr0`} title={"Developer"} />
         <AboutUsTeam name={"Aya"} imageUrl={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoNzeu-hym_Aa077lHA0YMAkwGgayU7XsXlI3S8nHLexrTwr0`} title={"Developer"} />
         <AboutUsTeam name={"Omar"} imageUrl={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoNzeu-hym_Aa077lHA0YMAkwGgayU7XsXlI3S8nHLexrTwr0`} title={"Developer"} />
         <AboutUsTeam name={"Fatma"} imageUrl={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoNzeu-hym_Aa077lHA0YMAkwGgayU7XsXlI3S8nHLexrTwr0`} title={"Developer"} />
         <AboutUsTeam name={"Hasnaa"} imageUrl={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoNzeu-hym_Aa077lHA0YMAkwGgayU7XsXlI3S8nHLexrTwr0`} title={"Developer"} />
         <AboutUsTeam name={"Sarah"} imageUrl={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoNzeu-hym_Aa077lHA0YMAkwGgayU7XsXlI3S8nHLexrTwr0`} title={"Developer"} />
-
-
-      </div>
+       </div>
 
 
 

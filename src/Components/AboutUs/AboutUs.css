@@ -25,12 +25,14 @@
     padding-top: 15px;
     padding-bottom: 45px;
 }
-.AboutUs-img{
+.AboutUsTeam-img{
     width:160px;
     height:200px;
     border-radius: 50%;
     justify-content: space-around;
     padding: 5px 10px;
+    margin-right: 15px; 
+    margin-left: 15px; 
 }
 .AboutUsImg-txt{
     font-size:20px;

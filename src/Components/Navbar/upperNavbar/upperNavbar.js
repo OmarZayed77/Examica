@@ -12,7 +12,7 @@ class UpperNavbar extends Component {
     };
 
     let btns = null;
-    if (1 < 2) {
+    if (this.props.isLoggedIn) {
       btns = (
         <>
           <Menu.Item
@@ -24,7 +24,7 @@ class UpperNavbar extends Component {
             <LogOutButton />
           </Menu.Item>
 
-          <Menu.Item>
+          <Menu.Item index="0">
             <div className="UpperNavbar-pic" />
           </Menu.Item>
 
@@ -83,7 +83,7 @@ class UpperNavbar extends Component {
 }
 const mapStateToProps = state => {
   return {
-    token: state.auth.token
+    isLoggedIn: state.auth.isLoggedIn
   };
 };
 
