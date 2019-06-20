@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from 'element-react/next';
 import './Footer.css';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 
 const Footer = () => {
 
