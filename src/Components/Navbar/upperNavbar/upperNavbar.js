@@ -24,14 +24,14 @@ class UpperNavbar extends Component {
             <LogOutButton />
           </Menu.Item>
 
-          <Menu.Item index="0">
+          <Menu.Item index="0" className="userIcon">
             <div className="UpperNavbar-pic" />
           </Menu.Item>
 
-          <Menu.SubMenu mode="horizontal" className="UpperNavbar-dropDown" index="2">
+          <Menu.SubMenu index="1" title="">
             <Menu.Item index="2-1">Profile</Menu.Item>
-            <Menu.Item index="2-2">My Organizations</Menu.Item>
-            <Menu.Item index="2-3">Buy Organization</Menu.Item>
+            <Menu.Item index="2-2">Buy a new Organization</Menu.Item>
+            <Menu.Item index="2-3">My Organization</Menu.Item>
           </Menu.SubMenu>
         </>
       );
@@ -56,7 +56,7 @@ class UpperNavbar extends Component {
           onSelect={onSelect}
         >
           <Layout.Row>
-            <Layout.Col span="19">
+            <Layout.Col span="18">
               <Menu.Item index="1">
                 <a href="https://facebook.com">
                   <i className="fab fa-facebook-f" />
