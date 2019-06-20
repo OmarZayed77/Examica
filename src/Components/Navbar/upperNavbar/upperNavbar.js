@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Menu, Layout, Button } from "element-react/next";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import LogOutButton from '../../LogoutButton';
+import LogOutButton from "../../LogoutButton";
 import "./upperNavbar.css";
 
 class UpperNavbar extends Component {
@@ -12,11 +12,26 @@ class UpperNavbar extends Component {
     };
 
     let btns = null;
-    if (this.props.token) {
+    if (1 < 2) {
       btns = (
-        <Menu.Item index="6" onClick={()=>{console.log("sign out")}}>
-          <LogOutButton/>
-        </Menu.Item>
+        <>
+          <Menu.Item
+            index="6"
+            onClick={() => {
+              console.log("sign out");
+            }}
+          >
+            <LogOutButton />
+          </Menu.Item>
+          <Menu.Item>
+            <div className="UpperNavbar-pic" />
+          </Menu.Item>
+          <Menu.SubMenu className="UpperNavbar-dropDown" index="2">
+            <Menu.Item index="2-1">Profile</Menu.Item>
+            <Menu.Item index="2-2">My Organizations</Menu.Item>
+            <Menu.Item index="2-3">Buy Organization</Menu.Item>
+          </Menu.SubMenu>
+        </>
       );
     } else {
       btns = (
@@ -56,7 +71,7 @@ class UpperNavbar extends Component {
                 </a>
               </Menu.Item>
             </Layout.Col>
-              {btns}
+            {btns}
             <Layout.Col span="4" className="listOfContent" />
           </Layout.Row>
         </Menu>

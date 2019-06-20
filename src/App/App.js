@@ -8,6 +8,7 @@ import Profile from '../Pages/Profile-Page/Profile-Page'
 import Register from '../Containers/Account/Register/Register';
 import Login from '../Containers/Account/Login/Login';
 import LogOut from '../Components/LogoutButton/LogoutButton';
+import X from '../Containers/exams/exam-add/exam-add';
 import Footer from '../Components/Footer';
 import * as orgActions from "../Store/Actions/organizationActions";
 import "./App.css";
@@ -33,6 +34,7 @@ class App extends Component {
             <Route path="/register" component={Register}></Route>
             <Route path="/Login" component={Login}></Route>
             <Route path="/LogOut" component={LogOut}></Route>
+            <Route path="/x" component={X}></Route>
             <Route path="/" component={Home} />
             <Route
               render={() => {
