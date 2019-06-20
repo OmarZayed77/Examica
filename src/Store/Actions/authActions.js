@@ -26,6 +26,7 @@ export const registerUserSuccess = (value) => {
 export const login = (user) => {
 
     return dispatch => {
+        dispatch({type: "IsLoading"});
         userAPI.login(user)
             .then((response) => {
                 console.log("response", response);
@@ -33,21 +34,30 @@ export const login = (user) => {
                     dispatch(loginUserSuccess(response.data));
                 }
                 else dispatch({type: SUBMIT_ERROR});
+                dispatch({type: "Loaded"});
             })
-            .catch(err => dispatch({type: SUBMIT_ERROR}));
+            .catch(err => {
+                dispatch({type: SUBMIT_ERROR});
+                dispatch({type: "Loaded"});
+            });
     }
 }
 
 export const register = (user) => {
     return dispatch => {
+        dispatch({type: "IsLoading"});
         userAPI.register(user)
             .then((response) => {
                 if (response.status === 200) {
                     dispatch(registerUserSuccess(response.data));
                 }
                 else dispatch({type: SUBMIT_ERROR});
+                dispatch({type: "Loaded"});
             })
-            .catch(err => dispatch({type: SUBMIT_ERROR}));
+            .catch(err => {
+                dispatch({type: SUBMIT_ERROR});
+                dispatch({type: "Loaded"});
+            });
     }
 }
 

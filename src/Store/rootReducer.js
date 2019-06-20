@@ -4,6 +4,7 @@ import ExamReducer from './Reducers/examReducer';
 import OrgReducer from './Reducers/organizationReducer';
 import QuestionReducer from './Reducers/questionReducer';
 import UserReducer from './Reducers/userReducer';
+import LoadingReducer from './Reducers/loadingReducer';
 
 const rootReducer = combineReducers(
     {
@@ -11,7 +12,8 @@ const rootReducer = combineReducers(
        auth: AuthReducer,
        organizations: OrgReducer,
        questions: QuestionReducer,
-       users: UserReducer
+       users: UserReducer,
+       isLoading: LoadingReducer
     }
 );
 

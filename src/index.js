@@ -1,4 +1,4 @@
-import { i18n } from 'element-react';
+import { i18n } from 'element-react/next';
 import locale from 'element-react/src/locale/lang/en';
 import React from 'react';
 import ReactDOM from 'react-dom';

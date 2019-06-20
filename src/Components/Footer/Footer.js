@@ -16,9 +16,9 @@ const Footer = () => {
         </Menu>
           <p>Copyright &copy; 2019 | Designed by  <span> Examica</span></p>
           <div className="SocialLinks">
-          <Link to="www.facebook.com"><i className="fab fa-facebook"></i></Link>
-          <Link to="www.twitter.com"><i className="fab fa-twitter-square"></i></Link>
-          <Link to="www.linkedin.com"><i className="fab fa-linkedin"></i></Link>
+            <Link to="https://facebook.com"><i className="fab fa-facebook"></i></Link>
+            <Link to="https://twitter.com"><i className="fab fa-twitter-square"></i></Link>
+            <Link to="https://linkedin.com"><i className="fab fa-linkedin"></i></Link>
           </div>
       </div>
     </>
