@@ -1,7 +1,3 @@
 .Login{
     margin: 4rem;
 }
-
-.el-button--default:first-child{
- display: none;
-}
