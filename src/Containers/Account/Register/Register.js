@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Layout,MessageBox } from 'element-react/next';
+import { Form, Input, Button, Layout, Notification} from 'element-react/next';
 import { register, REMOVE_ERROR } from '../../../Store/Actions/authActions';
 import { connect } from 'react-redux';
+import './Register.css';
 
 class Register extends Component {
   constructor(props) {
@@ -78,8 +79,26 @@ class Register extends Component {
         ]
       }
     };
+    this.alertWarning = this.alertWarning.bind(this);
+    this.alertError = this.alertError.bind(this);
   }
 
+  alertWarning() {
+    Notification({
+      title: 'Warning',
+      message: 'Enter Valid Data First!',
+      type: 'warning'
+    });
+  }
+
+  alertError() {
+    Notification({
+      title: 'Error',
+      message: 'You have already Registered with this email before',
+      type: 'error'
+    });
+  }
+  
 
   handleSubmit(e) {
     e.preventDefault();
@@ -88,7 +107,7 @@ class Register extends Component {
       if (valid) {
         this.props.registerUser(this.state.form);
       } else {
-        console.log("error submit!!");
+        this.alertWarning();
         return false;
       }
     });
@@ -98,6 +117,14 @@ class Register extends Component {
     e.preventDefault();
 
     this.refs.form.resetFields();
+    this.setState({
+      form: {
+      name: "",
+      Email: "",
+      Password: "",
+      checkPass: ""
+      }
+    });
   }
 
   onChange(key, value) {
@@ -115,13 +142,8 @@ class Register extends Component {
     if (this.props.isLoggedIn) this.props.history.push("/");
     // show your pop up here instead and dipatch REMOVE_ERROR after that
     else if (this.props.isError) {
-      MessageBox.confirm('You registered with this email before', 'Warning', {
-        confirmButtonText: 'OK',
-        type: 'error'
-      }).then(() => {
-        this.props.removeError();
-      }).catch(() => {
-      });
+      this.props.removeError();
+      this.alertError();
     }
   }
 

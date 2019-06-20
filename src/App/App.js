@@ -13,6 +13,7 @@ import * as orgActions from "../Store/Actions/organizationActions";
 import "./App.css";
 import Home from '../Pages/Home-Page';
 import AddOrganization from '../Containers/AddOrgnization';
+import {Loading} from 'element-react/next';
 
 
 
@@ -25,7 +26,10 @@ class App extends Component {
   }
 
   render() {
+    const loading= (this.props.isLoading) ?  <Loading fullscreen={true} text="Please Wait   Loading..."/> : null;
     return (
+      <>
+      {loading}
       <BrowserRouter>
           <Nav />
           <Switch>
@@ -40,10 +44,11 @@ class App extends Component {
               render={() => {
                 return "not found!!!";
               }}
-            />
+              />
           </Switch>
           <Footer></Footer>
       </BrowserRouter>
+      </>
     );
   }
 }
@@ -57,7 +62,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    userData: state.auth.userData
+    userData: state.auth.userData,
+    isLoading: state.isLoading
   };
 };
 

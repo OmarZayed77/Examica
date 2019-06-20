@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Layout } from "element-react/next";
+import { Form, Input, Button, Layout, Notification } from "element-react/next";
 import { login, REMOVE_ERROR } from "../../../Store/Actions/authActions";
 import { connect } from "react-redux";
 import "./Login.css";
@@ -43,6 +43,8 @@ class Login extends Component {
         ]
       }
     };
+    this.alertWarning = this.alertWarning.bind(this);
+    this.alertError = this.alertError.bind(this);
   }
 
   handleSubmit(e) {
@@ -53,7 +55,7 @@ class Login extends Component {
         //alert('submit!');
         this.props.loginUser(this.state.form);
       } else {
-        console.log("error submit!!");
+        this.alertWarning();
         return false;
       }
     });
@@ -81,9 +83,25 @@ class Login extends Component {
     // show your pop up here instead and dipatch REMOVE_ERROR after that
     else if (this.props.isError)
     {
-      alert("Log In Failed!, Please Try Again");
+      this.alertError();
       this.props.removeError();
     }
+  }
+
+  alertWarning() {
+    Notification({
+      title: 'Warning',
+      message: 'Enter Valid Data First!',
+      type: 'warning'
+    });
+  }
+
+  alertError() {
+    Notification({
+      title: 'Error',
+      message: 'Login Failed! Please Try Again',
+      type: 'error'
+    });
   }
 
   render() {
