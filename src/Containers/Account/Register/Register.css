@@ -1,3 +1,11 @@
 .Register{
-    margin: 4rem;
+    margin: 2rem;
+}
+
+.Register-title{
+    padding: 2rem;
+    text-align: center;
+    color:#FF8A73;
+    font-size: 2rem;
+    font-weight: 400px;
 }
