@@ -1,14 +1,20 @@
-.Footer .el-menu 
+.Footer
 {
-    position: relative;
-    height: 192px;
+    padding: 17px 0;
+}
+.Footer, .Footer .el-menu 
+{
     background-color: #2D2D47;
+}
+
+.Footer *
+{
+    display: flex;
+    justify-content: center;
 }
 
 .Footer li 
 {
-    position: absolute;
-    left: 28rem;
     color: #B8B5BF;
     font-size: 17px;
 }
@@ -16,27 +22,25 @@
 .Footer p 
 {
     color: #FFFFFF;
-    margin-top: 4rem;
-    margin-left: 33rem;
     font-size: 13px ;
-  
+    margin: 10px 0;
 }
 
 .Footer p span 
 {
     color: #FF8A73;
+    margin-left: 5px;
 }
 
-.Footer  .SocialLinks
+.Footer .SocialLinks
 {
-    position: absolute;
-    left: 36rem;
-    top: 7rem;
+    margin-top: 30px;
 }
 
 .Footer .SocialLinks a 
 {
-    padding: 1rem;
+    margin: 0 15px;
     color: #B8B5BF;
+    font-size: 25px;
 }
 

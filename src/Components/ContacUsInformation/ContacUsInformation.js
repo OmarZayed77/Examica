@@ -1,12 +1,14 @@
 import React from 'react';
+import './ContacUsInformation.css'
+
 
 const ContacUsInformation = (props) => {
-  return(
-       <div>
-          <div>{props.icon}</div>
-          <h5>{props.name}</h5>
-          <p>{props.description}</p>
-       </div>
+  return (
+<>
+        <i className={props.icon}></i>
+        <h5>{props.name}</h5>
+        <p>{props.description}</p>
+</>
   );
 };
 

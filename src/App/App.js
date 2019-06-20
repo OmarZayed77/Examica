@@ -32,7 +32,7 @@ class App extends Component {
             <Route path="/profile" component={Profile}></Route>
             <Route path="/register" component={Register}></Route>
             <Route path="/Login" component={Login}></Route>
-            <Route path="/LogOut" component={LogOut}></Route>
+            <Route path="/LogOut" component={LogOut}></Route>         
             <Route path="/" component={Home} />
             <Route
               render={() => {
