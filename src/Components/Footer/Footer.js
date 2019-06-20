@@ -15,9 +15,9 @@ const Footer = () => {
           <Menu.Item index="3" to="/contact">Contact</Menu.Item>
           <p>Copyright &copy; 2019 | Designed by <span>Kaa'bola</span></p>
           <div className="SocialLinks">
-          <Link to="www.facebook.com"><i className="fab fa-facebook"></i></Link>
-          <Link to="www.twitter.com"><i className="fab fa-twitter-square"></i></Link>
-          <Link to="www.linkedin.com"><i className="fab fa-linkedin"></i></Link>
+            <a href="https://facebook.com"><i className="fab fa-facebook"></i></a>
+            <a href="https://twitter.com"><i className="fab fa-twitter-square"></i></a>
+            <a href="https://linkedin.com"><i className="fab fa-linkedin"></i></a>
           </div>
         </Menu>
       </div>

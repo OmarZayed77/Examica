@@ -8,10 +8,8 @@ const LogoutButton = (props) => {
   
   const logout=()=>{
     props.logout();
-    localStorage.removeItem("token");
-    
   }
-    return <Button onClick={logout}>Logout</Button>;
+  return <Button onClick={logout}>Logout</Button>;
 }
 
 const mapDispatchToProps = dispatch => {
