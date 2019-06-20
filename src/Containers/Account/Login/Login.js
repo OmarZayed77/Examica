@@ -52,7 +52,6 @@ class Login extends Component {
 
     this.refs.form.validate(valid => {
       if (valid) {
-        //alert('submit!');
         this.props.loginUser(this.state.form);
       } else {
         this.alertWarning();
@@ -79,7 +78,7 @@ class Login extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.isLoggedIn) this.props.history.push("/");
+    if (this.props.isLoggedIn) this.props.history.push("/");
     // show your pop up here instead and dipatch REMOVE_ERROR after that
     else if (this.props.isError)
     {
@@ -154,14 +153,14 @@ class Login extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     loginUser: user => dispatch(login(user)),
-    removeError: () => dispatch({type: REMOVE_ERROR})
+    removeError: () => dispatch({ type: REMOVE_ERROR })
   };
 };
 
 const mapStateToProps = state => {
-return {
-  isLoggedIn: state.auth.isLoggedIn,
-  isError: state.auth.isError
+  return {
+    isLoggedIn: state.auth.isLoggedIn,
+    isError: state.auth.isError
   };
 };
 export default connect(

@@ -151,6 +151,7 @@ class Register extends Component {
   render() {
     return (
       <>
+      <div className="Register-title">Register Page</div>
         <Layout.Row
           className="Register"
           gutter="10"
