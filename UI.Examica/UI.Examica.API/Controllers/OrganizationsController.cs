@@ -260,7 +260,7 @@ namespace UI.Examica.API.Controllers
             if (user == null) return Unauthorized("You are not authorized");
             await unitOfWork.Organizations.Add(organization);
             int res = await unitOfWork.SaveAsync();
-            if (res > 0) return CreatedAtAction("GetOrganization", new { id = organization.Id }, organization);
+            if (res > 0) return Ok(Mapper.Map<OrganizationDto>(organization));
             else return BadRequest();
         }
 
