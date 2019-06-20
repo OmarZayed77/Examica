@@ -14,3 +14,11 @@ export const getUser = (userId,orgId,token)=>{
 export const addRole = (user, token) => {
     return Axios.post(`${URL}/api/users/assign`, user, {headers: {Authorization: token}});
 }
+
+export const login = (user) => {
+    return Axios.post(`${URL}/api/account/login`, user);
+}
+
+export const register = (user) => {
+    return  Axios.post(`${URL}/api/account/register`, user);
+}

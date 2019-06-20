@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Layout } from "element-react";
 import { connect } from "react-redux";
+import Exam from "../../Components/exams/exam/exam";
 import * as userActions from "../../Store/Actions/userActions";
 import "./Profile-Page.css";
 
@@ -34,9 +35,11 @@ class ProfilePage extends Component {
             <Layout.Row>
               <Layout.Col>
                 <div className="ProfilePage-info">
-                  <h3 className="ProfilePage-info-name">{this.state.activeUser.name}</h3>
+                  <h3 className="ProfilePage-info-name">
+                    {this.state.activeUser.name}
+                  </h3>
                   <p>
-                  <i className="fas fa-envelope ProfilePage-info-icon"></i>
+                    <i className="fas fa-envelope ProfilePage-info-icon" />
                     {this.state.activeUser.email}
                   </p>
                   <p>
@@ -47,11 +50,15 @@ class ProfilePage extends Component {
               </Layout.Col>
             </Layout.Row>
           </Layout.Col>
-        
-        <Layout.Col  sm={11} md={14} lg={17} className="ProfilePage-right-section">
-          <div>test 1</div>
-          <div>test 2</div>
-        </Layout.Col>
+
+          <Layout.Col
+            sm={11}
+            md={14}
+            lg={17}
+            className="ProfilePage-right-section"
+          >
+            <Exam />
+          </Layout.Col>
         </Layout.Row>
       </Fragment>
     );

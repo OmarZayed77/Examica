@@ -1,43 +1,45 @@
 import React, { Component } from 'react';
-import { Button, Table } from "element-react/next";
-import { connect } from 'react-redux'
-import './PoolOfQuestions.css'
+import { Button, Table, MessageBox, Message } from "element-react/next";
+import { connect } from 'react-redux';
+import './PoolOfQuestions.css';
+import { deleteQuestion } from '../../Store/Actions/questionActions'
 
 class PoolOfQuestions extends Component {
+
   state = {
     columns: [
       {
         label: "Title",
-        prop: "title",
-        width: 300,
+        prop: "Title",
+        width: 280,
         render: function (data) {
           return (
-            <span>{data.title}</span>
+            <span>{data.Title}</span>
           )
         }
       },
       {
         label: "Level",
-        prop: "level",
+        prop: "Level",
         width: 130,
         render: function (data) {
-          return <span>{data.level}</span>
+          return <span>{data.Level}</span>
         }
       },
       {
         label: "Type",
-        prop: "type",
+        prop: "Type",
         width: 180,
         render: function (data) {
-          return <span>{data.type}</span>
+          return <span>{data.Type}</span>
         }
       },
       {
         label: "Mark",
-        prop: "mark",
-        width: 100,
+        prop: "Mark",
+        width: 80,
         render: function (data) {
-          return <span>{data.mark}</span>
+          return <span>{data.Mark}</span>
         }
       },
       {
@@ -50,13 +52,13 @@ class PoolOfQuestions extends Component {
       },
       {
         label: "Operations",
-        width: 180,
-        render: function () {
+        width: 245,
+        render: (data) => {
           return (
             <span>
               <Button className="questionOptions" icon="view" size="small"></Button>
               <Button className="questionOptions" icon="edit" size="small"></Button>
-              <Button className="questionOptions" icon="delete" size="small"></Button>
+              <Button className="questionOptions" icon="delete" size="small" onClick={this.deleteQuestion.bind(this, data.id)}></Button>
             </span>
           )
         }
@@ -65,25 +67,39 @@ class PoolOfQuestions extends Component {
     data: []
   }
 
-  componentDidMount(){
+
+  componentDidMount() {
     this.setState({
       data: this.props.questionsPool
     })
   }
 
-
+  deleteQuestion(id) {
+    MessageBox.confirm('Are you sure you want to delete?', 'Warning', {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning'
+    }).then(() => {
+      Message({
+        type: 'success',
+        message: 'Deleted Successfully'
+      });
+      this.props.delete(id)
+    }).catch(() => {
+      Message({
+        type: 'info',
+        message: 'Failed to delete'
+      });
+    });
+  }
   render() {
-    // let questionsTable = null;
-    // if(this.props.questions)
     return (
       <Table
         style={{ width: '100%' }}
         columns={this.state.columns}
-        data={this.state.data}
+        data={this.props.List}
         border={true}
         fit={true}
-      //highlightCurrentRow={true}
-      //onCurrentChange={item => { console.log(item) }}
       />
     )
   }
@@ -96,6 +112,9 @@ const mapStateToProps = state => {
   })
 };
 const mapDispatchToProps = dispatch => {
-  return ({})
-};
+  return ({
+    delete: (id) => dispatch(deleteQuestion(id))
+    
+  });
+}
 export default connect(mapStateToProps, mapDispatchToProps)(PoolOfQuestions);

@@ -1,3 +1,7 @@
+.ProfilePage{
+    margin: 2rem;
+}
+
 .ProfilePage .ProfilePage-left-section{
     display: flex;
     justify-content: center;

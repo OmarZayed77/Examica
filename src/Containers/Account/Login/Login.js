@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Layout } from "element-react/next";
-import { login } from "../../../Store/Actions/authActions";
+import { Form, Input, Button, Layout, Notification } from "element-react/next";
+import { login, REMOVE_ERROR } from "../../../Store/Actions/authActions";
 import { connect } from "react-redux";
 import "./Login.css";
 
@@ -43,6 +43,8 @@ class Login extends Component {
         ]
       }
     };
+    this.alertWarning = this.alertWarning.bind(this);
+    this.alertError = this.alertError.bind(this);
   }
 
   handleSubmit(e) {
@@ -50,10 +52,9 @@ class Login extends Component {
 
     this.refs.form.validate(valid => {
       if (valid) {
-        //alert('submit!');
         this.props.loginUser(this.state.form);
       } else {
-        console.log("error submit!!");
+        this.alertWarning();
         return false;
       }
     });
@@ -73,6 +74,32 @@ class Login extends Component {
   onEmailChange(value) {
     this.setState({
       form: Object.assign({}, this.state.form, { Email: value })
+    });
+  }
+
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) this.props.history.push("/");
+    // show your pop up here instead and dipatch REMOVE_ERROR after that
+    else if (this.props.isError)
+    {
+      this.alertError();
+      this.props.removeError();
+    }
+  }
+
+  alertWarning() {
+    Notification({
+      title: 'Warning',
+      message: 'Enter Valid Data First!',
+      type: 'warning'
+    });
+  }
+
+  alertError() {
+    Notification({
+      title: 'Error',
+      message: 'Login Failed! Please Try Again',
+      type: 'error'
     });
   }
 
@@ -125,10 +152,18 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loginUser: user => dispatch(login(user))
+    loginUser: user => dispatch(login(user)),
+    removeError: () => dispatch({ type: REMOVE_ERROR })
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn,
+    isError: state.auth.isError
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);

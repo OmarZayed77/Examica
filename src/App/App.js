@@ -4,51 +4,56 @@ import { setToken } from "../Store/Actions/authActions";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "element-theme-default";
 import Nav from "./../Components/Navbar/Navbar";
-import Profile from '../Pages/Profile-Page/Profile-Page'
-import Register from '../Containers/Account/Register/Register';
-import Login from '../Containers/Account/Login/Login';
-import LogOut from '../Components/LogoutButton/LogoutButton';
-import Footer from '../Components/Footer';
+import Profile from "../Pages/Profile-Page/Profile-Page";
+import Register from "../Containers/Account/Register/Register";
+import Login from "../Containers/Account/Login/Login";
+import LogOut from "../Components/LogoutButton/LogoutButton";
+import Footer from "../Components/Footer";
+import PricingPlan from "../Pages/PricingPlan";
 import * as orgActions from "../Store/Actions/organizationActions";
+import Exam from '../Containers/exams/exam-list/exam-list';
+
 import "./App.css";
-import ContactUs from '../Containers/Contact-Us'
-import AboutUs from "../Components/AboutUs/AboutUs";
-
-
+import Home from "../Pages/Home-Page";
+import AddOrganization from "../Containers/AddOrgnization";
+import { Loading } from "element-react/next";
 
 class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.props.setToken(localStorage.getItem("token"));
-      //this.props.getAll(localStorage.getItem("token"));
-    } else
-      this.props.getOrgs(
-        "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvQGcuY29tIiwianRpIjoiODE1ZmY4MjEtNTJhOS00MmJhLWJjNzktN2M1YTMwNmM4ZmU3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzM2EyYTVkNS01MmMzLTQyMGUtODlkNi05OGFiZWIyNzZmODQiLCJleHAiOjE1NjE0NjcyMjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTU3NjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjE1NzY2In0.ZtQY3C3YYG7NDJi2phG8HT0Nv9ObTCcGr8bIioNvwq8"
-      );
+      this.props.setToken();
+      this.props.getOrgs(localStorage.getItem("token"));
+    }
   }
 
   render() {
+    const loading = this.props.isLoading ? (
+      <Loading fullscreen={true} text="Please Wait   Loading..." />
+    ) : null;
     return (
-      <BrowserRouter>
-        <div className="App">
+      <>
+        {loading}
+        <BrowserRouter>
           <Nav />
           <Switch>
             <Redirect from="/home" to="/" />
-            <Route path="/profile" component={Profile}></Route>
-            <Route path="/register" component={Register}></Route>
-            <Route path="/Login" component={Login}></Route>
-            <Route path="/LogOut" component={LogOut}></Route>
+            <Route path="/profile" component={Profile} />
+            <Route path="/organization/buy" component={AddOrganization} />
+            <Route path="/register" component={Register} />
+            <Route path="/Login" component={Login} />
+            <Route path="/LogOut" component={LogOut} />
+            <Route path="/Pricing" component={PricingPlan} />
+            <Route path="/exam" component={Exam} />
+            <Route path="/" component={Home} />
             <Route
               render={() => {
                 return "not found!!!";
               }}
             />
           </Switch>
-          {/* <Footer></Footer>
-          <ContactUs /> */}
-          <AboutUs />
-        </div>
-      </BrowserRouter>
+          <Footer />
+        </BrowserRouter>
+      </>
     );
   }
 }
@@ -62,7 +67,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    userData: state.auth.userData
+    userData: state.auth.userData,
+    isLoading: state.isLoading
   };
 };
 

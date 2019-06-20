@@ -1,14 +1,14 @@
-// import axios from 'axios';
-// const ADD_OPTION = 'ADD_OPTION';
 import axios from 'axios'
-
 import * as questionsAPI from '../../API/questionAPI'
-export const ADDQUESTION = "ADDQUESTION";
-export const GET_ALL_QUSTIONS = "GET_ALL_QUSTIONS"
+export const ADD_QUESTION = "ADD_QUESTION";
+export const DELETE_QUESTION = "DELETE_QUESTION";
+export const GET_ALL_QUESTIONS = "GET_ALL_QUESTIONS"
+
+
 
 
 export const addQues = (question) => {
-    return { type: ADDQUESTION, payload: question }
+    return { type: ADD_QUESTION, payload: question }
 }
 
 
@@ -22,16 +22,34 @@ export const addNewQuestion = (question, token) => {
 
 
 export const getAll = () => {
-	return (dispatch) => {
+    return (dispatch) => {
         axios.get(`${URL}/api/Questions`)
-        .then(res => {
-            if (res.status === 200) {
-                dispatch(getAllSuccess(res.data));
-            }
-        })
-        .catch(console.error);
-	};
+            .then(res => {
+                if (res.status === 200) {
+                    dispatch(getAllSuccess(res.data));
+                }
+            })
+            .catch(console.error);
+    };
 };
 export const getAllSuccess = (value) => {
-	return { type: GET_ALL_QUSTIONS, payload: value };
+    return { type: GET_ALL_QUESTIONS, payload: value };
 };
+
+
+
+export const deleteQuestion = (id) => {
+    return (dispatch) => {
+        axios.delete(`${URL}/api/questions/${id}`)
+            .then(res => {
+                if (res.status === 200) {
+                    dispatch(deleteSuccess(res.data));
+                }
+            })
+            .catch(console.error);
+    };
+};
+export const deleteSuccess = (value) => {
+    return { type: DELETE_QUESTION, id: value };
+};
+

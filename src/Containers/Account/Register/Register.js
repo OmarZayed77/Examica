@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Form, Input, Button, Layout } from "element-react/next";
-import { register } from "../../../Store/Actions/authActions";
-import { connect } from "react-redux";
-import './Register.css'
+import React, { Component } from 'react';
+import { Form, Input, Button, Layout, Notification} from 'element-react/next';
+import { register, REMOVE_ERROR } from '../../../Store/Actions/authActions';
+import { connect } from 'react-redux';
+import './Register.css';
 
 class Register extends Component {
   constructor(props) {
@@ -79,17 +79,35 @@ class Register extends Component {
         ]
       }
     };
+    this.alertWarning = this.alertWarning.bind(this);
+    this.alertError = this.alertError.bind(this);
   }
+
+  alertWarning() {
+    Notification({
+      title: 'Warning',
+      message: 'Enter Valid Data First!',
+      type: 'warning'
+    });
+  }
+
+  alertError() {
+    Notification({
+      title: 'Error',
+      message: 'You have already Registered with this email before',
+      type: 'error'
+    });
+  }
+  
 
   handleSubmit(e) {
     e.preventDefault();
 
     this.refs.form.validate(valid => {
       if (valid) {
-        //alert('submit!');
         this.props.registerUser(this.state.form);
       } else {
-        console.log("error submit!!");
+        this.alertWarning();
         return false;
       }
     });
@@ -99,6 +117,14 @@ class Register extends Component {
     e.preventDefault();
 
     this.refs.form.resetFields();
+    this.setState({
+      form: {
+      name: "",
+      Email: "",
+      Password: "",
+      checkPass: ""
+      }
+    });
   }
 
   onChange(key, value) {
@@ -112,9 +138,20 @@ class Register extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) this.props.history.push("/");
+    // show your pop up here instead and dipatch REMOVE_ERROR after that
+    else if (this.props.isError) {
+      this.props.removeError();
+      this.alertError();
+    }
+  }
+
+
   render() {
     return (
       <>
+      <div className="Register-title">Register Page</div>
         <Layout.Row
           className="Register"
           gutter="10"
@@ -122,7 +159,6 @@ class Register extends Component {
           justify="center"
           align="middle"
         >
-          {/* register Form */}
           <Layout.Col span="8">
             <Form
               ref="form"
@@ -172,17 +208,20 @@ class Register extends Component {
       </>
     );
   }
+
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    registerUser: user => dispatch(register(user))
+    registerUser: user => dispatch(register(user)),
+    removeError: () => dispatch({ type: REMOVE_ERROR })
   };
 };
 const mapStateToProps = state => {
   return {
     userData: state.auth.userData,
-    isLoggedIn: state.auth.isLoggedIn
+    isLoggedIn: state.auth.isLoggedIn,
+    isError: state.auth.isError
   };
 };
 export default connect(

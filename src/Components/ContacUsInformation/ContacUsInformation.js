@@ -2,13 +2,11 @@ import React from 'react';
 
 const ContacUsInformation = (props) => {
   return(
-      //  <div>
-      //     <div>{this.props.icon}</div>
-      //     <h5>{this.props.name}</h5>
-      //     <p>{this.props.description}</p>
-      //  </div>
-<>
-</>
+       <div>
+          <div>{props.icon}</div>
+          <h5>{props.name}</h5>
+          <p>{props.description}</p>
+       </div>
   );
 };
 
