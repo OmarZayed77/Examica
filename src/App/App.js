@@ -12,6 +12,7 @@ import Footer from '../Components/Footer';
 import * as orgActions from "../Store/Actions/organizationActions";
 import "./App.css";
 import ContactUs from '../Containers/Contact-Us'
+import AboutUs from "../Components/AboutUs/AboutUs";
 
 
 
@@ -43,8 +44,9 @@ class App extends Component {
               }}
             />
           </Switch>
-          <Footer></Footer>
-          <ContactUs/>
+          {/* <Footer></Footer>
+          <ContactUs /> */}
+          <AboutUs />
         </div>
       </BrowserRouter>
     );
