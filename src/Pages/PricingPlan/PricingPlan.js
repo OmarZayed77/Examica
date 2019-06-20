@@ -14,7 +14,8 @@ class PricingPlan extends Component {
           image: "https://i.ibb.co/cJfMr8L/undraw-dashboard-nklg.png",
           content: 'Get to know Type form',
           price: 'FREE',
-          buttonText: 'Start Now!'
+          buttonText: 'Start Now!',
+          route:'/register'
         },
         {
           id: 2,
@@ -22,7 +23,8 @@ class PricingPlan extends Component {
           image: "https://i.ibb.co/0h0cNG1/undraw-setup-wizard-r6mr.png",
           content: 'More power and personalization',
           price: '59$/month',
-          buttonText: 'Upgrade'
+          buttonText: 'Buy Now!',
+          route:'/register'
         },
         {
           id: 3,
@@ -30,7 +32,8 @@ class PricingPlan extends Component {
           image: "https://i.ibb.co/zJk3Jsk/undraw-in-progress-ql66-1.png",
           content: 'Advanced features',
           price: '100$/month',
-          buttonText: 'Upgrade'
+          buttonText: 'Buy Now!',
+          route:'/register'
         },
 
       ]
@@ -46,6 +49,7 @@ class PricingPlan extends Component {
           content={plan.content}
           price={plan.price}
           buttonText={plan.buttonText}
+          route={plan.route}
         />
       </Layout.Col>
     ));

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card , Button} from "element-react/next";
+import {Link} from 'react-router-dom'
 import './PricingCard.css'
 
 const PricingCard = (props) => {
@@ -11,7 +12,7 @@ const PricingCard = (props) => {
         <div className="bottom clearfix">
           <p className="PricingCard-Content">{props.content}</p>
           <h3>{props.price}</h3>
-          <Button type="text" className="PricingCard-button">{props.buttonText}</Button>
+          <Link to={props.route} ><Button type="text" className="PricingCard-button">{props.buttonText}</Button></Link>
         </div>
       </div>
     </Card>

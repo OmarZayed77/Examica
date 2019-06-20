@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Button, Layout, MessageBox } from 'element-react/next';
 import { register, REMOVE_ERROR } from '../../../Store/Actions/authActions';
 import { connect } from 'react-redux';
+import './Register.css'
 
 class Register extends Component {
   constructor(props) {
@@ -129,6 +130,7 @@ class Register extends Component {
   render() {
     return (
       <>
+      <div className="Register-title">Register Page</div>
         <Layout.Row
           className="Register"
           gutter="10"
