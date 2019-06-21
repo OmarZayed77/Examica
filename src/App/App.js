@@ -11,7 +11,7 @@ import LogOut from "../Components/LogoutButton/LogoutButton";
 import Footer from "../Components/Footer";
 import PricingPlan from "../Pages/PricingPlan";
 import * as orgActions from "../Store/Actions/organizationActions";
-import Exam from '../Containers/exams/exam-list/exam-list';
+import Exam from '../Containers/exams/exam-list';
 import AboutUs from '../Components/AboutUs';
 import "./App.css";
 import Home from "../Pages/Home-Page";
