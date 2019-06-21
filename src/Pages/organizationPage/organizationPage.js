@@ -8,11 +8,9 @@ class OrganizationPage extends Component {
   
 
   componentDidMount() {
-    //get org by id 
+    //get org by id from url
     this.props.onSelect(this.props.match.params.id);
-   
-    
-  }
+  } 
 
   render() {
     let PricingPlanId = 1;
@@ -37,7 +35,7 @@ class OrganizationPage extends Component {
         <Layout.Col lg={8}>
           <div className="OrganizationPage-pic"/>        
         </Layout.Col>
-        <Layout.Col lg={16}>
+        <Layout.Col lg={12}>
         <Layout.Row className="container-rows">
         Company Name : {this.props.org.Name}
         </Layout.Row>
@@ -45,8 +43,11 @@ class OrganizationPage extends Component {
         Pricing Plan : {PricingPlan}
         </Layout.Row>
         <Layout.Row className="container-rows">
-        <Button className="Buttonsecondry">Add Question  <i className="fas fa-plus"></i></Button>
         </Layout.Row>
+        </Layout.Col>
+        <Layout.Col lg={4}>
+        <Button className="Buttonsecondry">Add Question  <i className="fas fa-plus"></i></Button>
+        
         </Layout.Col>
       </Layout.Row>
       </div>
@@ -57,7 +58,8 @@ class OrganizationPage extends Component {
 
 const mapStateToprops = state => {
   return {
-    org: state.organizations.currentOrgnaziation
+    org: state.organizations.currentOrgnaziation,
+    isLoggedIn: state.auth.isLoggedIn
   }
 }
 
