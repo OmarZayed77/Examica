@@ -1,20 +1,25 @@
 import React from 'react';
 import {Layout,Menu} from 'element-react/next';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import './MiddleNavbar.css'
 
-const MiddleNavbar = () => {
+const MiddleNavbar = (props) => {
+  const onSelect= (index, indexPath, item) => {
+    props.history.push(item.props.to);
+  }
   return(
-    <Layout.Row>
+    <Layout.Row className="MiddleNavbar">
     <Layout.Col span={24}>
       <div>
-        <Menu theme="dark" defaultActive="1" className="el-menu-demo" mode="horizontal">
-          <Menu.Item index="1"><i className="fas fa-user-circle"></i> Profile</Menu.Item>
-          <Menu.Item index="1"><i className="fas fa-cogs"></i> Account Settings</Menu.Item>
-          <Menu.Item index="3"><i className="fas fa-user-cog"></i> Admin Info</Menu.Item>
-          <Menu.Item index="3"><i className="fas fa-stream"></i> Build Exam</Menu.Item>
-          <Menu.Item index="3"><i className="fas fa-question"></i> Questions Pool</Menu.Item>
-          <Menu.Item index="3"><i className="fas fa-question"></i> Your Exams</Menu.Item>
-          <Menu.Item index="3"><i className="fas fa-users-cog"></i> Manage Users</Menu.Item>
-          <Menu.Item index="3"><i className="fas fa-file-chart-line"></i> Reports</Menu.Item>
+        <Menu theme="dark" className="el-menu-demo" mode="horizontal" onSelect={onSelect}>
+          <Menu.Item  className="logo" index="1" to="/organization/:id" >{props.org.Name}Institute</Menu.Item>
+          <Menu.Item index="1" to={`/organization/${props.org.id}`}><i className="fas fa-user-circle"></i> Organization Profile</Menu.Item>
+          <Menu.Item index="2" to='/exams/add'><i className="fas fa-stream"></i> Build Exam</Menu.Item>
+          <Menu.Item index="3" to='/organization/question'><i className="fas fa-question"></i> Questions Pool</Menu.Item>
+          <Menu.Item index="4" to='/exams'><i className="fas fa-question"></i> Your Exams</Menu.Item>
+          <Menu.Item index="5" to='/users/assign'><i className="fas fa-users-cog"></i> Manage Users</Menu.Item>
+          <Menu.Item index="6" to='/users'><i className="fas fa-file-chart-line"></i> Users</Menu.Item>
         </Menu>
       </div>
     </Layout.Col>
@@ -22,4 +27,10 @@ const MiddleNavbar = () => {
   );
 };
 
-export default MiddleNavbar;
+export const mapStateToProps = state => {
+  return {
+    org : state.organizations.currentOrgnaziation,
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(MiddleNavbar));

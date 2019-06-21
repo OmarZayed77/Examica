@@ -19,9 +19,11 @@ import Home from "../Pages/Home-Page";
 import OrganizationPage from "../Pages/organizationPage";
 import AddOrganization from "../Containers/AddOrgnization";
 import { Loading } from "element-react/next";
+
 import UpperNav from '../Components/Navbar/upperNavbar';
 import LowerNav from '../Components/Navbar/lowerNavbar';
 import MiddleNav from '../Components/Navbar/MiddleNavbar';
+import ExamAdd from "../Containers/exams/exam-add/exam-add";
 
 class App extends Component {
   componentDidMount() {
@@ -54,6 +56,7 @@ class App extends Component {
             <Route path="/Pricing" component={PricingPlan} />
             <Route path="/exam" component={Exam} />
             <Route path="/aboutus" component={AboutUs} />
+            <Route path="/exams/add" component={ExamAdd}/>
             <Route path="/" exact component={Home} />
             <Route
               render={() => {

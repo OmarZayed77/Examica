@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Button, Layout } from 'element-react/next';
 import './organizationPage.css'
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import * as orgActions from '../../Store/Actions/organizationActions';
 
 class OrganizationPage extends Component {
@@ -11,6 +12,11 @@ class OrganizationPage extends Component {
     //get org by id from url
     this.props.onSelect(this.props.match.params.id);
   } 
+
+  nextPath(path) {
+    this.props.history.push(path);
+  }
+
 
   render() {
     let PricingPlanId = 1;
@@ -31,9 +37,17 @@ class OrganizationPage extends Component {
     
     return (
       <div className="organization-page">
+      <Layout.Row>
+        <Layout.Col span="4" offset="20">
+        <div className="grid-content bg-purple-light buttons">
+        <Button onClick={() => this.nextPath.bind('/QuestionTypes')} className="Buttonsecondry">Question  <i className="fas fa-plus"></i></Button> 
+        <Button onClick={() => this.nextPath.bind('/exams/add')} className="Buttonsecondry">Exam  <i className="fas fa-plus"></i></Button> 
+        </div>
+        </Layout.Col>
+      </Layout.Row>
       <Layout.Row className="container">
         <Layout.Col lg={8}>
-          <div className="OrganizationPage-pic"/>        
+          <div className="OrganizationPage-pic"/> 
         </Layout.Col>
         <Layout.Col lg={12}>
         <Layout.Row className="container-rows">
@@ -44,10 +58,6 @@ class OrganizationPage extends Component {
         </Layout.Row>
         <Layout.Row className="container-rows">
         </Layout.Row>
-        </Layout.Col>
-        <Layout.Col lg={4}>
-        <Button className="Buttonsecondry">Add Question  <i className="fas fa-plus"></i></Button>
-        
         </Layout.Col>
       </Layout.Row>
       </div>
@@ -69,4 +79,4 @@ const mapDispatchToprops = dispatch => {
   }
 }
 
-export default connect(mapStateToprops, mapDispatchToprops)(OrganizationPage);
+export default withRouter(connect(mapStateToprops, mapDispatchToprops)(OrganizationPage));
