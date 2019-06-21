@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { setToken } from "../Store/Actions/authActions";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "element-theme-default";
-
-// import Nav from "./../Components/Navbar/Navbar";
 import Profile from "../Pages/Profile-Page/Profile-Page";
 import Register from "../Containers/Account/Register/Register";
 import Login from "../Containers/Account/Login/Login";
@@ -47,13 +45,14 @@ class App extends Component {
             <Redirect from="/home" to="/" />
             <Route path="/profile" component={Profile} />
             <Route path="/organization/buy" component={AddOrganization} />
+            <Route path="/organization/exams" component={Exam} />
             <Route path="/organization/:id" component={OrganizationPage} />
             <Route path="/register" component={Register} />
             <Route path="/Login" component={Login} />
             <Route path="/LogOut" component={LogOut} />
             <Route path="/Pricing" component={PricingPlan} />
-            <Route path="/exam" component={Exam} />
             <Route path="/aboutus" component={AboutUs} />
+            <Route path="/contact" component={AboutUs} />
             <Route path="/" exact component={Home} />
             <Route
               render={() => {
