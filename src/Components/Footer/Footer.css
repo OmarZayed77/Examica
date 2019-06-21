@@ -1,38 +1,46 @@
-.Footer .el-menu 
+.Footer
 {
-    justify-content: center;
-    display: flex;
-    height: 192px;
+    padding: 17px 0;
+}
+.Footer, .Footer .el-menu 
+{
     background-color: #2D2D47;
+}
+
+.Footer *
+{
+    display: flex;
+    justify-content: center;
 }
 
 .Footer li 
 {
     color: #B8B5BF;
-    font-size: 25px;
+    font-size: 17px;
 }
 
 .Footer p 
 {
     color: #FFFFFF;
-    position:absolute;
-    top: 4rem;
-    font-size: 18px ;
-    left: 27.8rem;
+    font-size: 13px ;
+    margin: 10px 0;
 }
 
 .Footer p span 
 {
     color: #FF8A73;
+    margin-left: 5px;
 }
 
-.Footer  a
+.Footer .SocialLinks
 {
-    position: relative;
-    top: 7rem;
-    left: -19rem;
-    padding: 1rem;
-    color: #B8B5BF;
+    margin-top: 30px;
 }
 
+.Footer .SocialLinks a 
+{
+    margin: 0 15px;
+    color: #B8B5BF;
+    font-size: 25px;
+}
 

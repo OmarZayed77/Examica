@@ -3,13 +3,12 @@ import UpperNavbar from './upperNavbar';
 import LowerNavbar from './lowerNavbar';
 import MiddleNavbar from './MiddleNavbar';
 import './Navbar.css';
+import {connect} from 'react-redux';
 
 
-const Navbar = () => {
-  // Event Handler to route to the selected navbar item 'to' prop when a navbar item selected
-  let token = localStorage.getItem("token");
+const Navbar = (props) => {
   let nav = null;
-  if (token) {
+  if (props.isLoggedIn) {
     nav = (
       <div>
       <MiddleNavbar/>
@@ -23,5 +22,10 @@ const Navbar = () => {
   );
 };
 
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  }
+}
 
-export default Navbar;
+export default connect(mapStateToProps)(Navbar);

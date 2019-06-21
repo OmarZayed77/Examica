@@ -10,7 +10,6 @@ export const add = (exam, orgId, token) => {
 		examsAPI
 			.add(exam, orgId, token)
 			.then((res) => {
-				console.log(res);
 				if (res.status === 200) {
 					dispatch(addSuccess(res.data));
 				}
@@ -23,9 +22,9 @@ export const addSuccess = (value) => {
 };
 
 
-export const get = () =>{
+export const get = (orgId, token) =>{
  return (dispatch) => {
-	  examsAPI.getAll()
+	  examsAPI.getAll(orgId, token)
 	  .then(res => {
 		  dispatch({type: GET , payload : res.data})
 	  })

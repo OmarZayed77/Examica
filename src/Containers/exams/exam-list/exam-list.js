@@ -6,34 +6,32 @@ import * as  examActions from '../../../Store/Actions/examActions'
 
 
 class ExamList extends Component {
- constructor(props){
-   super(props)
-
-   this.state={
-     exams:[]
-   }
- }
- 
-  
   componentDidMount(){
-    this.props.onGetAllExams();
+    if(this.props.token)
+    {
+      this.props.onGetAllExams(this.props.organizationId, this.props.token);
+    }
+    else this.props.onGetAllExams(this.props.organizationId, localStorage.getItem("token"));
   }
 
   render() {
-    const examlist = this.props.exams.map((ex,index) => {
-      return (
-      <Layout.Col span={8} offset={0}>
-      <Exam
-        key={index}
-        id={ex.id}
-        name={ex.name}
-        startdate={ex.startdate}
-        endDate={ex.endDate}
-        // numberOfQuestions={ex.questions.length}
-        />
-      </Layout.Col>
-      );
-    });
+    let examlist = null;
+    if (this.props.exams.length > 0) 
+    {
+        examlist = this.props.exams.map((ex,index) => {
+          return (
+            <Layout.Col key={index} span={8} offset={0}>
+        <Exam
+          id={ex.id}
+          name={ex.name}
+          startdate={ex.startdate}
+          endDate={ex.endDate}
+          numberOfQuestions={ex.questions.length}
+          />
+        </Layout.Col>
+        );
+      });
+    }
     return (
       <Layout.Row >
         {examlist}
@@ -43,7 +41,9 @@ class ExamList extends Component {
 }
 const mapStateToProps = state =>{
      return{
-        exams : state.exams
+        exams : state.exams,
+        token: state.auth.token,
+        organizationId: 1
    }
 }
 
@@ -51,7 +51,7 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = dispatch =>
 {
   return{
-    onGetAllExams : () => dispatch(examActions.get())
+    onGetAllExams : (orgId, token) => dispatch(examActions.get(orgId, token))
   }
 }
 

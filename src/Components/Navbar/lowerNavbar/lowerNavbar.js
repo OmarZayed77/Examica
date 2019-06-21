@@ -13,7 +13,7 @@ const LowerNavbar = (props) => {
     <div className="lowerNavbar">
       <Menu defaultActive="1" className="el-menu-demo" mode="horizontal" onSelect={onSelect}>
     <Layout.Row >
-        <Layout.Col span="15">
+        <Layout.Col span="16">
         <Menu.Item  className="logo" index="1" to="/home" >Examica</Menu.Item>
         </Layout.Col>
         <Layout.Col span="8" className="listOfContent">

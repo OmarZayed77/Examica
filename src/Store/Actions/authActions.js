@@ -1,10 +1,11 @@
-import URL from '../../API/Config/url'
-import axios from 'axios'
+import * as userAPI from '../../API/userAPI';
 
 export const LOGIN = 'LOGIN';
 export const REGISTER = 'REGISTER';
 export const LOGOUT = 'LOGOUT';
 export const TOKEN = 'TOKEN';
+export const SUBMIT_ERROR = 'SUBMIT_ERROR';
+export const REMOVE_ERROR = 'REMOVE_ERROR';
 
 
 export const loginUserSuccess = (value) => {
@@ -25,34 +26,42 @@ export const registerUserSuccess = (value) => {
 export const login = (user) => {
 
     return dispatch => {
-        axios.post(`${URL}/api/account/login`, user)
+        dispatch({type: "IsLoading"});
+        userAPI.login(user)
             .then((response) => {
                 if (response.status === 200) {
-
-                    let token = `bearer ${response.data.token}`;
-                    localStorage.setItem("token", token);
                     dispatch(loginUserSuccess(response.data));
                 }
+                else dispatch({type: SUBMIT_ERROR});
+                dispatch({type: "Loaded"});
             })
-            .catch((error) => { alert("Login Failed! Please check your user name and password") })
+            .catch(err => {
+                dispatch({type: SUBMIT_ERROR});
+                dispatch({type: "Loaded"});
+            });
     }
 }
 
 export const register = (user) => {
     return dispatch => {
-        axios.post(`${URL}/api/account/register`, user)
+        dispatch({type: "IsLoading"});
+        userAPI.register(user)
             .then((response) => {
-                let token = `bearer ${response.data.token}`;
-                localStorage.setItem("token", token);
                 if (response.status === 200) {
                     dispatch(registerUserSuccess(response.data));
                 }
-            }).catch((error) => { alert("Register Failed! Please try again.") })
+                else dispatch({type: SUBMIT_ERROR});
+                dispatch({type: "Loaded"});
+            })
+            .catch(err => {
+                dispatch({type: SUBMIT_ERROR});
+                dispatch({type: "Loaded"});
+            });
     }
 }
 
-export const setToken = (value) => {
+export const setToken = () => {
     return dispatch => {
-        dispatch({ type: TOKEN, payload: value })
+        dispatch({ type: TOKEN})
     }
 }

@@ -1,22 +1,38 @@
-import React from 'react';
-import { connect } from 'react-redux'
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import {Button} from 'element-react/next';
-import {logoutUser} from '../../Store/Actions/authActions'
-import './LogoutButton.css'
+import {logoutUser} from '../../Store/Actions/authActions';
+import './LogoutButton.css';
+import {withRouter} from 'react-router-dom';
+import * as orgActions from '../../Store/Actions/organizationActions';
 
-const LogoutButton = (props) => {
+class LogoutButton extends Component {
   
-  const logout=()=>{
-    props.logout();
-    localStorage.removeItem("token");
-    
+  logout() {
+      this.props.logout();
+      this.props.history.push("/");
   }
-    return <Button onClick={logout}>Logout</Button>;
+
+  componentDidMount() {
+    this.props.getOrgs(this.props.token);
+  }
+
+  render() {
+    return <Button onClick={this.logout.bind(this)}>Logout</Button>;
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logoutUser())
+    logout: () => dispatch(logoutUser()),
+    getOrgs: token => dispatch(orgActions.getAll(token)) 
   };
 };
-export default connect(null, mapDispatchToProps)(LogoutButton);
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LogoutButton));

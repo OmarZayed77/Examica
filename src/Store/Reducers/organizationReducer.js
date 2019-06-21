@@ -16,9 +16,12 @@ const organizationReducer = (state = initialState, action) => {
             const index = newArr.findIndex(org => org.id === action.payload);
             if(index > -1) newOrg= newArr[index];
             break;
+        case orgActions.ADDORG:
+            newArr.push(action.payload);
+            break;
 		default:
 			break;
-	}
+    }
     return {
         all: newArr,
         currentOrgnaziation: newOrg

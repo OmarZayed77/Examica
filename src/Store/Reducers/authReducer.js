@@ -1,32 +1,45 @@
 import * as authActions from '../Actions/authActions';
 
 const initialState = {
+	isError: false,
 	isLoggedIn: false,
 	token: '',
-	// token:
-	// 	'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvQGcuY29tIiwianRpIjoiODE1ZmY4MjEtNTJhOS00MmJhLWJjNzktN2M1YTMwNmM4ZmU3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzM2EyYTVkNS01MmMzLTQyMGUtODlkNi05OGFiZWIyNzZmODQiLCJleHAiOjE1NjE0NjcyMjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTU3NjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjE1NzY2In0.ZtQY3C3YYG7NDJi2phG8HT0Nv9ObTCcGr8bIioNvwq8',
 	userId: ''
-
 };
 
 const authReducer = (state = initialState, action) => {
 	let newState = { ...state };
 	switch (action.type) {
-			case authActions.TOKEN:
-			case authActions.REGISTER:
-			case authActions.LOGIN:
+		case authActions.TOKEN:
 			newState.isLoggedIn = true;
-			newState.token = action.payload.token;
+			newState.token = localStorage.getItem("token");
+			newState.userId = localStorage.getItem("userId");
+			break;
+		case authActions.REGISTER:
+		case authActions.LOGIN:
+			let token = `bearer ${action.payload.token}`;
+			localStorage.setItem("token", token);
+			localStorage.setItem("userId", action.payload.userId);
+			newState.isLoggedIn = true;
+			newState.token = token;
 			newState.userId = action.payload.userId;
 			break;
 		case authActions.LOGOUT:
 			newState.isLoggedIn = false;
 			newState.token = null;
+			newState.userId = null;
+			localStorage.removeItem("token");
+			localStorage.removeItem("userId");
+			break;
+		case authActions.SUBMIT_ERROR:
+			newState.isError = true;
+			break;
+		case authActions.REMOVE_ERROR:
+			newState.isError = false;
 			break;
 		default:
 			break;
 	}
-	console.log(newState);
 	return newState;
 };
 export default authReducer;
