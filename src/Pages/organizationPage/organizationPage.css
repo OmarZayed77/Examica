@@ -1,0 +1,36 @@
+.organization-page .container{
+  margin : 10%;
+  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.organization-page .Buttonsecondry{
+    background-color: #FF8A73;
+    border: 0.5px solid #FF8A73;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    padding: 10px 8px 10px 8px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Raleway', sans-serif;
+  
+  }
+
+  .organization-page .OrganizationPage-pic{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid rgb(226, 226, 226);
+  
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    background-image: url("https://i.ibb.co/C6LmsBx/organization.png")
+  }
+
+  .organization-page .container-rows{
+    margin: 0px 0px 15px 0px ;
+  }
+
+

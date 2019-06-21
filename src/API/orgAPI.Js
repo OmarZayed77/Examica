@@ -9,6 +9,6 @@ export const getOrgs = (token) => {
 	return axios.get(`${URL}/api/Organizations/user`, { headers: { Authorization: token } });
 };
 
-export const getCurrentOrg = (userId, orgId, token) => {
-	return axios.get(`${URL}/api/users/${userId}/${orgId}`, { headers: { Authorization: token } });
-};
+// export const getCurrentOrg = (userId, orgId, token) => {
+// 	return axios.get(`${URL}/api/users/${userId}/${orgId}`, { headers: { Authorization: token } });
+// };

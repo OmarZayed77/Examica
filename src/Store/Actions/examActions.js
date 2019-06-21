@@ -24,10 +24,15 @@ export const addSuccess = (value) => {
 
 export const get = (orgId, token) =>{
  return (dispatch) => {
+	  dispatch({type: "IsLoading"});
 	  examsAPI.getAll(orgId, token)
 	  .then(res => {
 		  dispatch({type: GET , payload : res.data})
+		  dispatch({type: "Loaded"});
 	  })
-	  .catch(console.error)
+	  .catch(err => {
+		dispatch({type: "Loaded"});
+		console.error(err);
+	  });
  }
 }
