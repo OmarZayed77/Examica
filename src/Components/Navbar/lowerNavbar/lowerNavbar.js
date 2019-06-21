@@ -11,16 +11,16 @@ const LowerNavbar = (props) => {
   }
   return (
     <div className="lowerNavbar">
-      <Menu defaultActive="1" className="el-menu-demo" mode="horizontal" onSelect={onSelect}>
+    <Menu className="el-menu-demo" mode="horizontal" onSelect={onSelect}>
     <Layout.Row >
         <Layout.Col span="16">
         <Menu.Item  className="logo" index="1" to="/home" >Examica</Menu.Item>
         </Layout.Col>
         <Layout.Col span="8" className="listOfContent">
-        <Menu.Item index="2" to="/home" >Home</Menu.Item>
-        <Menu.Item index="3" to="/pricing" >Pricing</Menu.Item>
-        <Menu.Item index="4" to="/aboutus" >About us</Menu.Item>
-        <Menu.Item index="5" to="/contact" >Contact</Menu.Item>
+        <Menu.Item index="2" to="home" >Home</Menu.Item>
+        <Menu.Item index="3" to="pricing" >Pricing</Menu.Item>
+        <Menu.Item index="4" to="aboutus" >About us</Menu.Item>
+        <Menu.Item index="5" to="contactus" >Contact</Menu.Item>
         </Layout.Col>
       </Layout.Row>
       </Menu>

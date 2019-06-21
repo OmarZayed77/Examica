@@ -2,11 +2,11 @@ import React from 'react';
 import { Card } from 'element-react/next';
 import '../exam/exam.css';
 import Moment from 'moment';
+import {withRouter} from 'react-router-dom';
 
 const Exam = (props) => {
-  console.log(props);
   return (
-    <div className="Exam">
+    <div className="Exam" onClick={()=>{props.history.push(`/exams/${props.id}`)}}>
           <Card className="Exam-card" >
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqw8Gh5-Kn4tJ0BA6JIAJvLzzRW33hIRTrEg5Oseg8QGOGp0KrkQ" alt="Exam Img"/>
             <div className="bottom clearfix Exam-Details">
@@ -20,4 +20,4 @@ const Exam = (props) => {
 };
 
 
-export default Exam;
+export default withRouter(Exam);
