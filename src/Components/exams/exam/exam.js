@@ -6,8 +6,8 @@ const Exam = (props) => {
   return (
     <div className="Exam">
           <Card className="Exam-card" >
-            <img src="https://www.ecmag.com/sites/default/files/styles/article_medium/public/article_images/thumb_images/test_examine_dreamstime_14882569_2.jpg?itok=BaDalmat" alt="Exam Img" />
-            <div style={{ padding: 14 }}>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqw8Gh5-Kn4tJ0BA6JIAJvLzzRW33hIRTrEg5Oseg8QGOGp0KrkQ" alt="Exam Img"/>
+            <div>
               <span>{props.name}</span>
               <div className="bottom clearfix">
                 <time className="time">{props.startDate}</time>

@@ -1,15 +1,26 @@
+.Exam *
+{
+    padding: 0px;
+}
+.Exam .el-card
+{
+    border: 2px solid #d1dbe500;
+    border-radius: 14px;
+}
 
 .Exam .Exam-card
 {
     width:16rem;
-    margin-left: 6.5rem;
-    margin-top: 5rem;    
+    height: 22rem;
+}
+
+.Exam .el-card  div
+{
+    padding: 0px;
 }
 
 .Exam img
 {
-    width: 12.9rem;
-    margin-top: -51px;
-    margin-left: 0rem;
+    width: 100%;
 }
 
