@@ -45,7 +45,7 @@ class App extends Component {
           <Switch>
             <Redirect from="/home" to="/" />
             <Route path="/profile" component={Profile} />
-            <Route path="/organization/buy" component={AddOrganization} />
+            <Route path="/buyOrg" component={AddOrganization} />
             <Route path="/organization/exams" component={Exam} />
             <Route path="/organization/:id" component={OrganizationPage} />
             <Route path="/register" component={Register} />

@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
       <div className="Footer">
-        <Menu theme="dark" defaultActive="1" className="el-menu-demo" mode="horizontal">
+        <Menu theme="dark" className="el-menu-demo" mode="horizontal">
           <Menu.Item index="0" to="/">Home</Menu.Item>
           <Menu.Item index="1" to="/pricing">Pricing</Menu.Item>
           <Menu.Item index="2" to="/about Us">About Us</Menu.Item>
