@@ -84,7 +84,7 @@ namespace UI.Examica.API.Controllers
         {
             AppUser owner = await userManager.GetUserAsync(User);
             owner = unitOfWork.AppUsers.GetUserWithOrgs(owner.Id);
-            if (!owner.IsOwnerOfOrg(Roles.OrganizationId)) return Forbid();
+            if (!(owner.IsOwnerOfOrg(Roles.OrganizationId) || owner.IsAdminOfOrg(Roles.OrganizationId))) return Forbid();
             AppUser user = unitOfWork.AppUsers.GetUserWithOrgs(Roles.UserId);
             if(user == null) return BadRequest();
             if(! await unitOfWork.Organizations.IsExistedAsync(org => org.Id == Roles.OrganizationId)) return BadRequest();
