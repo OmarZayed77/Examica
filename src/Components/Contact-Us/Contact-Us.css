@@ -1,3 +1,7 @@
+.ContactUs
+{
+    padding: 121px 0;
+}
 
 .ContactUs .ContactUs-Info *
 {
@@ -13,56 +17,4 @@
 {
     
     color: #B8B5BF;
-}
-
-.ContactUs .ContactUs-details *
-{
-   display: flex;
-   justify-content: flex-end;
-   flex-direction: column;
-}
-
-.ContactUs .ContactUs-details
-{
-    margin-top: 44px;
-    margin-left: 112px;
-}
-
-.ContactUs .ContactUs-details .fa-map-marker-alt
-{   
-     border-radius: 30.5px;
-     border: 13px solid #B8B5BF;
-     color: #2D2D47;
-     width: 42px;
-     background-color: #B8B5BF;
-}
-
-
-.ContactUs .ContactUs-details .fa-phone
-{   
-     border-radius: 20.5px;
-     border: 13px solid #7BB9FF;
-     color: #2D2D47;
-     width: 44px;
-     background-color: #7BB9FF;
-}
-
-.ContactUs .ContactUs-details .fa-envelope
-{   
-     border-radius: 20.5px;
-     border: 13px solid #FF8A73;
-     color: #2D2D47;
-     width: 44px;
-     background-color: #FF8A73;
-}
-
-.ContactUs .ContactUs-details h5 
-{
-   font-size: 1rem ;
-}
-
-.ContactUs .ContactUs-details p 
-{
-    color: #B8B5BF;
-    
 }

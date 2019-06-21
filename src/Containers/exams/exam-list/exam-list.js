@@ -20,12 +20,12 @@ class ExamList extends Component {
     {
         examlist = this.props.exams.map((ex,index) => {
           return (
-            <Layout.Col key={index} span={8} offset={0}>
+        <Layout.Col key={index} span={5} offset={1}>
         <Exam
           id={ex.id}
           name={ex.name}
-          startdate={ex.startdate}
-          endDate={ex.endDate}
+          startDate={ex.startDateTime}
+          endDate={ex.endDateTime}
           numberOfQuestions={ex.questions.length}
           />
         </Layout.Col>
