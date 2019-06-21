@@ -6,7 +6,7 @@ const MiddleNavbar = () => {
     <Layout.Row>
     <Layout.Col span={24}>
       <div>
-        <Menu theme="dark" defaultActive="1" className="el-menu-demo" mode="horizontal">
+        <Menu theme="dark"  className="el-menu-demo" mode="horizontal">
           <Menu.Item index="1"><i className="fas fa-user-circle"></i> Profile</Menu.Item>
           <Menu.Item index="1"><i className="fas fa-cogs"></i> Account Settings</Menu.Item>
           <Menu.Item index="3"><i className="fas fa-user-cog"></i> Admin Info</Menu.Item>
