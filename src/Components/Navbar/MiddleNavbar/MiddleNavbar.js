@@ -1,4 +1,5 @@
 import React from 'react';
+import {Layout,Menu} from 'element-react/next';
 
 const MiddleNavbar = () => {
   return(

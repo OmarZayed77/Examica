@@ -3,12 +3,17 @@ import { connect } from "react-redux";
 import { setToken } from "../Store/Actions/authActions";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "element-theme-default";
+
 import Nav from "./../Components/Navbar/Navbar";
+
+import Home from '../Pages/Home-Page/Home-Page';
 import Profile from '../Pages/Profile-Page/Profile-Page'
 import Register from '../Containers/Account/Register/Register';
 import Login from '../Containers/Account/Login/Login';
 import LogOut from '../Components/LogoutButton/LogoutButton';
 import Footer from '../Components/Footer';
+import Organization from '../Pages/organizationPage';
+
 import * as orgActions from "../Store/Actions/organizationActions";
 import "./App.css";
 import ContactUs from '../Containers/Contact-Us'
@@ -30,13 +35,15 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Nav />
+          <Nav/>
           <Switch>
             <Redirect from="/home" to="/" />
+            <Route path="/home" component={Home}></Route>
             <Route path="/profile" component={Profile}></Route>
             <Route path="/register" component={Register}></Route>
             <Route path="/Login" component={Login}></Route>
             <Route path="/LogOut" component={LogOut}></Route>
+            <Route path="/org/:id" component={Organization}></Route>
             <Route
               render={() => {
                 return "not found!!!";
