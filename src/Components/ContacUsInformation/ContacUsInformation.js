@@ -4,11 +4,15 @@ import './ContacUsInformation.css'
 
 const ContacUsInformation = (props) => {
   return (
-<>
-        <i className={props.icon}></i>
-        <h5>{props.name}</h5>
-        <p>{props.description}</p>
-</>
+    <div className="ContacUsInformation">
+        <div className="ContacUsInformation-Icon">
+          <i className={props.icon}></i>
+        </div>
+        <div>
+          <span>{props.name}</span>
+          <p>{props.description}</p>
+        </div>
+    </div>
   );
 };
 

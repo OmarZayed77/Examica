@@ -7,7 +7,6 @@ const examReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case examActions.ADD:
 			newState.push(action.payload);
-			console.log(action.payload, 'was added!');
 			break;
 
 		case examActions.GET:
