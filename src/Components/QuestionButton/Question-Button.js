@@ -4,7 +4,7 @@ import {Button} from 'element-react/next';
 
 const QuestionButton = (props) => {
   return  (
-            <Link to ={`/${props.type}`}>
+            <Link to ={`${props.type}`}>
                 <Button type="primary"  size="small"><i className={props.icon}></i>{props.name}</Button> 
             </Link>
   );

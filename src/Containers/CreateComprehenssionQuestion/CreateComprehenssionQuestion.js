@@ -98,30 +98,22 @@ class CreateComprehenssionQuestion extends Component {
           <Button onClick={this.handleReset.bind(this)}>Reset</Button>
         </Form.Item>
 
-        <Form.Item prop="Title">
+        <Form.Item prop="Type">
           <Layout.Row>
             <Layout.Col span={20}>
               <label>{this.state.form.Type}</label>
             </Layout.Col>
           </Layout.Row>
-
-          <Layout.Row>
-            <Layout.Col span={15}>
-              <Input
-                value={this.state.form.Title}
-                onChange={this.onChange.bind(this, "Title")}
-                placeholder="Please Type Your Question Here"
-              />
-            </Layout.Col>
-          </Layout.Row>
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item prop="Title">
           <Layout.Row>
             <Layout.Col span={15}>
               <Input
                 type="textarea"
-                placeholder="Please Type Your Paragraph here"
+                value={this.state.form.Title}
+                onChange={this.onChange.bind(this, "Title")}
+                placeholder="Please Type Your Paragraph here followed by the question title... "
                 autosize={{ minRows: 4, maxRows: 4 }}
               />
             </Layout.Col>

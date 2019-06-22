@@ -13,7 +13,6 @@ import PricingPlan from "../Pages/PricingPlan";
 import * as orgActions from "../Store/Actions/organizationActions";
 import Exam from '../Containers/exams/exam-list';
 import AboutUs from '../Components/AboutUs';
-import "./App.css";
 import Home from "../Pages/Home-Page";
 import OrganizationPage from "../Pages/organizationPage";
 import AddOrganization from "../Containers/AddOrgnization";
@@ -21,17 +20,19 @@ import ComprehenssionQuestion from "../Containers/CreateComprehenssionQuestion";
 import ChoiseQuestion from "../Containers/CreateChoiseQuestion";
 import CreateQuestion from '../Components/CreateQuestion';
 import TrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion'
+import "./App.css";
 import UpperNav from '../Components/Navbar/upperNavbar';
 import LowerNav from '../Components/Navbar/lowerNavbar';
 import MiddleNav from '../Components/Navbar/MiddleNavbar';
-import ExamAdd from "../Containers/exams/exam-add/exam-add";
+import ExamAdd from "../Containers/exams/exam-add/exam-add"; 
 import ContactUs from '../Components/Contact-Us';
 import UntiteldQuestion from "../Components/Untiteld-Question/Untiteld-Question";
+import AssignRole from "../Containers/assignRole/assignRole";
 
 class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.props.setToken();
+      this.props.setToken(localStorage.getItem("userId"), localStorage.getItem("token"));
     }
   }
 
@@ -43,11 +44,13 @@ class App extends Component {
       <>
         {loading}
         <BrowserRouter>
-          <UpperNav />
-          <Switch>
-            <Route path="/organization" component={MiddleNav}/>>
-            <Route component={LowerNav}/>>
-          </Switch>
+          <div>
+            <UpperNav />
+            <Switch>
+              <Route path="/organization" component={MiddleNav}/>>
+              <Route component={LowerNav}/>>
+            </Switch>
+          </div>
           <Switch>
             <Redirect from="/home" to="/" />
             <Route path="/profile" component={Profile} />
@@ -59,13 +62,14 @@ class App extends Component {
             <Route path="/LogOut" component={LogOut} />
             <Route path="/Pricing" component={PricingPlan} />
             <Route path="/aboutus" component={AboutUs} />
-            <Route path="/exams/add" component={ExamAdd}/>
             <Route path="/contactus" component={ContactUs} />
             <Route path="/untiteldq" component={UntiteldQuestion} />
-            <Route path="/ComprehenssionQuestion" component={ComprehenssionQuestion} />
-            <Route path="/ChoiseQuestion" component={ChoiseQuestion} />   
             <Route path="/createquestion" component={CreateQuestion} />   
-            <Route path="/TrueOrFalseQuestion" component={TrueOrFalseQuestion} />   
+            <Route path="/exams/add" component={ExamAdd}/>
+            <Route path="/users/assign" component={AssignRole}/>
+            <Route path="/CreateQuestion/TrueOrFalseQuestion" component={TrueOrFalseQuestion} />
+            <Route path="/CreateQuestion/ComprehenssionQuestion" component={ComprehenssionQuestion} />
+            <Route path="/CreateQuestion/ChoiseQuestion" component={ChoiseQuestion} />            
             <Route path="/" exact component={Home} />
             <Route
               render={() => {
@@ -82,7 +86,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setToken: token => dispatch(setToken(token)),
+    setToken: (userId, token) => dispatch(setToken(userId, token)),
     getOrgs: token => dispatch(orgActions.getAll(token))
   };
 };

@@ -18,8 +18,9 @@
     line-height: 0px;
 }
 .upperNavbar .userIcon {
-    min-width: 50px;
+    /* min-width: 50px; */
     padding: 0;
+    font-size: 30px;
 }
 .upperNavbar  .UpperNavbar-pic{
     width: 50px;
@@ -33,4 +34,10 @@
 }
 .upperNavbar .UpperNavbar-dropDown div{
     padding: 0px;
+}
+
+.UserEmail
+{
+    font-size: 16px;
+    color: #58488C;
 }

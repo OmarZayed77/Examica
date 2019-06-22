@@ -91,7 +91,8 @@ class Login extends Component {
     Notification({
       title: 'Warning',
       message: 'Enter Valid Data First!',
-      type: 'warning'
+      type: 'warning',
+      offset: 100
     });
   }
 
@@ -99,13 +100,15 @@ class Login extends Component {
     Notification({
       title: 'Error',
       message: 'Login Failed! Please Try Again',
-      type: 'error'
+      type: 'error',
+      offset: 100
     });
   }
 
   render() {
     return (
       <>
+        <div className="Login-title">Login</div>
         <Layout.Row
           className="Login"
           gutter="10"

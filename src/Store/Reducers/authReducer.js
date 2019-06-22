@@ -12,8 +12,8 @@ const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case authActions.TOKEN:
 			newState.isLoggedIn = true;
-			newState.token = localStorage.getItem("token");
-			newState.userId = localStorage.getItem("userId");
+			newState.token = action.payload.token;
+			newState.userId = action.payload.userId;
 			break;
 		case authActions.REGISTER:
 		case authActions.LOGIN:

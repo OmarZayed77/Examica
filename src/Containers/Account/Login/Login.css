@@ -1,3 +1,11 @@
 .Login{
-    margin: 4rem;
+    margin: 6.5rem;
+}
+
+.Login-title{
+    padding: 1rem;
+    text-align: center;
+    color:#FF8A73;
+    font-size: 2rem;
+    font-weight: 400px;
 }

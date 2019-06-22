@@ -33,7 +33,11 @@ export const login = (user) => {
                     dispatch(loginUserSuccess(response.data));
                 }
                 else dispatch({type: SUBMIT_ERROR});
-                dispatch({type: "Loaded"});
+                userAPI.getUserById(response.data.userId, "bearer " + response.data.token)
+                .then( res => {
+                    if(res.status === 200) dispatch({type:"GET_ACTIVE_USER", payload: res.data});
+                    dispatch({type: "Loaded"});
+                });
             })
             .catch(err => {
                 dispatch({type: SUBMIT_ERROR});
@@ -51,7 +55,11 @@ export const register = (user) => {
                     dispatch(registerUserSuccess(response.data));
                 }
                 else dispatch({type: SUBMIT_ERROR});
-                dispatch({type: "Loaded"});
+                userAPI.getUserById(response.data.userId, "bearer " + response.data.token)
+                .then( res => {
+                    if(res.status === 200) dispatch({type:"GET_ACTIVE_USER", payload: res.data});
+                    dispatch({type: "Loaded"});
+                });
             })
             .catch(err => {
                 dispatch({type: SUBMIT_ERROR});
@@ -60,8 +68,14 @@ export const register = (user) => {
     }
 }
 
-export const setToken = () => {
+export const setToken = (userId, token) => {
     return dispatch => {
-        dispatch({ type: TOKEN})
+        dispatch({type: "IsLoading"});
+        dispatch({ type: TOKEN, payload: {userId, token}})
+        userAPI.getUserById(userId, token)
+        .then( res => {
+            if(res.status === 200) dispatch({type:"GET_ACTIVE_USER", payload: res.data});
+            dispatch({type: "Loaded"});
+        });
     }
 }

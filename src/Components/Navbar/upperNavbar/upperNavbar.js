@@ -6,10 +6,12 @@ import LogOutButton from "../../LogoutButton";
 import "./upperNavbar.css";
 
 class UpperNavbar extends Component {
+
   onSelect = (index, indexPath, item) => {
     if (item.props.to) this.props.history.push(item.props.to);
   };
   render() {
+    console.log(this.props.user.email);
     let orgs = null;
     if(this.props.orgs.length > 0) {
       orgs= (
@@ -32,15 +34,16 @@ class UpperNavbar extends Component {
             <LogOutButton />
           </Menu.Item>
 
-          <Menu.Item index="0" className="userIcon" to="/profile">
-            <div className="UpperNavbar-pic" />
-          </Menu.Item>
-
           <Menu.SubMenu index="1" title="">
             <Menu.Item index="2-1" to="/profile">Profile</Menu.Item>
             <Menu.Item index="2-2" to="/buyOrg">Buy a new Organization</Menu.Item>
             {orgs}
           </Menu.SubMenu>
+          <Menu.Item index="0" className="userIcon" to="/profile">
+            <i className="fas fa-user-circle"></i>
+            <span className="UserEmail"> {(this.props.user.userName) ? this.props.user.userName : ""}</span>
+          </Menu.Item>
+
         </>
       );
     } else {
@@ -64,7 +67,7 @@ class UpperNavbar extends Component {
           onSelect={this.onSelect.bind(this)}
         >
           <Layout.Row>
-            <Layout.Col span="18">
+            <Layout.Col span="17">
               <Menu.Item index="1">
                 <a href="https://facebook.com">
                   <i className="fab fa-facebook-f" />
@@ -82,7 +85,7 @@ class UpperNavbar extends Component {
               </Menu.Item>
             </Layout.Col>
             {btns}
-            <Layout.Col span="4" className="listOfContent" />
+            <Layout.Col span="5" className="listOfContent" />
           </Layout.Row>
         </Menu>
       </div>
@@ -93,7 +96,8 @@ const mapStateToProps = state => {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     token: state.auth.token,
-    orgs: state.organizations.all
+    orgs: state.organizations.all,
+    user: state.users.activeUser
   };
 };
 

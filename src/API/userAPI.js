@@ -7,6 +7,10 @@ export const getAllUsers = (orgId,token)=>{
 
 }
 
+export const getUserById = (id,token)=>{
+    return Axios.get(`${URL}/api/users/${id}`, {headers: {Authorization: token}});
+}
+
 export const getUser = (userId,orgId,token)=>{
     return Axios.get(`${URL}/api/users/${userId}/${orgId}`, {headers:{Authorization:token}})
 }
@@ -20,5 +24,10 @@ export const login = (user) => {
 }
 
 export const register = (user) => {
+    let arr = user.name.split('');
+    user.name = arr.reduce((res, el) => {
+        if(el !== " ") res = res + el;
+        return res;
+    } ,"");
     return  Axios.post(`${URL}/api/account/register`, user);
 }
