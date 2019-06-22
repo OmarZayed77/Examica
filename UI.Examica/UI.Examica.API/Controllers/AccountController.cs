@@ -59,7 +59,7 @@ namespace UI.Examica.API.Controllers
         {
             var user = new AppUser
             {
-                UserName = model.Email,
+                UserName = model.Name,
                 Email = model.Email
             };
             var result = await _userManager.CreateAsync(user, model.Password);

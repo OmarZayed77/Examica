@@ -28,7 +28,7 @@ namespace UI.Examica.API.Controllers
             userManager = _userManager;
         }
 
-        // GET: api/Exams
+        // GET: api/users
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
@@ -71,6 +71,19 @@ namespace UI.Examica.API.Controllers
                 IsExaminee = user.IsExamineeOfOrg(orgId),
                 IsObserver = user.IsObserverOfOrg(orgId)
             };
+            return Ok(userDto);
+        }
+
+        // GET: api/users/1
+        [HttpGet("{userId}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUserById(string userId)
+        {
+            AppUser user = await unitOfWork.AppUsers.GetById(userId);
+            if (user == null) return NotFound();
+            UserDto userDto = Mapper.Map<UserDto>(user);
             return Ok(userDto);
         }
 

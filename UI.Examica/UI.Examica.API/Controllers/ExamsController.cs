@@ -40,6 +40,22 @@ namespace UI.Examica.API.Controllers
             return Ok(Mapper.Map<List<ExamDto>>(await unitOfWork.Exams.GetAll()));
         }
 
+        // GET: api/Examinee
+        [HttpGet("examinee")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<Exam>>> GetExamsByExaminee()
+        {
+            AppUser user = await userManager.GetUserAsync(User);
+            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
+            List<OrganizationExaminee> organizations = user.OrganizationExaminees;
+            List<Exam> exams = new List<Exam>();
+            foreach (OrganizationExaminee orgE  in organizations)
+            {
+                exams.AddRange(await unitOfWork.Exams.Find(e => e.OrganizationId == orgE.OrgnaizationId));
+            }
+            return Ok(Mapper.Map<List<ExamDto>>(exams));
+        }
+
         // GET: api/Exams/5
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
