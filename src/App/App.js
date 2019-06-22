@@ -13,7 +13,6 @@ import PricingPlan from "../Pages/PricingPlan";
 import * as orgActions from "../Store/Actions/organizationActions";
 import Exam from '../Containers/exams/exam-list';
 import AboutUs from '../Components/AboutUs';
-import "./App.css";
 import Home from "../Pages/Home-Page";
 import OrganizationPage from "../Pages/organizationPage";
 import AddOrganization from "../Containers/AddOrgnization";
@@ -60,8 +59,8 @@ class App extends Component {
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/exams/add" component={ExamAdd}/>
             <Route path="/contactus" component={ContactUs} />
-            <Route path="/ComprehenssionQuestion" component={ComprehenssionQuestion} />
-            <Route path="/ChoiseQuestion" component={ChoiseQuestion} />            
+            <Route path="/CreateQuestion/ComprehenssionQuestion" component={ComprehenssionQuestion} />
+            <Route path="/CreateQuestion/ChoiseQuestion" component={ChoiseQuestion} />            
             <Route path="/" exact component={Home} />
             <Route
               render={() => {
