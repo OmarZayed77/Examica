@@ -34,7 +34,7 @@ const userReducer =(state=initial,action)=>{
             break;
 
     }
-    console.log("active", newActiveUser, "add role", newUser,"all",  newArrOfUsers, "exams", newArrOfExams);
+    // console.log("active", newActiveUser, "add role", newUser,"all",  newArrOfUsers, "exams", newArrOfExams);
     return {
             allUsers:newArrOfUsers,
             oneUser:newUser,

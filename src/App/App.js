@@ -10,10 +10,9 @@ import Login from "../Containers/Account/Login/Login";
 import Footer from "../Components/Footer";
 import PricingPlan from "../Pages/PricingPlan";
 import * as orgActions from "../Store/Actions/organizationActions";
-import Exam from '../Containers/exams/exam-list';
 import AboutUs from '../Components/AboutUs';
 import Home from "../Pages/Home-Page";
-import OrganizationPage from "../Pages/organizationPage";
+import Organization from "../Containers/organization";
 import AddOrganization from "../Containers/AddOrgnization";
 import ComprehenssionQuestion from "../Containers/CreateComprehenssionQuestion";
 import ChoiseQuestion from "../Containers/CreateChoiseQuestion";
@@ -76,8 +75,7 @@ class App extends Component {
             <Redirect from="/home" to="/" />
             <Route path="/profile" component={Profile} />
             <Route path="/buyOrg" component={AddOrganization} />
-            <Route path="/organization/exams" component={Exam} />
-            <Route path="/organization/:id" component={OrganizationPage} />
+            <Route path="/organization/:id" component={Organization} />
             <Redirect from="/register" to="/" />
             <Redirect from="/Login" to="/" />
             <Route path="/Pricing" component={PricingPlan} />

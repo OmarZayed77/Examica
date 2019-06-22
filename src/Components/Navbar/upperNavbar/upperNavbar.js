@@ -11,7 +11,6 @@ class UpperNavbar extends Component {
     if (item.props.to) this.props.history.push(item.props.to);
   };
   render() {
-    console.log(this.props.user.email);
     let orgs = null;
     if(this.props.orgs.length > 0) {
       orgs= (

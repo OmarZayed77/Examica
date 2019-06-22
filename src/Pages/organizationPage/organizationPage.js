@@ -3,32 +3,26 @@ import {Button, Layout } from 'element-react/next';
 import './organizationPage.css'
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import * as orgActions from '../../Store/Actions/organizationActions';
+// import * as orgActions from '../../Store/Actions/organizationActions';
 
 class OrganizationPage extends Component {
   
-
-  componentDidMount() {
-    //get org by id from url
-    this.props.onSelect(this.props.match.params.id);
-  } 
-
   nextPath(path) {
     this.props.history.push(path);
   }
 
 
   render() {
-    let PricingPlanId = 1;
+    let PricingPlanId = this.props.org.pricingPlanId;
     let PricingPlan= <div></div>;
     switch (PricingPlanId) {
-      case 0:
+      case 2:
         PricingPlan = "Basic";
         break;
-        case 1:
+        case 3:
           PricingPlan = "Pro";
           break;
-          case 2:
+          case 4:
             PricingPlan = "Pro +";
             break;
       default:
@@ -51,7 +45,7 @@ class OrganizationPage extends Component {
         </Layout.Col>
         <Layout.Col lg={10}>
         <Layout.Row className="container-rows">
-        Company Name : {this.props.org.Name}
+        Company Name : {this.props.org.name}
         </Layout.Row>
         <Layout.Row className="container-rows">
         Pricing Plan : {PricingPlan}
@@ -73,10 +67,4 @@ const mapStateToprops = state => {
   }
 }
 
-const mapDispatchToprops = dispatch => {
-  return {
-    onSelect: (id) => dispatch(orgActions.getCurrent(id)),
-  }
-}
-
-export default withRouter(connect(mapStateToprops, mapDispatchToprops)(OrganizationPage));
+export default withRouter(connect(mapStateToprops)(OrganizationPage));

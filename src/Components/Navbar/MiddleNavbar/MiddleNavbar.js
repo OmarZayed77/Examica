@@ -13,7 +13,7 @@ const MiddleNavbar = (props) => {
     <Layout.Col span={24}>
       <div className="MiddleNavbar">
         <Menu className="el-menu-demo" mode="horizontal" onSelect={onSelect}>
-          <Menu.Item  className="logo" index="1" to={`/organization/${props.org.id}`}>{props.org.Name}Institute</Menu.Item>
+          <Menu.Item  className="logo" index="1" to={`/organization/${props.org.id}`}>{props.org.name}</Menu.Item>
           <Menu.Item index="1" to={`/organization/${props.org.id}`}><i className="fas fa-user-circle"></i> Organization Profile</Menu.Item>
           <Menu.Item index="2" to='/exams/add'><i className="fas fa-stream"></i> Build Exam</Menu.Item>
           <Menu.Item index="3" to='/organization/question'><i className="fas fa-question"></i> Questions Pool</Menu.Item>
@@ -29,7 +29,7 @@ const MiddleNavbar = (props) => {
 
 export const mapStateToProps = state => {
   return {
-    org : state.organizations.currentOrgnaziation,
+    org : state.organizations.currentOrgnaziation
   }
 }
 
