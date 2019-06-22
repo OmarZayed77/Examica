@@ -16,7 +16,7 @@ const Footer = (props) => {
           <Menu.Item index="0" to="/home">Home</Menu.Item>
           <Menu.Item index="1" to="/pricing">Pricing</Menu.Item>
           <Menu.Item index="2" to="/aboutus">About Us</Menu.Item>
-          <Menu.Item index="3" to="/contact">Contact</Menu.Item>
+          <Menu.Item index="3" to="/contactus">Contact</Menu.Item>
         </Menu>
           <p>Copyright &copy; 2019 | Designed by  <span> Examica</span></p>
           <div className="SocialLinks">
