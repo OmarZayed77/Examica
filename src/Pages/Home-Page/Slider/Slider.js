@@ -2,13 +2,13 @@ import React from "react";
 import { Layout, Button } from "element-react/next";
 import "./Slider.css";
 import {withRouter} from 'react-router-dom';
+import { connect } from "react-redux";
 
 const Slider = (props) => {
-  const takeATour = () => {
-    props.history.push("/");
-  }
+ 
   const freeTrial = () => {
-    props.history.push("organization/buy");
+    if(props.isLoggedIn) props.history.push("/buyOrg");
+    else props.history.push("/register");
   }
   return (
     <div>
@@ -21,7 +21,6 @@ const Slider = (props) => {
           </p>
           <div className="buttons">
             <Button className="Buttonprimary" onClick={freeTrial}>Free Trial</Button>
-            <Button className="Buttonsecondry" onClick={takeATour}>Take a tour</Button>
           </div>
           <div className="background-1" />
         </div>
@@ -30,4 +29,10 @@ const Slider = (props) => {
   );
 };
 
-export default withRouter(Slider);
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(Slider));

@@ -11,11 +11,6 @@ class ProfilePage extends Component {
     super(props);
 
     this.state = {
-      activeUser: {
-        name: "fatma",
-        email: "fatma@gmail.com",
-        phone: "01159751361"
-      },
       Exams: []
     };
   }
@@ -60,15 +55,11 @@ class ProfilePage extends Component {
               <Layout.Col>
                 <div className="ProfilePage-info">
                   <h3 className="ProfilePage-info-name">
-                    {this.state.activeUser.name}
+                    {this.props.activeUser.userName}
                   </h3>
                   <p>
                     <i className="fas fa-envelope ProfilePage-info-icon" />
-                    {this.state.activeUser.email}
-                  </p>
-                  <p>
-                    <i className="fas fa-phone ProfilePage-info-icon" />
-                    {this.state.activeUser.phone}
+                    {this.props.activeUser.email}
                   </p>
                 </div>
               </Layout.Col>
@@ -93,7 +84,8 @@ const mapStateToProps = state => {
   return {
     token: state.auth.token,
     userId: state.auth.userId,
-    orgId: state.organizations.currentOrgnaziation
+    orgId: state.organizations.currentOrgnaziation,
+    activeUser: state.users.activeUser
   };
 };
 

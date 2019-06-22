@@ -87,7 +87,8 @@ class Register extends Component {
     Notification({
       title: 'Warning',
       message: 'Enter Valid Data First!',
-      type: 'warning'
+      type: 'warning',
+      offset: 100
     });
   }
 
@@ -95,7 +96,8 @@ class Register extends Component {
     Notification({
       title: 'Error',
       message: 'You have already Registered with this email before',
-      type: 'error'
+      type: 'error',
+      offset: 100
     });
   }
   

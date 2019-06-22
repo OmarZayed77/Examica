@@ -24,13 +24,13 @@ import "./App.css";
 import UpperNav from '../Components/Navbar/upperNavbar';
 import LowerNav from '../Components/Navbar/lowerNavbar';
 import MiddleNav from '../Components/Navbar/MiddleNavbar';
-import ExamAdd from "../Containers/exams/exam-add/exam-add";
+import ExamAdd from "../Containers/exams/exam-add/exam-add"; 
 import ContactUs from '../Components/Contact-Us';
 
 class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.props.setToken();
+      this.props.setToken(localStorage.getItem("userId"), localStorage.getItem("token"));
     }
   }
 
@@ -42,11 +42,13 @@ class App extends Component {
       <>
         {loading}
         <BrowserRouter>
-          <UpperNav />
-          <Switch>
-            <Route path="/organization" component={MiddleNav}/>>
-            <Route component={LowerNav}/>>
-          </Switch>
+          <div>
+            <UpperNav />
+            <Switch>
+              <Route path="/organization" component={MiddleNav}/>>
+              <Route component={LowerNav}/>>
+            </Switch>
+          </div>
           <Switch>
             <Redirect from="/home" to="/" />
             <Route path="/profile" component={Profile} />
@@ -79,7 +81,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setToken: token => dispatch(setToken(token)),
+    setToken: (userId, token) => dispatch(setToken(userId, token)),
     getOrgs: token => dispatch(orgActions.getAll(token))
   };
 };
