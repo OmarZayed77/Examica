@@ -12,61 +12,37 @@ class QuestionsList extends Component {
         id: 1,
         name: "Multiple Choise",
         icon: "fas fa-dot-circle",
-        type: "/CreateQuestion/CreateChoiseQuestion/"
+        type: "ChoiseQuestion/"
       },
       {
 
         id: 2,
         name: "Checkbox",
         icon: "fas fa-check-square",
-        type: '/CreateQuestion/CreateChoiseQuestion/'
+        type: 'ChoiseQuestion/'
       },
       {
 
         id: 3,
         name: "TrueOrFalse",
         icon: "fas fa-times-circle",
-        type: '/CreateQuestion/CreateTrueOrFalseQuestion/'
+        type: 'TrueOrFalseQuestion/'
 
       },
       {
 
         id: 4,
-        name: "FillInTheBlank",
-        icon: "fas fa-fill-drip",
-        type: '/CreateQuestion/CreateFillInTheBlankQuestion/'
+        name: "Comprehenssion",
+        icon: "fas fa-align-center",
+        type: 'ComprehenssionQuestion/'
 
       },
       {
 
         id: 5,
-        name: "Matching",
-        icon: "fas fa-random",
-        type: '/CreateQuestionCreateMatchingQuestion'
-
-      },
-      {
-
-        id: 6,
-        name: "Essay",
-        icon: "fas fa-align-justify",
-        type: '/CreateQuestionCreateEssayQuestion'
-
-      },
-      {
-
-        id: 7,
-        name: "Comprehenssion",
-        icon: "fas fa-align-center",
-        type: 'CreateQuestionCreateComprehenssionQuestion'
-
-      },
-      {
-
-        id: 8,
         name: "Import questions",
         icon: "fas fa-file-import",
-        type: 'CreateQuestionCreateImportQuestion'
+        type: 'ImportQuestion/'
 
       },
     ]
@@ -79,7 +55,7 @@ class QuestionsList extends Component {
         id={btn.id}
         name={btn.name}
         icon={btn.icon}
-        type={btn.type}
+        type={"CreateQuestion/" + btn.type}
         className="questionlist"
         />
         </Layout.Col>

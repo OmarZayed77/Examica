@@ -38,7 +38,7 @@ class UpperNavbar extends Component {
 
           <Menu.SubMenu index="1" title="">
             <Menu.Item index="2-1" to="/profile">Profile</Menu.Item>
-            <Menu.Item index="2-2" to="/organization/buy">Buy a new Organization</Menu.Item>
+            <Menu.Item index="2-2" to="/buyOrg">Buy a new Organization</Menu.Item>
             {orgs}
           </Menu.SubMenu>
         </>
