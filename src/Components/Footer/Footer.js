@@ -13,7 +13,7 @@ const Footer = (props) => {
     <>
       <div className="Footer">
         <Menu theme="dark"  className="el-menu-demo" mode="horizontal" onSelect={onSelect}>
-          <Menu.Item index="0" to="/home">Home</Menu.Item>
+          <Menu.Item index="0" to="/">Home</Menu.Item>
           <Menu.Item index="1" to="/pricing">Pricing</Menu.Item>
           <Menu.Item index="2" to="/aboutus">About Us</Menu.Item>
           <Menu.Item index="3" to="/contact">Contact</Menu.Item>
