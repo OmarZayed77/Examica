@@ -4,6 +4,7 @@ export const ADD = 'ADD';
 export const EDIT = 'EDIT';
 export const DELETE = 'DELETE';
 export const GET = 'GET';
+export const GET_USER_EXAMS = 'GET_USER_EXAMS';
 
 export const add = (exam, orgId, token) => {
 	return (dispatch) => {
@@ -35,4 +36,20 @@ export const get = (orgId, token) =>{
 		console.error(err);
 	  });
  }
+}
+
+export const getByUser = (token) =>{
+	return (dispatch) => {
+		 dispatch({type: "IsLoading"});
+		 examsAPI.getByUser(token)
+		 .then(res => {
+			 console.log(res.data);
+			 dispatch({type: GET_USER_EXAMS , payload : res.data})
+			 dispatch({type: "Loaded"});
+		 })
+		 .catch(err => {
+		   dispatch({type: "Loaded"});
+		   console.error(err);
+		 });
+	}
 }

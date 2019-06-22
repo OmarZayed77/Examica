@@ -7,13 +7,15 @@ const initial ={
         {Id: "1", UserName: "Dina", PhoneNumber: "011" , Email: "d@gmail.com"},
     ],
     oneUser :null,
-    activeUser: null
+    activeUser: null,
+    exams: []
 };
 
 const userReducer =(state=initial,action)=>{
     let newUser={...state.oneUser}
     let newArrOfUsers=[...state.allUsers];
     let newActiveUser= {...state.activeUser}
+    let newArrOfExams = [...state.exams]
     switch(action.type){
         case userActions.GET_ALL:
             newArrOfUsers=action.payload
@@ -25,15 +27,19 @@ const userReducer =(state=initial,action)=>{
         case userActions.ADD_ROLE:
             newUser=action.payload
             break;
+        case "GET_USER_EXAMS":
+            newArrOfExams= action.payload;
+            break;
       default:
             break;
 
     }
-    console.log("active", newActiveUser, "add role", newUser,"all",  newArrOfUsers);
+    console.log("active", newActiveUser, "add role", newUser,"all",  newArrOfUsers, "exams", newArrOfExams);
     return {
             allUsers:newArrOfUsers,
             oneUser:newUser,
-            activeUser: newActiveUser
+            activeUser: newActiveUser,
+            exams: newArrOfExams
     }
 }
 export default userReducer;

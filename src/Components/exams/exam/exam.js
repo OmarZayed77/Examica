@@ -5,8 +5,12 @@ import Moment from 'moment';
 import {withRouter} from 'react-router-dom';
 
 const Exam = (props) => {
+  const onClick = () => {
+    if(props.isExaminee) props.history.push(`/exams/examinee/${props.id}`);
+    else props.history.push(`/exams/${props.id}`);
+  }
   return (
-    <div className="Exam" onClick={()=>{props.history.push(`/exams/${props.id}`)}}>
+    <div className="Exam" onClick={onClick}>
           <Card className="Exam-card" >
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqw8Gh5-Kn4tJ0BA6JIAJvLzzRW33hIRTrEg5Oseg8QGOGp0KrkQ" alt="Exam Img"/>
             <div className="bottom clearfix Exam-Details">

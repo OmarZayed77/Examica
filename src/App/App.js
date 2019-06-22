@@ -7,7 +7,6 @@ import "element-theme-default";
 import Profile from "../Pages/Profile-Page/Profile-Page";
 import Register from "../Containers/Account/Register/Register";
 import Login from "../Containers/Account/Login/Login";
-import LogOut from "../Components/LogoutButton/LogoutButton";
 import Footer from "../Components/Footer";
 import PricingPlan from "../Pages/PricingPlan";
 import * as orgActions from "../Store/Actions/organizationActions";
@@ -20,13 +19,13 @@ import ComprehenssionQuestion from "../Containers/CreateComprehenssionQuestion";
 import ChoiseQuestion from "../Containers/CreateChoiseQuestion";
 import TrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion/CreateTrueOrFalseQuestion';
 import "./App.css";
-
 import UpperNav from '../Components/Navbar/upperNavbar';
 import LowerNav from '../Components/Navbar/lowerNavbar';
 import MiddleNav from '../Components/Navbar/MiddleNavbar';
 import ExamAdd from "../Containers/exams/exam-add/exam-add"; 
 import ContactUs from '../Components/Contact-Us';
 import AssignRole from "../Containers/assignRole/assignRole";
+import RenderExam from '../Containers/exams/render-exam';
 
 class App extends Component {
   componentDidMount() {
@@ -39,11 +38,32 @@ class App extends Component {
     const loading = this.props.isLoading ? (
       <Loading fullscreen={true} text="Please Wait   Loading..." />
     ) : null;
-    return (
+
+    let routes = (
       <>
-        {loading}
-        <BrowserRouter>
-          <div>
+        <UpperNav />
+        <LowerNav />
+        <Switch>
+          <Redirect from="/home" to="/" />
+          <Route path="/buyOrg" component={AddOrganization} />
+          <Route path="/register" component={Register} />
+          <Route path="/Login" component={Login} />
+          <Route path="/Pricing" component={PricingPlan} />
+          <Route path="/aboutus" component={AboutUs} />
+          <Route path="/contactus" component={ContactUs} />
+          <Route path="/" exact component={Home} />
+          <Route
+            render={() => {
+              return "not found!!!";
+            }}
+          />
+        </Switch>
+      </>
+    );
+    if(this.props.isLoggedIn) {
+      routes = (
+        <>
+        <div>
             <UpperNav />
             <Switch>
               <Route path="/organization" component={MiddleNav}/>>
@@ -56,13 +76,13 @@ class App extends Component {
             <Route path="/buyOrg" component={AddOrganization} />
             <Route path="/organization/exams" component={Exam} />
             <Route path="/organization/:id" component={OrganizationPage} />
-            <Route path="/register" component={Register} />
-            <Route path="/Login" component={Login} />
-            <Route path="/LogOut" component={LogOut} />
+            <Redirect from="/register" to="/" />
+            <Redirect from="/Login" to="/" />
             <Route path="/Pricing" component={PricingPlan} />
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/contactus" component={ContactUs} />
             <Route path="/exams/add" component={ExamAdd}/>
+            <Route path="/exams/examinee/:id" component={RenderExam}/>
             <Route path="/users/assign" component={AssignRole}/>
             <Route path="/CreateQuestion/TrueOrFalseQuestion" component={TrueOrFalseQuestion} />
             <Route path="/CreateQuestion/ComprehenssionQuestion" component={ComprehenssionQuestion} />
@@ -74,6 +94,14 @@ class App extends Component {
               }}
             />
           </Switch>
+        </>
+      );
+    }
+    return (
+      <>
+        {loading}
+        <BrowserRouter>
+          {routes}
           <Footer />
         </BrowserRouter>
       </>
@@ -91,7 +119,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     userData: state.auth.userData,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    isLoggedIn: state.auth.isLoggedIn
   };
 };
 

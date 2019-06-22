@@ -12,3 +12,7 @@ export const add = (exam, token) => {
 export const getById = (examId, token) => {
     return Axios.get(`${URL}/api/exams/${examId}`, {headers: {Authorization: token}});
 }
+
+export const getByUser = (token) => {
+    return Axios.get(`${URL}/api/exams/examinee`, {headers: {Authorization: token}});
+}

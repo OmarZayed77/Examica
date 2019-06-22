@@ -2,40 +2,28 @@ import React, { Component, Fragment } from "react";
 import { Layout } from "element-react";
 import { connect } from "react-redux";
 import Exam from "../../Components/exams/exam/exam";
-import * as userActions from "../../Store/Actions/userActions";
 import * as examActions from "../../Store/Actions/examActions";
 import "./Profile-Page.css";
 
 class ProfilePage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      Exams: []
-    };
+  
+  componentDidMount() {
+    this.props.getUserExams(this.props.token);
   }
 
-  // componentDidMount() {
-  //   this.props.getUser(this.props.userId, "1", this.props.token);
-  // let exams = this.props.getUserExams(this.props.orgId, this.props.token);
-  //this.setState({
-  //...this.state;
-  //Exams: exams
-  //})
-  // }
-
   render() {
-    let examlist = null;
-    if (this.state.Exams > 0) {
+    let examlist = (<div>You Have no exams to be taken</div>);
+    if (this.props.exams && this.props.exams.length > 0) {
       examlist = this.props.exams.map((ex, index) => {
         return (
-          <Layout.Col key={index} span={5} offset={1}>
+          <Layout.Col key={index} span={4} offset={1}>
             <Exam
               id={ex.id}
               name={ex.name}
               startDate={ex.startDateTime}
               endDate={ex.endDateTime}
               numberOfQuestions={ex.questions.length}
+              isExaminee
             />
           </Layout.Col>
         );
@@ -85,18 +73,14 @@ const mapStateToProps = state => {
     token: state.auth.token,
     userId: state.auth.userId,
     orgId: state.organizations.currentOrgnaziation,
-    activeUser: state.users.activeUser
+    activeUser: state.users.activeUser,
+    exams: state.users.exams,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUser: (userId, orgId, token) => {
-      dispatch(userActions.getOneUser(userId, orgId, token));
-    },
-    getUserExams: (orgId, token) => {
-      examActions.get(orgId, token);
-    }
+    getUserExams: (token) => dispatch(examActions.getByUser(token))
   };
 };
 export default connect(
