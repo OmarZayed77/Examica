@@ -1,25 +1,22 @@
-.CreateTrueOrFalseQuestion h3 
+
+.CreateTrueOrFalseQuestion  .CreateTrueOrFalseQuestion-col6
 {
-    color:  #645794;
-    position: absolute;
-    top: 1.3rem;
-    left: 7rem;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.CreateTrueOrFalseQuestion button 
+.CreateTrueOrFalseQuestion  .CreateTrueOrFalseQuestion-col6-done
 {
-    position: absolute;
-    top: 1.3rem;
-    left: 67rem;
+    display: flex;
+    justify-content: center;
+}
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-done
+{
+   
     border: 1 solid black;
+    margin-right: 10rem;
 }
 
-.CreateTrueOrFalseQuestion .primary
-{
-    position: absolute;
-    top: 1.3rem;
-    left: 59rem;
-}
 .CreateTrueOrFalseQuestion .el-button--success
 {
     background-color: #5580FF;
@@ -30,131 +27,81 @@
     color: black;
     border-color: black;
 }
-.CreateTrueOrFalseQuestion .textButton
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-textButton
 {
-    position: absolute;
-    top: 1.3rem;
-    left: 54.4rem;
+
     color: #D3D3D3;
 }
 
-.CreateTrueOrFalseQuestion .fa-share-alt
+.CreateTrueOrFalseQuestion  .fas 
 {
-    position: absolute;
-    top: 1.9rem;
-    left: 53rem;
+    margin-left: 1rem;
 }
 
-.CreateTrueOrFalseQuestion .textButton2
-{
-    position: absolute;
-    top: 1.3rem;
-    left: 48.8rem;
-    color: #D3D3D3;
-}
 
-.CreateTrueOrFalseQuestion .fa-cog
-{
-    position: absolute;
-    top: 1.9rem;
-    left: 47rem;
-}
 
-.CreateTrueOrFalseQuestion .textButton3
-{
-    position: absolute;
-    top: 1.3rem;
-    left: 42.8rem;
-    color: #D3D3D3;
-}
-
-.CreateTrueOrFalseQuestion .fa-pen
-{
-    position: absolute;
-    top: 1.9rem;
-    left: 41rem;
-}
 
 .CreateTrueOrFalseQuestion .questionhead 
 {
-    position: absolute ; 
-    top : 12rem;
-    left: 14rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.CreateTrueOrFalseQuestion .questionhead  .el-input
+
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-questionhead-input
+{
+    margin-top: 4rem;
+}
+
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-questionhead  .el-input
 {
     width: 33rem;
 } 
 
-.CreateTrueOrFalseQuestion  .el-input
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-questionhead-radios
 {
-    width: 9.7rem;
-}
-.CreateTrueOrFalseQuestion .questionhead .radios
-{
-    position: absolute;
-    top: 4rem;
-    left: 1rem;
+   margin-top: 2rem;
+   display: flex;
+   flex-direction: column;
 }
 
-.CreateTrueOrFalseQuestion .questionhead .radios .optionB
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-questionhead-optionB
 {
-    position: absolute;
-    top: 3rem;
-    left: -0.9rem;
+    margin-left: unset;
 }
 
-.CreateTrueOrFalseQuestion .level
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-level
 {
     font-weight: 600;
     color: #58488C;
-    position: absolute;
-    top: 25rem;
-    left: 14rem;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10rem;
+    margin-top: 3rem;
 }
 
-.CreateTrueOrFalseQuestion .rate 
+.CreateTrueOrFalseQuestion .el-rate , .el-switch
 {
-    position: absolute;
-    top: 27.5rem;
-    left: 14.5rem;
+    margin-top: 1rem;
 }
 
-/* .CreateTrueOrFalseQuestion .el-input-number
-{
-    width: 8.5rem;
-} */
-
-.CreateTrueOrFalseQuestion .NumberInput 
-{
-    position: absolute;
-    top: 27rem;
-    left: 41rem;
-    width: 9.5rem;
-}
-
-.CreateTrueOrFalseQuestion .Mark 
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-IsPuplic
 {
     font-weight: 600;
     color: #58488C;
-    position: absolute;
-    top: 25rem;
-    left: 41rem;
+    display: flex;
+    flex-direction: column;
+    margin: 4rem 0rem 5rem 10rem;
+    
 }
 
-.CreateTrueOrFalseQuestion .IsPuplic
+.CreateTrueOrFalseQuestion .CreateTrueOrFalseQuestion-mark
 {
     font-weight: 600;
     color: #58488C;
-    position: absolute;
-    top:32rem;
-    left: 14.5rem;
-}
+    display: flex;
+    flex-direction: column;
+} 
 
-.CreateTrueOrFalseQuestion .switch
-{
-    position: absolute;
-    top:35rem;
-    left: 14.5rem;
-}
+
+

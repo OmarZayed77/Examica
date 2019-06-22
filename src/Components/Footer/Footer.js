@@ -20,7 +20,7 @@ const Footer = (props) => {
         </Menu>
           <p>Copyright &copy; 2019 | Designed by  <span> Examica</span></p>
           <div className="SocialLinks">
-            <a href="https://facebook.com"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://facebook.com"><i className="fab fa-facebook-square"></i></a>
             <a href="https://twitter.com"><i className="fab fa-twitter-square"></i></a>
             <a href="https://linkedin.com"><i className="fab fa-linkedin"></i></a>
           </div>

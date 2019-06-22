@@ -19,8 +19,8 @@ class QuestionTypes extends Component {
       <Layout.Row className="tac QuestionTypes " >
         <Layout.Col span={8} className="QuestionMenuCol" lg="10">
           <Menu defaultActive="1" className="el-menu-vertical-demo"  onOpen={this.Toggle.bind(this)}>
-          <Menu.SubMenu index="1" title={<span><i class="far fa-question-circle"></i>Questions</span>}>
-            <Menu.ItemGroup >
+          <Menu.SubMenu index="1" title={<span><i className="far fa-question-circle"></i>Questions</span>}>
+            <Menu.ItemGroup title="">
                <QuestionsList/>
             </Menu.ItemGroup>
           </Menu.SubMenu>
@@ -28,7 +28,7 @@ class QuestionTypes extends Component {
         <Layout.Col span={8}>
           <Menu defaultActive="2" className="el-menu-vertical-demo" onOpen={this.Toggle.bind(this)}>
           <Menu.SubMenu index="1" title={<span><i className="fas fa-cog"></i>Popular Settings</span>}>
-            <Menu.ItemGroup >
+            <Menu.ItemGroup title="">
               <QuestionSettings/>
             </Menu.ItemGroup>
           </Menu.SubMenu>

@@ -26,7 +26,7 @@ class QuestionsList extends Component {
         id: 3,
         name: "TrueOrFalse",
         icon: "fas fa-times-circle",
-        type: 'TrueOrFalseQuestion/'
+        type: 'TrueOrFalseQuestion'
 
       },
       {
@@ -48,14 +48,14 @@ class QuestionsList extends Component {
     ]
   }
   render() {
-    const questionButton = this.state.questionButtons.map(btn => {
+    const questionButton = this.state.questionButtons.map((btn,index) => {
       return (
-      <Layout.Col span="10" offset="1"  lg="10">
+      <Layout.Col key={index} span="10" offset="1"  lg="10">
       <QuestionButton
         id={btn.id}
         name={btn.name}
         icon={btn.icon}
-        type={"CreateQuestion/" + btn.type}
+        type={btn.type}
         className="questionlist"
         />
         </Layout.Col>
