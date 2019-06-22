@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 import OrganizationProfile from '../../Pages/organizationPage';
 import {connect} from 'react-redux';
 import {getCurrent, getOrgById} from '../../Store/Actions/organizationActions';
+import UsersList from '../../Containers/Users/UsersList';
 
 class Organization extends Component {
 
@@ -32,7 +33,8 @@ class Organization extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/" render={()=> <OrganizationProfile key={this.props.match.params.id } /> }/>
+        <Route path="/organization/:id/users" component={UsersList}/>
+        <Route path="/organization/:id" component={OrganizationProfile}/>
       </Switch>
     );
   }
