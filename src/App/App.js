@@ -18,6 +18,7 @@ import OrganizationPage from "../Pages/organizationPage";
 import AddOrganization from "../Containers/AddOrgnization";
 import ComprehenssionQuestion from "../Containers/CreateComprehenssionQuestion";
 import ChoiseQuestion from "../Containers/CreateChoiseQuestion";
+import TrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion/CreateTrueOrFalseQuestion';
 import "./App.css";
 
 import UpperNav from '../Components/Navbar/upperNavbar';
@@ -59,6 +60,7 @@ class App extends Component {
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/exams/add" component={ExamAdd}/>
             <Route path="/contactus" component={ContactUs} />
+            <Route path="/CreateQuestion/TrueOrFalseQuestion" component={TrueOrFalseQuestion} />
             <Route path="/CreateQuestion/ComprehenssionQuestion" component={ComprehenssionQuestion} />
             <Route path="/CreateQuestion/ChoiseQuestion" component={ChoiseQuestion} />            
             <Route path="/" exact component={Home} />
