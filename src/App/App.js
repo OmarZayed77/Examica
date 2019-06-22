@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setToken } from "../Store/Actions/authActions";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Loading } from "element-react/next";
 import "element-theme-default";
 import Profile from "../Pages/Profile-Page/Profile-Page";
 import Register from "../Containers/Account/Register/Register";
@@ -12,11 +13,13 @@ import PricingPlan from "../Pages/PricingPlan";
 import * as orgActions from "../Store/Actions/organizationActions";
 import Exam from '../Containers/exams/exam-list';
 import AboutUs from '../Components/AboutUs';
-import "./App.css";
 import Home from "../Pages/Home-Page";
 import OrganizationPage from "../Pages/organizationPage";
 import AddOrganization from "../Containers/AddOrgnization";
-import { Loading } from "element-react/next";
+import ComprehenssionQuestion from "../Containers/CreateComprehenssionQuestion";
+import ChoiseQuestion from "../Containers/CreateChoiseQuestion";
+import TrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion/CreateTrueOrFalseQuestion';
+import "./App.css";
 
 import UpperNav from '../Components/Navbar/upperNavbar';
 import LowerNav from '../Components/Navbar/lowerNavbar';
@@ -48,7 +51,7 @@ class App extends Component {
           <Switch>
             <Redirect from="/home" to="/" />
             <Route path="/profile" component={Profile} />
-            <Route path="/organization/buy" component={AddOrganization} />
+            <Route path="/buyOrg" component={AddOrganization} />
             <Route path="/organization/exams" component={Exam} />
             <Route path="/organization/:id" component={OrganizationPage} />
             <Route path="/register" component={Register} />
@@ -59,6 +62,9 @@ class App extends Component {
             <Route path="/contactus" component={ContactUs} />
             <Route path="/exams/add" component={ExamAdd}/>
             <Route path="/users/assign" component={AssignRole}/>
+            <Route path="/CreateQuestion/TrueOrFalseQuestion" component={TrueOrFalseQuestion} />
+            <Route path="/CreateQuestion/ComprehenssionQuestion" component={ComprehenssionQuestion} />
+            <Route path="/CreateQuestion/ChoiseQuestion" component={ChoiseQuestion} />            
             <Route path="/" exact component={Home} />
             <Route
               render={() => {

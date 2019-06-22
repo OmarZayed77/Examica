@@ -10,8 +10,9 @@ import {
   InputNumber
 } from "element-react/next";
 import { Rate } from "element-react";
-import "./CreateChoiseQuestion.css";
+// import "./CreateChoiseQuestion.css";
 import { Layout } from "element-react/next";
+import {withRouter} from 'react-router-dom';
 
 class CreateMultipleChoiseQuestion extends Component {
   constructor(props) {
@@ -298,4 +299,4 @@ class CreateMultipleChoiseQuestion extends Component {
   }
 }
 
-export default CreateMultipleChoiseQuestion;
+export default withRouter(CreateMultipleChoiseQuestion);
