@@ -17,13 +17,15 @@ import OrganizationPage from "../Pages/organizationPage";
 import AddOrganization from "../Containers/AddOrgnization";
 import ComprehenssionQuestion from "../Containers/CreateComprehenssionQuestion";
 import ChoiseQuestion from "../Containers/CreateChoiseQuestion";
-import TrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion/CreateTrueOrFalseQuestion';
+import CreateQuestion from '../Components/CreateQuestion';
+import TrueOrFalseQuestion from '../Containers/CreateTrueOrFalseQuestion'
 import "./App.css";
 import UpperNav from '../Components/Navbar/upperNavbar';
 import LowerNav from '../Components/Navbar/lowerNavbar';
 import MiddleNav from '../Components/Navbar/MiddleNavbar';
 import ExamAdd from "../Containers/exams/exam-add/exam-add"; 
 import ContactUs from '../Components/Contact-Us';
+import UntiteldQuestion from "../Components/Untiteld-Question/Untiteld-Question";
 import AssignRole from "../Containers/assignRole/assignRole";
 import RenderExam from '../Containers/exams/render-exam';
 
@@ -81,6 +83,8 @@ class App extends Component {
             <Route path="/Pricing" component={PricingPlan} />
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/contactus" component={ContactUs} />
+            <Route path="/untiteldq" component={UntiteldQuestion} />
+            <Route path="/createquestion" component={CreateQuestion} />   
             <Route path="/exams/add" component={ExamAdd}/>
             <Route path="/exams/examinee/:id" component={RenderExam}/>
             <Route path="/users/assign" component={AssignRole}/>
