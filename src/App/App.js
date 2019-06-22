@@ -26,6 +26,7 @@ import LowerNav from '../Components/Navbar/lowerNavbar';
 import MiddleNav from '../Components/Navbar/MiddleNavbar';
 import ExamAdd from "../Containers/exams/exam-add/exam-add"; 
 import ContactUs from '../Components/Contact-Us';
+import AssignRole from "../Containers/assignRole/assignRole";
 
 class App extends Component {
   componentDidMount() {
@@ -60,8 +61,9 @@ class App extends Component {
             <Route path="/LogOut" component={LogOut} />
             <Route path="/Pricing" component={PricingPlan} />
             <Route path="/aboutus" component={AboutUs} />
-            <Route path="/exams/add" component={ExamAdd}/>
             <Route path="/contactus" component={ContactUs} />
+            <Route path="/exams/add" component={ExamAdd}/>
+            <Route path="/users/assign" component={AssignRole}/>
             <Route path="/CreateQuestion/TrueOrFalseQuestion" component={TrueOrFalseQuestion} />
             <Route path="/CreateQuestion/ComprehenssionQuestion" component={ComprehenssionQuestion} />
             <Route path="/CreateQuestion/ChoiseQuestion" component={ChoiseQuestion} />            

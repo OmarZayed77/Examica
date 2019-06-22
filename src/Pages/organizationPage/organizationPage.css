@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     font-family: 'Raleway', sans-serif;
-  
+    margin-top: 50px;
   }
 
   .organization-page .buttons{
@@ -25,13 +25,13 @@
 .organization-page .OrganizationPage-pic{
   width: 150px;
   height: 150px;
-  border-radius: 50%;
+  border-radius: 20px;
   border: 2px solid rgb(226, 226, 226);
 
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  background-image: url("https://i.ibb.co/C6LmsBx/organization.png")
+  background-image: url("https://i.ibb.co/C6LmsBx/organization.png");
 }
 
 .organization-page .container-rows{

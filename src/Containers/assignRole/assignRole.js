@@ -110,7 +110,7 @@ class AssignRole extends Component {
     )
   }
 }
-const mapStateToProps = () => {
+const mapStateToProps = state => {
   return {
     user : state.users.oneUser,
     token: state.auth.token

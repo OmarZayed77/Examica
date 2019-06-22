@@ -46,10 +46,10 @@ class OrganizationPage extends Component {
         </Layout.Col>
       </Layout.Row>
       <Layout.Row className="container">
-        <Layout.Col lg={8}>
+        <Layout.Col offset="5" lg={8}>
           <div className="OrganizationPage-pic"/> 
         </Layout.Col>
-        <Layout.Col lg={12}>
+        <Layout.Col lg={10}>
         <Layout.Row className="container-rows">
         Company Name : {this.props.org.Name}
         </Layout.Row>
