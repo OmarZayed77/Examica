@@ -5,11 +5,12 @@ import {connect} from 'react-redux';
 import {getCurrent, getOrgById} from '../../Store/Actions/organizationActions';
 import {getAll, getAllOfOrg} from '../../Store/Actions/userActions';
 import UsersList from '../../Containers/Users/UsersList';
-// import questionList from '../QuestionTypes';
 import ExamsList from '../exams/exam-list';
+import QuestionsList from '../PoolOfQuestions';
 import AddExam from '../exams/exam-add';
 import AssignRoles from '../assignRole';
 import * as examActions from '../../Store/Actions/examActions';
+import * as questionActions from '../../Store/Actions/questionActions';
 
 class Organization extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class Organization extends Component {
     this.props.onGetAllUsers(this.props.token);
     this.props.onGetAllUsersOfOrg(this.props.match.params.id, this.props.token);
     this.props.onGetAllExams(this.props.match.params.id, this.props.token);
+    this.props.onGetQuestions(this.props.match.params.id, this.props.token);
   }
 
   componentDidMount() {
@@ -51,6 +53,7 @@ class Organization extends Component {
         <Route path="/organization/:id/users" render={()=> <UsersList users={this.props.allUsers} />} />
         <Route path="/organization/:id/exams/add" component={AddExam} />
         <Route path="/organization/:id/exams" component={ExamsList} />
+        <Route path="/organization/:id/questions" component={QuestionsList} />
         <Route path="/organization/:id" component={OrganizationProfile}/>
       </Switch>
     );
@@ -73,7 +76,8 @@ const mapDispatchToProps = dispatch => {
     onGetOrg: (orgId,token) => {dispatch(getOrgById(orgId,token))},
     onGetAllUsers: (token) => {dispatch(getAll(token))},
     onGetAllUsersOfOrg: (orgId, token) => {dispatch(getAllOfOrg(orgId, token))},
-    onGetAllExams : (orgId, token) => dispatch(examActions.getByOrgId(orgId, token))
+    onGetAllExams : (orgId, token) => dispatch(examActions.getByOrgId(orgId, token)),
+    onGetQuestions: (orgId, token) => dispatch(questionActions.getAll(orgId, token))
   }
 }
 

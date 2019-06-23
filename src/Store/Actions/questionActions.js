@@ -1,4 +1,3 @@
-import axios from 'axios'
 import * as questionsAPI from '../../API/questionAPI'
 export const ADD_QUESTION = "ADD_QUESTION";
 export const DELETE_QUESTION = "DELETE_QUESTION";
@@ -21,13 +20,15 @@ export const addNewQuestion = (question, token) => {
 }
 
 
-export const getAll = () => {
+export const getAll = (orgId, token) => {
     return (dispatch) => {
-        axios.get(`${URL}/api/Questions`)
+        dispatch({type: "IsLoading"});
+        questionsAPI.getAll(orgId, token)
             .then(res => {
                 if (res.status === 200) {
                     dispatch(getAllSuccess(res.data));
                 }
+                dispatch({type: "Loaded"});
             })
             .catch(console.error);
     };
@@ -38,18 +39,20 @@ export const getAllSuccess = (value) => {
 
 
 
-export const deleteQuestion = (id) => {
+export const deleteQuestion = (id, token) => {
     return (dispatch) => {
-        axios.delete(`${URL}/api/questions/${id}`)
+            dispatch({type: "IsLoading"});
+            questionsAPI.deleteQuestion(id, token)
             .then(res => {
                 if (res.status === 200) {
                     dispatch(deleteSuccess(res.data));
                 }
+                dispatch({type: "Loaded"});
             })
             .catch(console.error);
     };
 };
 export const deleteSuccess = (value) => {
-    return { type: DELETE_QUESTION, id: value };
+    return { type: DELETE_QUESTION, payload: value };
 };
 
