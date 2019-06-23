@@ -67,6 +67,7 @@ class AddOrgnization extends Component {
 				rules={this.state.rules}
 				onSubmit={this.handleSubmit.bind(this)}
 			>
+				<div className="title">Register a new Organization</div>
 				<Form.Item label="Name" prop="Name"><Input value={this.state.form.Name} onChange={this.onChange.bind(this, 'Name')} />
 				</Form.Item>
 				<Form.Item label="Pricing Plan" prop="PricingPlanId">

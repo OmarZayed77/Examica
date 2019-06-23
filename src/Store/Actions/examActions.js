@@ -3,7 +3,7 @@ import * as examsAPI from '../../API/examsAPI';
 export const ADD = 'ADD';
 export const EDIT = 'EDIT';
 export const DELETE = 'DELETE';
-export const GET = 'GET';
+export const GET_ORG_EXAMS = 'GET_ORG_EXAMS';
 export const GET_USER_EXAMS = 'GET_USER_EXAMS';
 
 export const add = (exam, orgId, token) => {
@@ -23,12 +23,12 @@ export const addSuccess = (value) => {
 };
 
 
-export const get = (orgId, token) =>{
+export const getByOrgId = (orgId, token) =>{
  return (dispatch) => {
 	  dispatch({type: "IsLoading"});
 	  examsAPI.getAll(orgId, token)
 	  .then(res => {
-		  dispatch({type: GET , payload : res.data})
+		  dispatch({type: GET_ORG_EXAMS , payload : res.data})
 		  dispatch({type: "Loaded"});
 	  })
 	  .catch(err => {

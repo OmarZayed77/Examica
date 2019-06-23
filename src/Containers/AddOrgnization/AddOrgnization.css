@@ -2,5 +2,14 @@
 {
     margin: 0 auto;
     width: 60%;
-    padding: 133px 0;
+    padding: 11rem 0;
+}
+
+.AddOrgnization .title 
+{
+    text-align: center;
+    color:#FF8A73;
+    font-size: 2rem;
+    font-weight: 400px;
+    margin-bottom: 1rem;
 }

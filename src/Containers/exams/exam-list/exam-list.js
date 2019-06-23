@@ -2,20 +2,12 @@ import React, { Component } from 'react';
 import Exam from '../../../Components/exams/exam'
 import { Layout } from 'element-react/next';
 import { connect } from 'react-redux';
-import * as  examActions from '../../../Store/Actions/examActions'
-
+import './exam-list.css';
 
 class ExamList extends Component {
-  componentDidMount(){
-    if(this.props.token)
-    {
-      this.props.onGetAllExams(this.props.organizationId, this.props.token);
-    }
-    else this.props.onGetAllExams(this.props.organizationId, localStorage.getItem("token"));
-  }
 
   render() {
-    let examlist = null;
+    let examlist = (<h2 className="NoExams">No Exams added yet</h2>);
     if (this.props.exams.length > 0) 
     {
         examlist = this.props.exams.map((ex,index) => {
@@ -33,7 +25,7 @@ class ExamList extends Component {
       });
     }
     return (
-      <Layout.Row >
+      <Layout.Row className="ExamList">
         {examlist}
       </Layout.Row>
     );
@@ -41,18 +33,9 @@ class ExamList extends Component {
 }
 const mapStateToProps = state =>{
      return{
-        exams : state.exams,
-        token: state.auth.token,
-        organizationId: 1
+        exams : state.exams.orgExams,
+        token: state.auth.token
    }
 }
 
-
-const mapDispatchToProps = dispatch =>
-{
-  return{
-    onGetAllExams : (orgId, token) => dispatch(examActions.get(orgId, token))
-  }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps) (ExamList);
+export default connect(mapStateToProps) (ExamList);

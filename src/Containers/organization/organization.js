@@ -6,8 +6,10 @@ import {getCurrent, getOrgById} from '../../Store/Actions/organizationActions';
 import {getAll, getAllOfOrg} from '../../Store/Actions/userActions';
 import UsersList from '../../Containers/Users/UsersList';
 // import questionList from '../QuestionTypes';
+import ExamsList from '../exams/exam-list';
 import AddExam from '../exams/exam-add';
 import AssignRoles from '../assignRole';
+import * as examActions from '../../Store/Actions/examActions';
 
 class Organization extends Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class Organization extends Component {
     this.props.onGetOrg(this.props.match.params.id, this.props.token);
     this.props.onGetAllUsers(this.props.token);
     this.props.onGetAllUsersOfOrg(this.props.match.params.id, this.props.token);
+    this.props.onGetAllExams(this.props.match.params.id, this.props.token);
   }
 
   componentDidMount() {
@@ -47,6 +50,7 @@ class Organization extends Component {
         <Route path="/organization/:id/users/assign/:userId" component={AssignRoles}/>
         <Route path="/organization/:id/users" render={()=> <UsersList users={this.props.allUsers} />} />
         <Route path="/organization/:id/exams/add" component={AddExam} />
+        <Route path="/organization/:id/exams" component={ExamsList} />
         <Route path="/organization/:id" component={OrganizationProfile}/>
       </Switch>
     );
@@ -68,7 +72,8 @@ const mapDispatchToProps = dispatch => {
     onGetRoles: (userId,orgId,token) => {dispatch(getCurrent(userId,orgId,token))},
     onGetOrg: (orgId,token) => {dispatch(getOrgById(orgId,token))},
     onGetAllUsers: (token) => {dispatch(getAll(token))},
-    onGetAllUsersOfOrg: (orgId, token) => {dispatch(getAllOfOrg(orgId, token))}
+    onGetAllUsersOfOrg: (orgId, token) => {dispatch(getAllOfOrg(orgId, token))},
+    onGetAllExams : (orgId, token) => dispatch(examActions.getByOrgId(orgId, token))
   }
 }
 
