@@ -70,17 +70,34 @@ export const getOneUserSuccess =(value)=>{
     }
  }
 
-export const addRole = (user, token) =>{
+export const addRole = (roles, token) => {
     return dispatch => {
-        userAPI.addRole(user, token)
+        userAPI.addRole(roles, token)
         .then(res =>{
             if (res.status === 200) {
-                dispatch(addRoleSuccess(res.data))
+                dispatch(addRoleSuccess(roles));
             }
         })
         .catch(console.error);
     }
   }
+
+
+export const getUser =(userId, orgId, token)=>{
+return (dispatch)=> {
+    dispatch({type: "IsLoading"});
+    userAPI.getUser(userId, orgId, token)
+    .then(res=>{
+        if(res.status===200){
+            dispatch(getUserSuccess(res.data));
+        }
+        dispatch({type: "Loaded"});
+    })
+    .catch(console.error)
+};
+
+};
+
 
 export const getUserSuccess =(value)=>{
    return {

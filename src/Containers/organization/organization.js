@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {getCurrent, getOrgById} from '../../Store/Actions/organizationActions';
 import {getAll, getAllOfOrg} from '../../Store/Actions/userActions';
 import UsersList from '../../Containers/Users/UsersList';
+import AssignRoles from '../assignRole';
 
 class Organization extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class Organization extends Component {
     return (
       <Switch>
         <Route path="/organization/:id/myusers" render={()=> <UsersList users={this.props.orgUsers} />} />
+        <Route path="/organization/:id/users/assign/:userId" component={AssignRoles}/>
         <Route path="/organization/:id/users" render={()=> <UsersList users={this.props.allUsers} />} />
         <Route path="/organization/:id" component={OrganizationProfile}/>
       </Switch>

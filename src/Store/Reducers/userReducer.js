@@ -3,13 +3,11 @@ import * as userActions from '../Actions/userActions';
 const initial ={
     allUsers: [],
     allUsersOfOrg: [],
-    oneUser :null,
     activeUser: null,
     exams: []
 };
 
 const userReducer =(state=initial,action)=>{
-    let newUser={...state.oneUser}
     let newArrOfUsers=[...state.allUsers];
     let newArrOfOrgUsers=[...state.allUsersOfOrg];
     let newActiveUser= {...state.activeUser}
@@ -24,9 +22,17 @@ const userReducer =(state=initial,action)=>{
         case userActions.GET_ACTIVE_USER:
             newActiveUser= action.payload;
             break;
-        case userActions.GET_USER:
         case userActions.ADD_ROLE:
-            newUser=action.payload
+            const newUser= action.payload;
+            const index = newArrOfOrgUsers.findIndex(u => u.id === newUser.userId);
+            if((newUser.isAdmin || newUser.isExaminer || newUser.isExaminee) && index < 0)
+            {
+                newArrOfOrgUsers.push(newArrOfUsers.find(u => u.id === newUser.userId));
+            }
+            else if(!(newUser.isAdmin || newUser.isExaminer || newUser.isExaminee) && index > -1)
+            {
+                newArrOfOrgUsers.splice(index, 1);
+            }
             break;
         case "GET_USER_EXAMS":
             newArrOfExams= action.payload;
@@ -35,11 +41,10 @@ const userReducer =(state=initial,action)=>{
             break;
 
     }
-    console.log("all Users", newArrOfUsers, "Org users", newArrOfOrgUsers);
+    console.log(newArrOfOrgUsers);
     return {
             allUsers:newArrOfUsers,
             allUsersOfOrg: newArrOfOrgUsers,
-            oneUser:newUser,
             activeUser: newActiveUser,
             exams: newArrOfExams
     }
