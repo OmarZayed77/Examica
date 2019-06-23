@@ -19,6 +19,7 @@ import UpperNav from '../Components/Navbar/upperNavbar';
 import LowerNav from '../Components/Navbar/lowerNavbar';
 import MiddleNav from '../Components/Navbar/MiddleNavbar';
 import ContactUs from '../Components/Contact-Us';
+import TakeExam from '../Containers/exams/render-exam';
 
 class App extends Component {
   componentDidMount() {
@@ -73,6 +74,7 @@ class App extends Component {
             <Route path="/Pricing" component={PricingPlan} />
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/contactus" component={ContactUs} />
+            <Route path="/exams/examinee/:id" component={TakeExam} />
             <Route path="/" exact component={Home} />
             <Route
               render={() => {

@@ -1,6 +1,7 @@
 .QuestionTypes
 {
     min-height: 35rem;
+    padding: 2rem;
 }
 .QuestionTypes .el-submenu .el-menu-item:hover, .el-submenu__title:hover{
     background-color: unset;

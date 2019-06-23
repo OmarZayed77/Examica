@@ -3,39 +3,40 @@ import { connect } from "react-redux";
 import { Layout } from "element-react/next";
 import QuestionButton from "../../Components/QuestionButton";
 import "./Questions-list.css";
+import {withRouter} from 'react-router-dom';
 
 class QuestionsList extends Component {
   state = {
     questionButtons: [
       {
         id: 1,
-        name: "Multiple Choise",
+        name: "Multiple Choice",
         icon: "fas fa-dot-circle",
-        type: "/CreateQuestion/ChoiseQuestion"
+        type: `/organization/${this.props.match.params.id}/questions/add/mcqSingle`
       },
       {
         id: 2,
         name: "Checkbox",
         icon: "fas fa-check-square",
-        type: "/CreateQuestion/ChoiseQuestion"
+        type: `/organization/${this.props.match.params.id}/questions/add/mcqMul`
       },
       {
         id: 3,
         name: "TrueOrFalse",
         icon: "fas fa-times-circle",
-        type: "/CreateQuestion/TrueOrFalseQuestion"
+        type: ``
       },
       {
         id: 4,
         name: "Comprehenssion",
         icon: "fas fa-align-center",
-        type: "/CreateQuestion/ComprehenssionQuestion"
+        type: ``
       },
       {
         id: 5,
         name: "Import questions",
         icon: "fas fa-file-import",
-        type: "/CreateQuestion/ImportQuestion"
+        type: "/add/ImportQuestion"
       }
     ]
   };
@@ -66,4 +67,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   null
-)(QuestionsList);
+)(withRouter(QuestionsList));

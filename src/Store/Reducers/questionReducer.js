@@ -8,7 +8,7 @@ const questionReducer = (state = initialState, action) => {
 	let newArr = [...state.questions];
 	switch (action.type) {
 		case questionActions.ADD_QUESTION:
-			newArr.questions.push(action.payload);
+			newArr.push(action.payload);
 			break;
 		case questionActions.GET_ALL_QUESTIONS:
 			newArr = action.payload;

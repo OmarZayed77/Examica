@@ -6,15 +6,20 @@ export const GET_ALL_QUESTIONS = "GET_ALL_QUESTIONS"
 
 
 
-export const addQues = (question) => {
+export const addQuesSuccess = (question) => {
     return { type: ADD_QUESTION, payload: question }
 }
 
 
 export const addNewQuestion = (question, token) => {
     return dispatch => {
+        dispatch({type: "IsLoading"});
         questionsAPI.addNewQuestion(question, token)
-            .then(res => dispatch(addQues(res.data)))
+            .then(res => {
+                    if(res.status === 200) dispatch(addQuesSuccess(res.data));
+                    dispatch({type: "Loaded"});
+                }
+            )
             .catch(console.error);
     }
 }

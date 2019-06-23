@@ -11,6 +11,7 @@ import AddExam from '../exams/exam-add';
 import AssignRoles from '../assignRole';
 import * as examActions from '../../Store/Actions/examActions';
 import * as questionActions from '../../Store/Actions/questionActions';
+import AddQuestion from '../QuestionTypes';
 
 class Organization extends Component {
   constructor(props) {
@@ -53,6 +54,7 @@ class Organization extends Component {
         <Route path="/organization/:id/users" render={()=> <UsersList users={this.props.allUsers} />} />
         <Route path="/organization/:id/exams/add" component={AddExam} />
         <Route path="/organization/:id/exams" component={ExamsList} />
+        <Route path="/organization/:id/questions/add" component={AddQuestion} />
         <Route path="/organization/:id/questions" component={QuestionsList} />
         <Route path="/organization/:id" component={OrganizationProfile}/>
       </Switch>

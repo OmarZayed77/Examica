@@ -14,6 +14,7 @@ import "./CreateChoiseQuestion.css";
 import { Layout } from "element-react/next";
 import { connect } from "react-redux";
 import * as questionActions from "../../Store/Actions/questionActions";
+import {withRouter} from 'react-router-dom';
 
 class CreateMultipleChoiseQuestion extends Component {
   constructor(props) {
@@ -21,11 +22,11 @@ class CreateMultipleChoiseQuestion extends Component {
     this.state = {
       form: {
         Title: "",
-        Type: "",
+        Type: this.props.type,
         Level: null,
         Mark: null,
         IsPublic: false,
-        Options: [],
+        Options: [{name: ""}, {name: ""}],
         OrganizationId: 2
       },
       rules: {
@@ -52,10 +53,26 @@ class CreateMultipleChoiseQuestion extends Component {
           }
         ]
       },
-      isChecked: false,
-      choiceType: "Multi Choices",
-      optionsNumb: [1]
+      index: -1,
+      path: this.props.match.path
     };
+  }
+
+  componentDidUpdate() {
+    const path= this.props.match.path;
+    let Type;
+    if(this.state.path !== path) 
+    {
+      if(path === "/organization/:id/questions/add/mcqSingle") Type="MCQ_SingleAnswer";
+      else Type= "MCQ_MultiAnswers";
+      this.setState({
+        form: {
+          ...this.state.form,
+          Type: Type
+        },
+        path
+      });
+    }
   }
 
   handleSubmit(e) {
@@ -63,7 +80,10 @@ class CreateMultipleChoiseQuestion extends Component {
 
     this.refs.form.validate(valid => {
       if (valid) {
-        this.props.onAddQuestion(this.state.form, this.props.token);
+        const ques = {...this.state.form};
+        ques.OrganizationId = Number(this.props.match.params.id);
+        this.props.onAddQuestion(ques, this.props.token);
+        this.props.history.push(`/organization/${this.props.match.params.id}/questions`);
       } else {
         console.log("error submit!!");
         return false;
@@ -71,55 +91,43 @@ class CreateMultipleChoiseQuestion extends Component {
     });
   }
 
-  handleReset(e) {
-    e.preventDefault();
-    this.refs.form.resetFields();
+  onChange(key, value) {
     this.setState({
-      form: {
-        Title: "",
-        Type: "",
-        Level: null,
-        Mark: null,
-        IsPublic: false,
-        Options: [],
-        OrganizationId: 2
-      }
-    });
-    this.setState({
-      Options: []
+      form: Object.assign({}, this.state.form, { [key]: value })
     });
   }
 
-  onChange(key, value) {
-    if (key === "choiceType") {
-      this.setState({
-        ...this.state,
-        choiceType: value
-      });
-    } else {
-      this.setState({
-        form: Object.assign({}, this.state.form, { [key]: value })
-      });
-    }
+  onOptionChange(index, value) {
+    let addOption = [...this.state.form.Options];
+    addOption[index].name = value
+    this.setState({
+      form: {
+        ...this.state.form,
+        Options: addOption
+      }
+    });
+  }
+
+  onRadioChange(index) {
+    this.setState({
+      index
+    })
   }
 
   getOptionsType() {
     let answerOptions = null;
-    if (this.state.choiceType === "Multi Choices") {
-      answerOptions = this.state.optionsNumb.map(opt => (
-        <Layout.Row key={opt}>
+    if (this.state.form.Type === "MCQ_MultiAnswers") {
+      answerOptions = this.state.form.Options.map( (opt, index) => (
+        <Layout.Row key={index}>
           <Layout.Col span={1}>
-            <Checkbox
-              checked={this.state.isChecked}
-              onChange={this.onCheckedBox.bind(this, opt)}
-            />
+            <Checkbox />
           </Layout.Col>
           <Layout.Col xs={9} sm={15} md={10} lg={10}>
-            <Input id={"option" + opt} />
+            <Input placeholder="Enter your option" value={opt.name} onChange={this.onOptionChange.bind(this, index) } />
           </Layout.Col>
           <Layout.Col span={1}>
             <Button
-              onClick={this.onOptionDeleted.bind(this, opt)}
+              onClick={this.onOptionDeleted.bind(this, index)}
               type="primary"
               icon="delete"
             />
@@ -127,17 +135,17 @@ class CreateMultipleChoiseQuestion extends Component {
         </Layout.Row>
       ));
     } else {
-      answerOptions = this.state.optionsNumb.map(opt => (
-        <Layout.Row key={opt}>
+      answerOptions = this.state.form.Options.map((opt, index) => (
+        <Layout.Row key={index}>
           <Layout.Col span={1}>
-            <Radio value="" />
+            <Radio value="" checked={index === this.state.index} onChange={this.onRadioChange.bind(this, index)}/>
           </Layout.Col>
           <Layout.Col xs={9} sm={15} md={10} lg={10}>
-            <Input id={"option" + opt} />
+            <Input placeholder="Enter your option" onChange={this.onOptionChange.bind(this, index) } />
           </Layout.Col>
           <Layout.Col span={1}>
             <Button
-              onClick={this.onOptionDeleted.bind(this, opt)}
+              onClick={this.onOptionDeleted.bind(this, index)}
               type="primary"
               icon="delete"
             />
@@ -149,19 +157,25 @@ class CreateMultipleChoiseQuestion extends Component {
   }
 
   onAddOption() {
-    let addOption = [...this.state.optionsNumb];
-    addOption.push(parseInt(this.state.optionsNumb.length) + 1);
+    let addOption = [...this.state.form.Options];
+    addOption.push({name: ""});
     this.setState({
-      optionsNumb: addOption
+      form: {
+        ...this.state.form,
+        Options: addOption
+      }
     });
   }
 
-  onOptionDeleted(optNumb, event) {
-    let optionsNum = [...this.state.optionsNumb];
-    let index = optionsNum.findIndex(i => i === optNumb);
-    optionsNum.splice(index, 1);
+  onOptionDeleted(index) {
+    let addOption = [...this.state.form.Options];
+    addOption.splice(index, 1);
+    if(index === this.state.index) this.setState({index: -1});
     this.setState({
-      optionsNumb: optionsNum
+      form: {
+        ...this.state.form,
+        Options: addOption
+      }
     });
   }
 
@@ -182,20 +196,8 @@ class CreateMultipleChoiseQuestion extends Component {
     });
   }
 
-  componentDidMount() {
-    var qType = this.props.history.location.pathname.split("/");
-    this.setState({
-      form: {
-        ...this.state.form,
-        Type: qType[qType.length - 2]
-      }
-    });
-  }
-
   render() {
-    console.log("Rendered!");
     let answerOptions = this.getOptionsType();
-    console.log(this.state);
     return (
       <Form
         ref="form"
@@ -208,20 +210,11 @@ class CreateMultipleChoiseQuestion extends Component {
           <Button type="primary" onClick={this.handleSubmit.bind(this)}>
             Create
           </Button>
-          <Button onClick={this.handleReset.bind(this)}>Reset</Button>
         </Form.Item>
 
         <Form.Item prop="Title">
           <Layout.Row>
-            <Layout.Col span={20}>
-              <label className="CreateMultipleChoiseQuestion-Question-type">
-                {this.state.form.Type}
-              </label>
-            </Layout.Col>
-          </Layout.Row>
-
-          <Layout.Row>
-            <Layout.Col span={15}>
+            <Layout.Col span={13}>
               <Input
                 className="CreateMultipleChoiseQuestion-Title"
                 value={this.state.form.Title}
@@ -230,7 +223,7 @@ class CreateMultipleChoiseQuestion extends Component {
               />
             </Layout.Col>
 
-            <Layout.Col span={2} offset={1}>
+            <Layout.Col span={4} offset={1}>
               <label className="CreateMultipleChoiseQuestion-Mark">
                 Question Mark
               </label>
@@ -271,29 +264,30 @@ class CreateMultipleChoiseQuestion extends Component {
           <Layout.Col xs={11} sm={12} md={8} lg={8}>
             <Form.Item prop="choiceType">
               <Select
-                value={this.state.choiceType}
-                onChange={this.onChange.bind(this, "choiceType")}
+                value={this.state.form.Type}
+                onChange={this.onChange.bind(this, "Type")}
               >
-                <Select.Option label="Multi Choices" value="Multi Choices" />
-                <Select.Option label="Single Choice" value="Single Choice" />
+                <Select.Option label="Multi Choices" value="MCQ_MultiAnswers" />
+                <Select.Option label="Single Choice" value="MCQ_SingleAnswer" />
               </Select>
             </Form.Item>
           </Layout.Col>
 
           <Layout.Col
             className="CreateMultipleChoiseQuestion-privacy"
-            xs={5}
-            sm={7}
-            md={7}
-            lg={4}
+            xs={7}
+            sm={9}
+            md={9}
+            lg={6}
             prop="IsPublic"
           >
             <label className="CreateMultipleChoiseQuestion-Question-type">
               Question Privacy
             </label>
             <Switch
-              onText="Private"
-              offText="Public"
+              onText="Public"
+              offText="Private"
+              width={75}
               value={this.state.form.IsPublic}
               onChange={this.onChange.bind(this, "IsPublic")}
             />
@@ -319,4 +313,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateMultipleChoiseQuestion);
+)(withRouter(CreateMultipleChoiseQuestion));
