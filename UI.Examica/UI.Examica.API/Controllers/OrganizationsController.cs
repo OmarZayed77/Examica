@@ -57,7 +57,6 @@ namespace UI.Examica.API.Controllers
             organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.Organizations));
             organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.OrganizationAdmins));
             organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.OrganizationExaminers));
-            organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.OrganizationExaminees));
             organizations.AddRange(Mapper.Map<List<OrganizationDto>>(user.OrganizationObservers));
             OrganizationDtoComparer comparer = new OrganizationDtoComparer();
             return Ok(organizations.Distinct(comparer));
@@ -74,7 +73,7 @@ namespace UI.Examica.API.Controllers
         {
             AppUser user = await userManager.GetUserAsync(User);
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
-            if (user.IsOwnerOfOrg(id))
+            if (user.IsOwnerOfOrg(id) || user.IsAdminOfOrg(id) || user.IsExaminerOfOrg(id))
             {
                 var organization = await unitOfWork.Organizations.GetById(id);
 
