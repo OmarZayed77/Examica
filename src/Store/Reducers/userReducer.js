@@ -1,11 +1,8 @@
 import * as userActions from '../Actions/userActions';
 
 const initial ={
-    allUsers: [
-        {Id: "1", UserName: "Dina Gamal Abdelrahman", PhoneNumber: "011" , Email: "d@gmail.com"},
-        {Id: "1", UserName: "Annonymous ay 7aga", PhoneNumber: "011" , Email: "d@gmail.com"},
-        {Id: "1", UserName: "Dina", PhoneNumber: "011" , Email: "d@gmail.com"},
-    ],
+    allUsers: [],
+    allUsersOfOrg: [],
     oneUser :null,
     activeUser: null,
     exams: []
@@ -14,12 +11,16 @@ const initial ={
 const userReducer =(state=initial,action)=>{
     let newUser={...state.oneUser}
     let newArrOfUsers=[...state.allUsers];
+    let newArrOfOrgUsers=[...state.allUsersOfOrg];
     let newActiveUser= {...state.activeUser}
     let newArrOfExams = [...state.exams]
     switch(action.type){
         case userActions.GET_ALL:
             newArrOfUsers=action.payload
             break;
+        case userActions.GET_ALL_Of_Org:
+                newArrOfOrgUsers=action.payload
+                break;
         case userActions.GET_ACTIVE_USER:
             newActiveUser= action.payload;
             break;
@@ -34,9 +35,10 @@ const userReducer =(state=initial,action)=>{
             break;
 
     }
-    // console.log("active", newActiveUser, "add role", newUser,"all",  newArrOfUsers, "exams", newArrOfExams);
+    console.log("all Users", newArrOfUsers, "Org users", newArrOfOrgUsers);
     return {
             allUsers:newArrOfUsers,
+            allUsersOfOrg: newArrOfOrgUsers,
             oneUser:newUser,
             activeUser: newActiveUser,
             exams: newArrOfExams

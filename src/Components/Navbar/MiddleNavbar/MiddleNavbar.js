@@ -18,7 +18,7 @@ const MiddleNavbar = (props) => {
           <Menu.Item index="2" to='/exams/add'><i className="fas fa-stream"></i> Build Exam</Menu.Item>
           <Menu.Item index="3" to='/organization/question'><i className="fas fa-question"></i> Questions Pool</Menu.Item>
           <Menu.Item index="4" to='/exams'><i className="fas fa-question"></i> Your Exams</Menu.Item>
-          <Menu.Item index="5" to='/users/assign'><i className="fas fa-users-cog"></i> Manage Users</Menu.Item>
+          <Menu.Item index="5" to={`/organization/${props.org.id}/myusers`}><i className="fas fa-users-cog"></i> Manage Users</Menu.Item>
           <Menu.Item index="6" to={`/organization/${props.org.id}/users`}><i className="fas fa-users"></i> Users</Menu.Item>
         </Menu>
       </div>

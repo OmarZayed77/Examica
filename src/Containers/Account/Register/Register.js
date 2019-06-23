@@ -95,7 +95,7 @@ class Register extends Component {
   alertError() {
     Notification({
       title: 'Error',
-      message: 'You have already Registered with this email before',
+      message: 'You have already Registered with this username or email before',
       type: 'error',
       offset: 100
     });

@@ -7,3 +7,6 @@
     font-weight: bold;
     color:  #58488C;
 }
+.MiddleNavbar  .el-menu-item.is-active, .el-menu-item.is-active {
+    color: #58488C;
+}

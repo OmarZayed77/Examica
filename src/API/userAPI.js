@@ -1,7 +1,13 @@
 import Axios from 'axios';
 import URL from './Config/url';
 
-export const getAllUsers = (orgId,token)=>{
+export const getAllUsers = (token)=>{
+    return Axios.get(`${URL}/api/users`, {headers: {Authorization: token}});
+
+
+}
+
+export const getAllUsersOfOrg = (orgId,token)=>{
     return Axios.get(`${URL}/api/users/organization/${orgId}`, {headers: {Authorization: token}});
 
 

@@ -1,8 +1,10 @@
 .box-card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    min-width: 25%;
+    min-width: 20%;
     min-height: 200px;
-    margin-top: 20px;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    margin-left: 10px;
     border-radius: 10px;
     position: relative;
     overflow: visible;
@@ -32,7 +34,7 @@
 .userCard-img{
     position: absolute;
     top:-55px;
-    left: 35%;
+    left: 30%;
     border-radius: 50%;
     width: 120px;
 }

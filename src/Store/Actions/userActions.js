@@ -4,16 +4,20 @@ export const GET_ALL = "GET_ALL";
 export const GET_USER = "GET_USER";
 export const GET_ACTIVE_USER = "GET_ACTIVE_USER";
 export const ADD_ROLE = "ADDROLE";
+export const GET_ALL_Of_Org = "GET_ALL_Of_Org";
 
 
 
-export const getAll=(orgId, token) =>{
+
+export const getAll=(token) =>{
     return (dispatch)=>{
-            userAPI.getAllUsers(orgId,token)
+            dispatch({type: "IsLoading"});
+            userAPI.getAllUsers(token)
             .then(res=>{
                 if(res.status===200){
                     dispatch(getAllUsersSuccess(res.data));
                 }
+                dispatch({type: "Loaded"});
             })
             .catch(console.error);
     };
@@ -22,6 +26,25 @@ export const getAll=(orgId, token) =>{
 }
 export const getAllUsersSuccess =(value)=>{
 return {type:GET_ALL,payload:value};
+};
+
+export const getAllOfOrg=(orgId, token) =>{
+    return (dispatch)=>{
+            dispatch({type: "IsLoading"});
+            userAPI.getAllUsersOfOrg(orgId,token)
+            .then(res=>{
+                if(res.status===200){
+                    dispatch(getAllUsersOfOrgSuccess(res.data));
+                }
+                dispatch({type: "Loaded"});
+            })
+            .catch(console.error);
+    };
+
+     
+}
+export const getAllUsersOfOrgSuccess =(value)=>{
+return {type:GET_ALL_Of_Org,payload:value};
 };
 
 
