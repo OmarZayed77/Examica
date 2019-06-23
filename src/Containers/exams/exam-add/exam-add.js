@@ -3,6 +3,7 @@ import {Form, Button, Input, DateRangePicker, Checkbox} from 'element-react/next
 import {toSqlFormat} from '../../../Helpers/convertDateTime';
 import {connect} from 'react-redux';
 import * as examActions from '../../../Store/Actions/examActions';
+import './exam-add.css';
 
 class ExamAdd extends Component {
 
@@ -18,7 +19,7 @@ class ExamAdd extends Component {
         StartDateTime: "",
         EndDateTime: "",
         IsPublic: false,
-        OrganizationId: 1
+        OrganizationId: ""
       },
       // Form Rules and Validations to be used by Element UI Form
       rules: {
@@ -62,7 +63,10 @@ class ExamAdd extends Component {
     e.preventDefault();
     this.refs.form.validate((valid) => {
       if (valid) {
-        this.props.onAddExam(this.state.form, this.props.token);
+        const exam = {...this.state.form};
+        exam.OrganizationId = this.props.match.params.id;
+        this.props.onAddExam(exam, this.props.token);
+        this.props.history.push(`/organization/${this.props.match.params.id}/exams`);
       }
       else {
         return false;
@@ -81,7 +85,7 @@ class ExamAdd extends Component {
         StartDateTime: "",
         EndDateTime: "",
         IsPublic: false,
-        OrganizationId: 1
+        OrganizationId: ""
       }
     });
   }
@@ -110,7 +114,8 @@ class ExamAdd extends Component {
 
   render() {
     return (
-      <Form className={`demo-ruleForm`} ref="form" model={this.state.form} rules={this.state.rules} labelWidth="100">
+      <Form className={`demo-ruleForm AddExam`} ref="form" model={this.state.form} rules={this.state.rules} labelWidth="100">
+        <div className="title">Add Exam</div>
         <Form.Item label="Name" prop="Name">
           <Input type="text" value={this.state.form.Name} onChange={this.onChange.bind(this, 'Name')} autoComplete="off" />
         </Form.Item>

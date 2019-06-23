@@ -1,3 +1,7 @@
+.organization-page {
+  padding: 2rem;
+}
+
 .organization-page .container{
   margin : 100px auto 100px auto;
   font-size: 14px;
@@ -35,7 +39,11 @@
 }
 
 .organization-page .container-rows{
-  margin: 0px 0px 15px 0px ;
+  margin: 30px 0px 15px 0px ;
+  font-size: 18px;
+  color: #2D2D47;
 }
 
-
+.organization-page .container-rows span{
+  color: #FF8A73;
+}

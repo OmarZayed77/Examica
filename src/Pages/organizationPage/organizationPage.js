@@ -34,8 +34,8 @@ class OrganizationPage extends Component {
       <Layout.Row>
         <Layout.Col span="4" offset="20">
         <div className="grid-content bg-purple-light buttons">
-        <Button onClick={() => this.nextPath.bind('/QuestionTypes')} className="Buttonsecondry">Question  <i className="fas fa-plus"></i></Button> 
-        <Button onClick={() => this.nextPath.bind('/exams/add')} className="Buttonsecondry">Exam  <i className="fas fa-plus"></i></Button> 
+        <Button onClick={this.nextPath.bind(this, `/organization/${this.props.org.id}/questions/add`)} className="Buttonsecondry">Question  <i className="fas fa-plus"></i></Button> 
+        <Button onClick={this.nextPath.bind(this, `/organization/${this.props.org.id}/exams/add`)} className="Buttonsecondry">Exam  <i className="fas fa-plus"></i></Button> 
         </div>
         </Layout.Col>
       </Layout.Row>
@@ -45,12 +45,10 @@ class OrganizationPage extends Component {
         </Layout.Col>
         <Layout.Col lg={10}>
         <Layout.Row className="container-rows">
-        Company Name : {this.props.org.name}
+        <span>Company Name: </span>  {this.props.org.name}
         </Layout.Row>
         <Layout.Row className="container-rows">
-        Pricing Plan : {PricingPlan}
-        </Layout.Row>
-        <Layout.Row className="container-rows">
+        <span>Pricing Plan: </span>  {PricingPlan}
         </Layout.Row>
         </Layout.Col>
       </Layout.Row>

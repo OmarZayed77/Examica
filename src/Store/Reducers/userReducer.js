@@ -41,7 +41,6 @@ const userReducer =(state=initial,action)=>{
             break;
 
     }
-    console.log(newArrOfOrgUsers);
     return {
             allUsers:newArrOfUsers,
             allUsersOfOrg: newArrOfOrgUsers,

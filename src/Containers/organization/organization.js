@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {getCurrent, getOrgById} from '../../Store/Actions/organizationActions';
 import {getAll, getAllOfOrg} from '../../Store/Actions/userActions';
 import UsersList from '../../Containers/Users/UsersList';
+// import questionList from '../QuestionTypes';
+import AddExam from '../exams/exam-add';
 import AssignRoles from '../assignRole';
 
 class Organization extends Component {
@@ -44,6 +46,7 @@ class Organization extends Component {
         <Route path="/organization/:id/myusers" render={()=> <UsersList users={this.props.orgUsers} />} />
         <Route path="/organization/:id/users/assign/:userId" component={AssignRoles}/>
         <Route path="/organization/:id/users" render={()=> <UsersList users={this.props.allUsers} />} />
+        <Route path="/organization/:id/exams/add" component={AddExam} />
         <Route path="/organization/:id" component={OrganizationProfile}/>
       </Switch>
     );
