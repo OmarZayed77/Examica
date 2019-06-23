@@ -9,6 +9,9 @@ namespace UI.Examica.Model.Core.Domains.Enums
     {
         Beginner,
         Intermediate,
-        Advanced
+        Advanced,
+        Expert,
+        Senior,
+        Team_Lead
     }
 }

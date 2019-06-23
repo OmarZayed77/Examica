@@ -38,11 +38,11 @@ namespace UI.Examica.API.Controllers
         [Route("login")]
         public async Task<ActionResult<AuthDto>> Login([FromBody] LoginDto model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
-
+            var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
+            if (appUser == null) return BadRequest();
+            var result = await _signInManager.PasswordSignInAsync(appUser.UserName, model.Password, false, false);
             if (result.Succeeded)
             {
-                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
                 AuthDto auth = new AuthDto
                 {
                     Token = GenerateJwtToken(model.Email, appUser),

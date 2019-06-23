@@ -69,7 +69,7 @@ namespace UI.Examica.API.Controllers
             var orgId = exam.OrganizationId;
             AppUser user = await userManager.GetUserAsync(User);
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
-            if (exam.IsPublic || user.IsExaminerOfOrg(orgId) || user.IsAdminOfOrg(orgId))
+            if (exam.IsPublic || user.IsOwnerOfOrg(orgId) || user.IsExaminerOfOrg(orgId) || user.IsExamineeOfOrg(orgId))
             {
                 return Ok(Mapper.Map<ExamDto>(exam));
             }
@@ -89,7 +89,7 @@ namespace UI.Examica.API.Controllers
            
             if (user.IsAdminOfOrg(id) || user.IsExaminerOfOrg(id) || user.IsAdminOfOrg(id))
             {       
-                var exams = await unitOfWork.Exams.Find(e => e.OrganizationId == id || e.IsPublic);   
+                var exams = await unitOfWork.Exams.Find(e => e.OrganizationId == id );   
                 if (exams == null)
                 {
                     return NotFound();

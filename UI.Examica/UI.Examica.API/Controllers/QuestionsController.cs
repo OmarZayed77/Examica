@@ -87,7 +87,11 @@ namespace UI.Examica.API.Controllers
             user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
             if (!(user.IsOwnerOfOrg(question.OrganizationId) || user.IsExaminerOfOrg(question.OrganizationId) || user.IsExamineeOfOrg(question.OrganizationId))) return Forbid();
             unitOfWork.Questions.Remove(question);
-            return Ok(await unitOfWork.SaveAsync());
+            unitOfWork.QuestionOptions.RemoveRange(await unitOfWork.QuestionOptions.Find(qo => qo.QuestionId == question.Id));
+            unitOfWork.QuestionComplexQuestions.RemoveRange(await unitOfWork.QuestionComplexQuestions.Find(qo => qo.QuestionId == question.Id));
+            unitOfWork.ExamQuestions.RemoveRange(await unitOfWork.ExamQuestions.Find(qo => qo.QuestionId == question.Id));
+            await unitOfWork.SaveAsync();
+            return Ok(new { questionId= question.Id});
         }
         // POST: api/questions
         [HttpPost]
