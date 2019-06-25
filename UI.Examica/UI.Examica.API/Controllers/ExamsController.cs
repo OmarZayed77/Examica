@@ -40,6 +40,20 @@ namespace UI.Examica.API.Controllers
             return Ok(Mapper.Map<List<ExamDto>>(await unitOfWork.Exams.GetAll()));
         }
 
+        // GET: api/Exams/assign/1/1
+        [HttpGet("assign/{examId}/{quesId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<bool>> Assign(int examId, int quesId)
+        {
+            AppUser user = await userManager.GetUserAsync(User);
+            user = unitOfWork.AppUsers.GetUserWithOrgs(user.Id);
+            Exam exam = await unitOfWork.Exams.GetById(examId);
+            if (!user.IsExaminerOfOrg(exam.OrganizationId)) return Forbid();
+            await unitOfWork.ExamQuestions.Add(new ExamQuestion { ExamId= examId, QuestionId= quesId});
+            await unitOfWork.SaveAsync();
+            return Ok(true);
+        }
+
         // GET: api/Examinee
         [HttpGet("examinee")]
         [ProducesResponseType(StatusCodes.Status200OK)]
