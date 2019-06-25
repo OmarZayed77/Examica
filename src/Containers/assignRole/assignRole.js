@@ -39,7 +39,7 @@ class AssignRole extends Component {
 
   onAddRole() {
     this.props.onAddRole(this.state.user.roles, this.props.token);
-    this.props.history.push(`/organization/${this.props.match.params.id}/myusers`);
+    this.props.history.push(`/`);
   }
 
   componentDidMount(){

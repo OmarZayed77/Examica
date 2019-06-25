@@ -24,6 +24,23 @@ export const addNewQuestion = (question, token) => {
     }
 }
 
+export const addNewQuestionToExam = (examId, question, token) => {
+    return dispatch => {
+    dispatch({type: "IsLoading"});
+    questionsAPI.addNewQuestion(question, token)
+        .then(res => {
+                if(res.status === 200) {
+                    dispatch(addQuesSuccess(res.data));
+                    // dispatch({type: "AddQuestionToExam", payload: res.data.id});
+                    questionsAPI.assignQuestion(examId, res.data.id, token);
+                }
+                dispatch({type: "Loaded"});
+            }
+        )
+        .catch(console.error);
+    }
+}
+
 
 export const getAll = (orgId, token) => {
     return (dispatch) => {

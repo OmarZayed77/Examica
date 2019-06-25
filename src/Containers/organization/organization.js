@@ -47,18 +47,46 @@ class Organization extends Component {
   }
 
   render() {
-    return (
-      <Switch>
-        <Route path="/organization/:id/myusers" render={()=> <UsersList users={this.props.orgUsers} />} />
-        <Route path="/organization/:id/users/assign/:userId" component={AssignRoles}/>
-        <Route path="/organization/:id/users" render={()=> <UsersList users={this.props.allUsers} />} />
-        <Route path="/organization/:id/exams/add" component={AddExam} />
-        <Route path="/organization/:id/exams" component={ExamsList} />
-        <Route path="/organization/:id/questions/add" component={AddQuestion} />
-        <Route path="/organization/:id/questions" component={QuestionsList} />
-        <Route path="/organization/:id" component={OrganizationProfile}/>
-      </Switch>
-    );
+    let routes= null;
+    if(this.props.roles && (this.props.roles.isOwner || this.props.roles.isAdmin) && this.props.roles.isExaminer) {
+      routes= (
+        <Switch>
+          <Route path="/organization/:id/myusers" render={()=> <UsersList users={this.props.orgUsers} />} />
+          <Route path="/organization/:id/users/assign/:userId" component={AssignRoles}/>
+          <Route path="/organization/:id/users" render={()=> <UsersList users={this.props.allUsers} />} />
+          <Route path="/organization/:id/exams/add" component={AddExam} />
+          <Route path="/organization/:id/exams" component={ExamsList} />
+          <Route path="/organization/:id/questions/add/exam/:examId" render={() => <AddQuestion isExam={true} /> }  />
+          <Route path="/organization/:id/questions/add" component={AddQuestion} />
+          <Route path="/organization/:id/questions" component={QuestionsList} />
+          <Route path="/organization/:id" component={OrganizationProfile}/>
+        </Switch>        
+      );
+    }
+    else if(this.props.roles && (this.props.roles.isOwner || this.props.roles.isAdmin)) {
+      routes= (
+        <Switch>
+          <Route path="/organization/:id/myusers" render={()=> <UsersList users={this.props.orgUsers} />} />
+          <Route path="/organization/:id/users/assign/:userId" component={AssignRoles}/>
+          <Route path="/organization/:id/users" render={()=> <UsersList users={this.props.allUsers} />} />
+          <Route path="/organization/:id" component={OrganizationProfile}/>
+        </Switch>        
+      );
+    }
+    else if(this.props.roles && this.props.roles.isExaminer) {
+      console.log(this.props.roles.isExaminer);
+      routes= (
+        <Switch>
+          <Route path="/organization/:id/exams/add" component={AddExam} />
+          <Route path="/organization/:id/exams" component={ExamsList} />
+          <Route path="/organization/:id/questions/add/exam/:examId" render={() => <AddQuestion isExam={true} /> }  />
+          <Route path="/organization/:id/questions/add" component={AddQuestion} />
+          <Route path="/organization/:id/questions" component={QuestionsList} />
+          <Route path="/organization/:id" component={OrganizationProfile}/>
+        </Switch>
+      );
+    }
+    return routes;
   }
 }
 
@@ -68,7 +96,8 @@ const mapStateToProps = state => {
     userId: state.auth.userId,
     organization: state.organizations.currentOrgnaziation,
     allUsers: state.users.allUsers,
-    orgUsers: state.users.allUsersOfOrg
+    orgUsers: state.users.allUsersOfOrg,
+    roles: state.users.activeUser.roles
   }
 }
 

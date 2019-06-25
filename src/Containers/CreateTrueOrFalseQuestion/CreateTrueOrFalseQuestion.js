@@ -3,6 +3,7 @@ import { Layout, Button, Input, Radio, InputNumber, Switch } from 'element-react
 import { Rate, Form } from 'element-react';
 import { connect } from "react-redux";
 import * as questionActions from "../../Store/Actions/questionActions";
+import {withRouter} from 'react-router-dom';
 
 import './CreateTrueOrFalseQuestion.css'
 
@@ -18,7 +19,7 @@ class CreateTrueOrFalseQuestion extends Component {
         Mark: null,
         IsPublic: false,
         Options: [{ name: "" }],
-        OrganizationId: 1,
+        OrganizationId: "",
       },
     }
   }
@@ -48,7 +49,6 @@ class CreateTrueOrFalseQuestion extends Component {
   }
 
   onChange(value) {
-    console.log(value);
     const addquestion = { ...this.state.question };
     addquestion.Options = [{ name: value }];
     this.setState({ question: addquestion });
@@ -56,36 +56,28 @@ class CreateTrueOrFalseQuestion extends Component {
 
 
   onAddTrueOrFalseQuestion = (e) => {
-    this.props.onAddQuestion(this.state.question, this.props.token);
+    const ques = {...this.state.question};
+    ques.OrganizationId = Number(this.props.match.params.id);
+    if(this.props.isExam) {
+      this.props.onAddQuestionToExam(this.props.examId ,ques, this.props.token);
+      this.props.history.push(`/organization/${this.props.match.params.id}/questions/add/exam/${this.props.examId}`);
+    }
+    else {
+      this.props.onAddQuestion(ques, this.props.token);
+      this.props.history.push(`/organization/${this.props.match.params.id}/questions`);
+    }
   }
 
 
 
 
   render() {
-    console.log(this.state)
     return (
       <Form className="CreateTrueOrFalseQuestion" >
 
         <Layout.Row lg="10">
-          <Layout.Col span={4} push={10}>
-            <Button type="text" className="CreateTrueOrFalseQuestion-textButton">Share</Button>
-            <i className="fas fa-share-alt"></i>
-          </Layout.Col>
-          <Layout.Col span={4} push={8}>
-            <Button type="text" className="CreateTrueOrFalseQuestion-textButton">Settings</Button>
-            <i className="fas fa-cog"></i>
-          </Layout.Col>
-          <Layout.Col span={4} push={6}>
-            <Button type="text" className="CreateTrueOrFalseQuestion-textButton">Create</Button>
-            <i className="fas fa-pen"></i>
-          </Layout.Col>
-
-          <Layout.Col span={6} className="CreateTrueOrFalseQuestion-col6">
-            <Button type="primary" className="CreateTrueOrFalseQuestion-primary">Preview</Button>
-          </Layout.Col>
-          <Layout.Col span={6} className="CreateTrueOrFalseQuestion-col6-done">
-            <Button type="success" className="CreateTrueOrFalseQuestion-done" onClick={this.onAddTrueOrFalseQuestion}>Done</Button>
+          <Layout.Col span={6} offset={14} className="CreateTrueOrFalseQuestion-col6-done">
+            <Button type="success" className="CreateTrueOrFalseQuestion-done" onClick={this.onAddTrueOrFalseQuestion}>Create</Button>
           </Layout.Col>
         </Layout.Row>
 
@@ -145,8 +137,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddQuestion: (question, token) => { dispatch(questionActions.addNewQuestion(question, token)) }
+    onAddQuestion: (question, token) => { dispatch(questionActions.addNewQuestion(question, token)) },
+    onAddQuestionToExam: (examId, question, token) => dispatch(questionActions.addNewQuestionToExam(examId, question, token))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateTrueOrFalseQuestion);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CreateTrueOrFalseQuestion));

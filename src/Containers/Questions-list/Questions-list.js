@@ -10,13 +10,13 @@ class QuestionsList extends Component {
     questionButtons: [
       {
         id: 1,
-        name: "Multiple Choice",
+        name: "MCQ SingleAns",
         icon: "fas fa-dot-circle",
         type: `/organization/${this.props.match.params.id}/questions/add/mcqSingle`
       },
       {
         id: 2,
-        name: "Checkbox",
+        name: "MCQ MultiAns",
         icon: "fas fa-check-square",
         type: `/organization/${this.props.match.params.id}/questions/add/mcqMul`
       },
@@ -24,19 +24,7 @@ class QuestionsList extends Component {
         id: 3,
         name: "TrueOrFalse",
         icon: "fas fa-times-circle",
-        type: ``
-      },
-      {
-        id: 4,
-        name: "Comprehenssion",
-        icon: "fas fa-align-center",
-        type: ``
-      },
-      {
-        id: 5,
-        name: "Import questions",
-        icon: "fas fa-file-import",
-        type: "/add/ImportQuestion"
+        type: `/organization/${this.props.match.params.id}/questions/add/tf`
       }
     ]
   };

@@ -3,11 +3,11 @@ import {Switch} from 'element-react/next';
 import './TrueOrFalse.css';
 
 const TrueOrFalse = (props) => {
-  let answer = true;
-  const changeAnswer = (value) => {
-    answer = value;
-    console.log(answer);
-  }
+  // let answer = true;
+  // const changeAnswer = (value) => {
+  //   answer = value;
+  //   console.log(answer);
+  // }
   return (
     <div className="TrueOrFalse">
       <span className="TrueOrFalse-Title">
@@ -15,7 +15,7 @@ const TrueOrFalse = (props) => {
       </span>
       <Switch
         value={true}
-        onChange={changeAnswer}
+        // onChange={changeAnswer}
         width={65}
         onText="True"
         offText="False"

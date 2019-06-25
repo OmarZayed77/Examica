@@ -5,6 +5,7 @@ import OrgReducer from './Reducers/organizationReducer';
 import QuestionReducer from './Reducers/questionReducer';
 import UserReducer from './Reducers/userReducer';
 import LoadingReducer from './Reducers/loadingReducer';
+// import AddExamReducer from './Reducers/addExamReducer';
 
 const rootReducer = combineReducers(
     {
@@ -13,7 +14,8 @@ const rootReducer = combineReducers(
        organizations: OrgReducer,
        questions: QuestionReducer,
        users: UserReducer,
-       isLoading: LoadingReducer
+       isLoading: LoadingReducer,
+    //    addExam: AddExamReducer
     }
 );
 

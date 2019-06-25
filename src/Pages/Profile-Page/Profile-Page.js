@@ -74,7 +74,7 @@ const mapStateToProps = state => {
     userId: state.auth.userId,
     orgId: state.organizations.currentOrgnaziation,
     activeUser: state.users.activeUser,
-    exams: state.users.exams,
+    exams: state.users.exams
   };
 };
 

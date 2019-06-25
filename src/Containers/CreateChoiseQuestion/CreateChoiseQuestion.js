@@ -23,10 +23,10 @@ class CreateMultipleChoiseQuestion extends Component {
       form: {
         Title: "",
         Type: this.props.type,
-        Level: null,
-        Mark: null,
+        Level: 1,
+        Mark: 1,
         IsPublic: false,
-        Options: [{name: ""}, {name: ""}],
+        Options: [{name: "Option1"}, {name: "Option2"}],
         OrganizationId: 2
       },
       rules: {
@@ -82,8 +82,14 @@ class CreateMultipleChoiseQuestion extends Component {
       if (valid) {
         const ques = {...this.state.form};
         ques.OrganizationId = Number(this.props.match.params.id);
-        this.props.onAddQuestion(ques, this.props.token);
-        this.props.history.push(`/organization/${this.props.match.params.id}/questions`);
+        if(this.props.isExam) {
+          this.props.onAddQuestionToExam(this.props.examId ,ques, this.props.token);
+          this.props.history.push(`/organization/${this.props.match.params.id}/questions/add/exam/${this.props.examId}`);
+        }
+        else {
+          this.props.onAddQuestion(ques, this.props.token);
+          this.props.history.push(`/organization/${this.props.match.params.id}/questions`);
+        }
       } else {
         console.log("error submit!!");
         return false;
@@ -158,7 +164,7 @@ class CreateMultipleChoiseQuestion extends Component {
 
   onAddOption() {
     let addOption = [...this.state.form.Options];
-    addOption.push({name: ""});
+    addOption.push({name: `Option${addOption.length+1}`});
     this.setState({
       form: {
         ...this.state.form,
@@ -231,7 +237,7 @@ class CreateMultipleChoiseQuestion extends Component {
             <Layout.Col span={3}>
               <InputNumber
                 className="CreateMultipleChoiseQuestion-NumberInput"
-                defaultValue={0}
+                defaultValue={this.state.form.Mark}
                 onChange={this.onChange.bind(this, "Mark")}
                 min="1"
                 max="100"
@@ -307,7 +313,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddQuestion: (question, token) => {
       dispatch(questionActions.addNewQuestion(question, token));
-    }
+    },
+    onAddQuestionToExam: (examId, question, token) => dispatch(questionActions.addNewQuestionToExam(examId, question, token))
   };
 };
 export default connect(

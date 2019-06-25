@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 const Exam = (props) => {
   const onClick = () => {
     if(props.isExaminee) props.history.push(`/exams/examinee/${props.id}`);
-    else props.history.push(`/exams/${props.id}`);
+    else props.history.push(`/organization/${props.match.params.id}/questions/add/exam/${props.id}`);
   }
   return (
     <div className="Exam" onClick={onClick}>

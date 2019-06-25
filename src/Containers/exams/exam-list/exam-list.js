@@ -19,6 +19,7 @@ class ExamList extends Component {
           startDate={ex.startDateTime}
           endDate={ex.endDateTime}
           numberOfQuestions={ex.questions.length}
+          isExaminee={false}
           />
         </Layout.Col>
         );

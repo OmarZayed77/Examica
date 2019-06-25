@@ -28,14 +28,21 @@ class OrganizationPage extends Component {
       default:
         break;
     }
-    
+    let buttons = null;
+    if(this.props.roles && this.props.roles.isExaminer) {
+      buttons= (
+        <>
+        <Button onClick={this.nextPath.bind(this, `/organization/${this.props.org.id}/questions/add`)} className="Buttonsecondry">Question  <i className="fas fa-plus"></i></Button> 
+        <Button onClick={this.nextPath.bind(this, `/organization/${this.props.org.id}/exams/add`)} className="Buttonsecondry">Exam  <i className="fas fa-plus"></i></Button> 
+        </>
+      );
+    }
     return (
       <div className="organization-page">
       <Layout.Row>
         <Layout.Col span="4" offset="20">
         <div className="grid-content bg-purple-light buttons">
-        <Button onClick={this.nextPath.bind(this, `/organization/${this.props.org.id}/questions/add`)} className="Buttonsecondry">Question  <i className="fas fa-plus"></i></Button> 
-        <Button onClick={this.nextPath.bind(this, `/organization/${this.props.org.id}/exams/add`)} className="Buttonsecondry">Exam  <i className="fas fa-plus"></i></Button> 
+          {buttons}
         </div>
         </Layout.Col>
       </Layout.Row>
@@ -61,7 +68,8 @@ class OrganizationPage extends Component {
 const mapStateToprops = state => {
   return {
     org: state.organizations.currentOrgnaziation,
-    isLoggedIn: state.auth.isLoggedIn
+    isLoggedIn: state.auth.isLoggedIn,
+    roles: state.users.activeUser.roles
   }
 }
 

@@ -1,4 +1,5 @@
 import * as examsAPI from '../../API/examsAPI';
+// import * as questionAPI from '../../API/questionAPI';
 
 export const ADD = 'ADD';
 export const EDIT = 'EDIT';
@@ -43,8 +44,22 @@ export const getByUser = (token) =>{
 		 dispatch({type: "IsLoading"});
 		 examsAPI.getByUser(token)
 		 .then(res => {
-			 console.log(res.data);
 			 dispatch({type: GET_USER_EXAMS , payload : res.data})
+			 dispatch({type: "Loaded"});
+		 })
+		 .catch(err => {
+		   dispatch({type: "Loaded"});
+		   console.error(err);
+		 });
+	}
+}
+
+export const getById = (examId, token) => {
+	return (dispatch) => {
+		 dispatch({type: "IsLoading"});
+		 examsAPI.getById(examId, token)
+		 .then(res => {
+			 dispatch({type: "GetExamToBeAdded" , payload : res.data})
 			 dispatch({type: "Loaded"});
 		 })
 		 .catch(err => {
